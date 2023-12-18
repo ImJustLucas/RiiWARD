@@ -1,4 +1,4 @@
-import { signUp } from "@hooks/Auth";
+import { signUp } from "@hooks/tests/Auth";
 
 describe("signUp", () => {
   it("should return a success result when all conditions are met", () => {

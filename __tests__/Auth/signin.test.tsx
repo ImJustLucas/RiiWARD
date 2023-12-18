@@ -1,4 +1,4 @@
-import { signIn } from "@hooks/Auth";
+import { signIn } from "@hooks/tests/Auth";
 
 describe("Sign In", () => {
   it("should sign in successfully with valid email and password", () => {
