@@ -5,9 +5,6 @@ interface SignInResult {
 }
 
 export const signIn = (email: string, password: string): SignInResult => {
-  // logique d'authentification ici
-
-  // Exemple
   if (email === "test@example.com" && password === "password123") {
     return { success: true };
   } else {
