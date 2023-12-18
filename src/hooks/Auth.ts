@@ -3,16 +3,15 @@ interface SignInResult {
   success: boolean;
   message?: string;
 }
-
 interface SignUpResult {
   success: boolean;
   message?: string;
 }
 
 export const signIn = (email: string, password: string): SignInResult => {
-  // Authentication logic here
-
-  // Example
+  if (!isValidEmail(email)) {
+    return { success: false, message: "Invalid email format" };
+  }
   if (email === "test@example.com" && password === "password123") {
     return { success: true };
   } else {
