@@ -17,7 +17,7 @@ describe("Sign In", () => {
     const result = signIn(email, password);
 
     expect(result.success).toBe(false);
-    expect(result.message).toBe("Email or password is incorrect");
+    expect(result.message).toEqual("Invalid email format");
   });
 
   it("should fail to sign in with incorrect password", () => {
