@@ -1,5 +1,6 @@
 import { Theme } from "@typesDef/themes";
 import { createColor } from "@utils/createColor";
+// import { create } from "domain";
 
 const light: Theme = {
   id: 0,
@@ -9,9 +10,11 @@ const light: Theme = {
     secondary: "#90e0ef",
 
     background: {
-      primary: "#F5F6F7",
+      primary: createColor(245, 246, 247, 100),
       secondary: createColor(246, 6, 123, 0.2),
       contrast: "",
+      dark: createColor(33, 37, 41, 100),
+      light: createColor(255, 255, 255, 100),
     },
     text: {
       primary: "#2b2d42",
