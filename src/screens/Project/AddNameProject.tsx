@@ -1,4 +1,4 @@
-import { Button } from "@components/Button";
+import { RightButton } from "@components/RightButton";
 import styled from "styled-components";
 
 export const AddNameProject: React.FC = () => {
@@ -11,7 +11,7 @@ export const AddNameProject: React.FC = () => {
             <InputName type="text" placeholder="Project name" />
           </ContainerInput>
           <ContainerButton>
-            <Button text="Next" icon="skip-right" link="#" />
+            <RightButton text="Next" icon="skip-right" link="#" />
           </ContainerButton>
         </ContainerAddProject>
       </ContainerPage>
