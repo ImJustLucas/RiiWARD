@@ -18,7 +18,7 @@ export default function AddProject() {
           setProject={updateProject}
         />
       )}
-      {step == 2 && <Step2 />}
+      {step == 2 && <Step2 step={{ get: step, set: setStep }} />}
     </>
   );
 }

@@ -6,11 +6,17 @@ type ButtonProps = {
   text: string;
   icon: string;
   link: string;
+  onClick?: () => void;
 };
 
-export const LeftButton: React.FC<ButtonProps> = ({ text, icon, link }) => {
+export const LeftButton: React.FC<ButtonProps> = ({
+  text,
+  icon,
+  link,
+  onClick,
+}) => {
   return (
-    <ButtonStyled href={link}>
+    <ButtonStyled href={link} onClick={onClick}>
       <Icon icon={icon}></Icon>
       <Text>{text}</Text>
     </ButtonStyled>

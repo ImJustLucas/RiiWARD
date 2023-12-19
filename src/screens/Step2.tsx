@@ -4,7 +4,14 @@ import { Icon } from "@components/Icon";
 import { StepBackground } from "@components/StepBackground";
 import styled from "styled-components";
 
-export const Step2: React.FC = () => {
+type Step2Project = {
+  step: {
+    get: number;
+    set: (newStep: number) => void;
+  };
+};
+
+export const Step2: React.FC<Step2Project> = ({ step }) => {
   return (
     <>
       <StepBackground />
@@ -18,8 +25,18 @@ export const Step2: React.FC = () => {
         </InputContainer>
 
         <Actions>
-          <LeftButton text="Back" icon="skip-left" link="/"></LeftButton>
-          <RightButton text="Next" icon="skip-right" link="/"></RightButton>
+          <LeftButton
+            text="Back"
+            icon="skip-left"
+            link="#"
+            onClick={() => step.set(step.get - 1)}
+          ></LeftButton>
+          <RightButton
+            text="Next"
+            icon="skip-right"
+            link="/"
+            // onClick={() => step.set(step.get + 1)}
+          ></RightButton>
         </Actions>
       </HomeContainer>
     </>
