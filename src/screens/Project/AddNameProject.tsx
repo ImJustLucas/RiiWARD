@@ -1,4 +1,4 @@
-import { RightButton } from "@components/RightButton";
+import { RightButton } from "@components/Common/Buttons/RightButton";
 import { StepBackground } from "@components/StepBackground";
 import { Project } from "@typesDef/project/project";
 import styled from "styled-components";
