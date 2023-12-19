@@ -9,8 +9,7 @@ const light: Theme = {
     secondary: "#90e0ef",
 
     background: {
-      primary:
-        "linear-gradient(123deg, #FFF 23.25%, #C5F1FB 48.67%, #F1F6F6 76.07%)",
+      primary: "#F5F6F7",
       secondary: createColor(246, 6, 123, 0.2),
       contrast: "",
     },

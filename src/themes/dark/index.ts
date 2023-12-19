@@ -9,7 +9,7 @@ const dark: Theme = {
     secondary: "#caf0f8",
 
     background: {
-      primary: "linear-gradient(123deg, #2B2D42 0%, #023E8A 50%, #2B2D42 100%)",
+      primary: "#F5F6F7",
       secondary: createColor(30, 31, 32, 0.2),
       contrast: "",
     },
