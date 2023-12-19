@@ -1,5 +1,4 @@
 import { SocialBar } from "@components/Footer/SocialBar";
-import { ThemeToggleButton } from "@components/ThemeToggle";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -8,7 +7,6 @@ export const HomeScreen: React.FC = () => {
     <>
       <HeaderContainer>
         <p>✨ ImJustLucas present ✨</p>
-        <ThemeToggleButton />
       </HeaderContainer>
       <HomeContainer>
         <Title>Just a boilerplate</Title>
