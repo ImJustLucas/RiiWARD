@@ -20,9 +20,9 @@ export const LeftButton: React.FC<ButtonProps> = ({ text, icon, link }) => {
 const ButtonStyled = styled(Link)`
   border-radius: 24px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   padding: 16px 24px;
   background-color: ${({ theme }) => theme.colors.dark};
 
@@ -30,6 +30,7 @@ const ButtonStyled = styled(Link)`
     border-radius: 14px;
     padding: 8px 12px;
   }
+  width: 100%;
 `;
 
 const Text = styled.span`
