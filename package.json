@@ -27,6 +27,9 @@
     ]
   },
   "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.8.7",
+    "@supabase/auth-helpers-react": "^0.4.2",
+    "@supabase/supabase-js": "^2.39.1",
     "babel-plugin-styled-components": "^2.1.4",
     "dayjs": "^1.11.10",
     "next": "13.5.4",
@@ -62,6 +65,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-styled-components": "^7.1.1",
     "prettier": "^3.0.3",
+    "supabase": "^1.123.4",
     "typescript": "^5"
   }
 }
