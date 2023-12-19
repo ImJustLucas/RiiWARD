@@ -1,7 +1,13 @@
+import { useState } from "react";
 import { AddNameProject } from "@screens/Project/AddNameProject";
+import { Step2 } from "@screens/Step2";
 
 export default function AddProject() {
-  // here import step of adding a project
-  // => create component in screens folder and import it here
-  return <AddNameProject />;
+  const [step, setStep] = useState<number>(1);
+  return (
+    <>
+      {step == 1 && <AddNameProject step={{ get: step, set: setStep }} />}
+      {step == 2 && <Step2 />}
+    </>
+  );
 }

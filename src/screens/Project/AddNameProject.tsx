@@ -1,17 +1,31 @@
 import { RightButton } from "@components/RightButton";
+import { StepBackground } from "@components/StepBackground";
 import styled from "styled-components";
 
-export const AddNameProject: React.FC = () => {
+type AddProjectProps = {
+  step: {
+    get: number;
+    set: (newStep: number) => void;
+  };
+};
+
+export const AddNameProject: React.FC<AddProjectProps> = ({ step }) => {
   return (
     <>
       <ContainerPage>
+        <StepBackground />
         <ContainerAddProject>
           <Title>Give your project a name</Title>
           <ContainerInput>
             <InputName type="text" placeholder="Project name" />
           </ContainerInput>
           <ContainerButton>
-            <RightButton text="Next" icon="skip-right" link="#" />
+            <RightButton
+              text="Next"
+              icon="skip-right"
+              link="#"
+              onClick={() => step.set(step.get + 1)}
+            />
           </ContainerButton>
         </ContainerAddProject>
       </ContainerPage>
@@ -26,7 +40,6 @@ const ContainerPage = styled.div`
   justify-content: center;
   width: 100%;
   height: 100vh;
-  background-color: #f5f6f7;
   text-align: center;
 `;
 
