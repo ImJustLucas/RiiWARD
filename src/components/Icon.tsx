@@ -33,6 +33,24 @@ export const Icon: React.FC<IconProps> = ({ icon }) => {
           ></path>
         </Svg>
       );
+    case "skip-right":
+      return (
+        <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M10.0858 12L5.29291 16.7929L6.70712 18.2071L12.9142 12L6.70712 5.79291L5.29291 7.20712L10.0858 12ZM17 6.00002L17 18H15L15 6.00002L17 6.00002Z"
+            fill="currentColor"
+          ></path>
+        </Svg>
+      );
+    case "skip-left":
+      return (
+        <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M13.9142 12L18.7071 7.20712L17.2929 5.79291L11.0858 12L17.2929 18.2071L18.7071 16.7929L13.9142 12ZM7 18V6.00001H9V18H7Z"
+            fill="currentColor"
+          ></path>
+        </Svg>
+      );
   }
 };
 

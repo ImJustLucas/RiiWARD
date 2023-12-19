@@ -7,6 +7,11 @@ const light: Theme = {
   colors: {
     primary: "#00b4d8",
     secondary: "#90e0ef",
+    dark: "#212529",
+    grey: "#323639",
+    lightgrey: "#F5F6F7",
+    black: "#000000",
+    white: "#FFFFFF",
 
     background: {
       primary:
