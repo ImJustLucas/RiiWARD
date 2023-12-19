@@ -3,37 +3,24 @@ import styled from "styled-components";
 
 type RoundedContainerProps = {
   children: React.ReactNode;
-  theme?: "light" | "dark";
+  background?: "light" | "dark";
   link?: string;
-  sizeX?: string;
-};
-
-const colors = {
-  light: "#ffffff",
-  dark: "#000000",
+  width?: string;
 };
 
 export const RoundedContainer: React.FC<RoundedContainerProps> = ({
   children,
-  theme = "light",
+  background = "light",
   link,
-  sizeX = "auto",
+  width = "auto",
 }) => {
   return (
-    <RoundedContainerDiv
-      style={{
-        backgroundColor: colors[theme],
-        width: sizeX,
-      }}
-    >
+    <RoundedContainerDiv background={background} width={width}>
       {link && (
         <LinkContainer>
           <Link href={`${link}`}>
             <Button>
-              <i
-                className="ri-link"
-                style={{ color: "white", fontSize: "24px", rotate: "45deg" }}
-              ></i>
+              <i className="ri-link"></i>
             </Button>
           </Link>
         </LinkContainer>
@@ -43,10 +30,18 @@ export const RoundedContainer: React.FC<RoundedContainerProps> = ({
   );
 };
 
-const RoundedContainerDiv = styled.div`
+const RoundedContainerDiv = styled.div<{
+  background?: "light" | "dark";
+  width?: string;
+}>`
   border-radius: 24px;
   padding: 24px;
   position: relative;
+  background: ${(props) =>
+    props.background === "light"
+      ? props.theme.colors.background.primary
+      : props.theme.colors.background.secondary};
+  width: ${(props) => props.width};
 `;
 
 const LinkContainer = styled.div`
@@ -82,5 +77,8 @@ const Button = styled.button`
 
   & i {
     transition: 0.3s ease-in-out;
+    rotate: 45deg;
+    font-size: 24px;
+    color: white;
   }
 `;
