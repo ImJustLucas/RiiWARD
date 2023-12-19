@@ -32,15 +32,14 @@ export const Header: React.FC = () => {
 
 const HeaderContainer = styled.div`
   height: 100px;
-  width: 95%;
   background-color: white;
   border-radius: 10px;
   color: #000000;
   margin-top: 30px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  padding: 0px 20px;
+  padding: 0px 40px;
 `;
 
 const LogoContainer = styled.div`
@@ -67,14 +66,15 @@ const StyledLink = styled.div`
   padding: 0px 15px;
   font-size: 24px;
   cursor: pointer;
+  font-family: "Inter", sans-serif;
 `;
 
 const RoundedContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 98%;
   background-color: white;
-  border-radius: 15px;
-  margin-top: 30px;
+  border-radius: 24px;
   text-align: center;
+  margin-bottom: 50px;
+  width: 100%;
 `;
