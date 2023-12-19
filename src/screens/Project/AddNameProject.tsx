@@ -1,5 +1,6 @@
 import { RightButton } from "@components/RightButton";
 import { StepBackground } from "@components/StepBackground";
+import { Project } from "@typesDef/project/project";
 import styled from "styled-components";
 
 type AddProjectProps = {
@@ -7,9 +8,17 @@ type AddProjectProps = {
     get: number;
     set: (newStep: number) => void;
   };
+  setProject: React.Dispatch<React.SetStateAction<Project>>;
 };
 
-export const AddNameProject: React.FC<AddProjectProps> = ({ step }) => {
+export const AddNameProject: React.FC<AddProjectProps> = ({
+  step,
+  setProject,
+}) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const projectName = event.target.value;
+    setProject((prevProject) => ({ ...prevProject, name: projectName }));
+  };
   return (
     <>
       <ContainerPage>
@@ -17,7 +26,11 @@ export const AddNameProject: React.FC<AddProjectProps> = ({ step }) => {
         <ContainerAddProject>
           <Title>Give your project a name</Title>
           <ContainerInput>
-            <InputName type="text" placeholder="Project name" />
+            <InputName
+              onChange={handleInputChange}
+              type="text"
+              placeholder="Project name"
+            />
           </ContainerInput>
           <ContainerButton>
             <RightButton
