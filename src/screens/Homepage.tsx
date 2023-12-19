@@ -100,9 +100,8 @@ const StyledSubtitle = styled.div`
 const Column = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 24px;
 
   & h3 {
     font-size: ${({ theme }) => theme.size.title};
