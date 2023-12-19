@@ -20,11 +20,12 @@ export const Button: React.FC<ButtonProps> = ({ text, icon, link }) => {
 const ButtonStyled = styled(Link)`
   border-radius: 24px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 8px;
   padding: 16px 24px;
   background-color: #000;
+  width: 100%;
 `;
 
 const Text = styled.span`
