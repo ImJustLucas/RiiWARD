@@ -4,14 +4,14 @@ import { Icon } from "@components/Icon";
 import { StepBackground } from "@components/StepBackground";
 import styled from "styled-components";
 
-type Step2Project = {
+type AddCoverProjectProps = {
   step: {
     get: number;
     set: (newStep: number) => void;
   };
 };
 
-export const Step2: React.FC<Step2Project> = ({ step }) => {
+export const AddCoverProject: React.FC<AddCoverProjectProps> = ({ step }) => {
   return (
     <>
       <StepBackground />
