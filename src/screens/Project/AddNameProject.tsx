@@ -9,16 +9,21 @@ type AddProjectProps = {
     get: number;
     set: (newStep: number) => void;
   };
+  project: Project;
   setProject: React.Dispatch<React.SetStateAction<Project>>;
 };
 
 export const AddNameProject: React.FC<AddProjectProps> = ({
   step,
+  project,
   setProject,
 }) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const projectName = event.target.value;
-    setProject((prevProject) => ({ ...prevProject, name: projectName }));
+    project.name = event.target.value;
+  };
+  const handlePassStep = () => {
+    setProject((project) => project);
+    step.set(step.get + 1);
   };
   return (
     <>
@@ -41,7 +46,7 @@ export const AddNameProject: React.FC<AddProjectProps> = ({
               text="Next"
               icon="skip-right"
               link="#"
-              onClick={() => step.set(step.get + 1)}
+              onClick={() => handlePassStep()}
             />
           </ContainerButton>
         </ContainerAddProject>
