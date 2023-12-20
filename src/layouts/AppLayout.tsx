@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { AuthProvider } from "@contexts/AuthContext";
 import styled from "styled-components";
 
 type LayoutProps = {
@@ -6,7 +7,11 @@ type LayoutProps = {
 };
 
 export const AppLayout: FC<LayoutProps> = ({ children }) => {
-  return <AppLayoutContainer>{children}</AppLayoutContainer>;
+  return (
+    <AppLayoutContainer>
+      <AuthProvider>{children}</AuthProvider>
+    </AppLayoutContainer>
+  );
 };
 
 const AppLayoutContainer = styled.div`
