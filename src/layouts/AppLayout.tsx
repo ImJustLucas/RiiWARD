@@ -17,7 +17,7 @@ const AppLayoutContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 50px;
-  background: ${({ theme }) => theme.colors.background.primary};
+  // background: ${({ theme }) => theme.colors.background.primary};
   background-size: 400% 400%;
   animation: main-background 10s ease infinite;
   transition: background 0.3s ease-in-out;

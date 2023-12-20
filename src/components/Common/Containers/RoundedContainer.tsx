@@ -11,6 +11,7 @@ type RoundedContainerProps = {
   height?: string;
   padding?: string;
   userBar?: UserBarProps;
+  customStyles?: string;
 };
 
 export const RoundedContainer: React.FC<RoundedContainerProps> = ({
@@ -21,6 +22,7 @@ export const RoundedContainer: React.FC<RoundedContainerProps> = ({
   height = "auto",
   padding = "24px",
   userBar,
+  customStyles,
 }) => {
   return (
     <RoundedContainerDiv
@@ -28,6 +30,7 @@ export const RoundedContainer: React.FC<RoundedContainerProps> = ({
       width={width}
       height={height}
       padding={padding}
+      customStyles={customStyles}
     >
       {link && (
         <LinkContainer>
@@ -57,6 +60,7 @@ const RoundedContainerDiv = styled.div<{
   width?: string;
   height?: string;
   padding?: string;
+  customStyles?: string;
 }>`
   border-radius: 24px;
   padding: ${({ padding }) => padding};
@@ -75,6 +79,8 @@ const RoundedContainerDiv = styled.div<{
   @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
     width: 100%;
   }
+
+  ${({ customStyles }) => customStyles};
 `;
 
 const LinkContainer = styled.div`
