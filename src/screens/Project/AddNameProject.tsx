@@ -18,8 +18,15 @@ export const AddNameProject: React.FC<AddProjectProps> = ({
   project,
   setProject,
 }) => {
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputNameChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     project.name = event.target.value;
+  };
+  const handleInputDescriptionChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    project.description = event.target.value;
   };
   const handlePassStep = () => {
     setProject((project) => project);
@@ -36,9 +43,14 @@ export const AddNameProject: React.FC<AddProjectProps> = ({
           <Title>Give your project a name</Title>
           <ContainerInput>
             <InputName
-              onChange={handleInputChange}
+              onChange={handleInputNameChange}
               type="text"
               placeholder="Project name"
+            />
+            <InputName
+              onChange={handleInputDescriptionChange}
+              type="text"
+              placeholder="Description"
             />
           </ContainerInput>
           <ContainerButton>
@@ -105,6 +117,8 @@ const ContainerButton = styled.div`
 
 const ContainerInput = styled.div`
   display: flex;
+  flex-direction: column;
+  gap: 16px;
   text-align: center;
   width: 100%;
   justify-content: center;

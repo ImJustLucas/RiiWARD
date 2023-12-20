@@ -1,6 +1,7 @@
 import { LeftButton } from "@components/Common/Buttons/LeftButton";
 import { RightButton } from "@components/Common/Buttons/RightButton";
 import { StepBackground } from "@components/StepBackground";
+import { useAuth } from "@contexts/AuthContext";
 import { createProject } from "@services/api/Project";
 import { Project } from "@typesDef/project/project";
 import styled from "styled-components";
@@ -32,18 +33,13 @@ export const AddCategoryProject: React.FC<AddCategoryProjectProps> = ({
   step,
   project,
 }) => {
+  const { user } = useAuth();
   const handleCLickCategory = (category: string) => {
     project.category = category;
-    project.description = "description";
-    project.id = 1;
-    console.log("Final project", project);
   };
   const handleCreateProject = async () => {
-    console.log("projet avant call", project);
-
-    await createProject(project).then((response) => {
-      console.log("res", response);
-    });
+    project.userId = user?.id;
+    await createProject(project);
   };
   return (
     <>
@@ -74,7 +70,7 @@ export const AddCategoryProject: React.FC<AddCategoryProjectProps> = ({
               <RightButton
                 text="Next"
                 icon="skip-right"
-                link="#"
+                link="/projects"
                 onClick={() => handleCreateProject()}
               />
             </div>

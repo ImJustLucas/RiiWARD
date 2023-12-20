@@ -4,4 +4,5 @@ export type Project = {
   description: string;
   image?: string;
   category: string;
+  userId?: string;
 };
