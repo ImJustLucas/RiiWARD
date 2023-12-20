@@ -1,4 +1,4 @@
-// profile.ts
+// profile.tsx
 
 interface ProfileResult {
   success: boolean;

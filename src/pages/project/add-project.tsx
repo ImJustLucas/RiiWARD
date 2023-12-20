@@ -16,7 +16,7 @@ export default function AddProject() {
       {step == 1 && (
         <AddNameProject
           step={{ get: step, set: setStep }}
-          setProject={updateProject}
+          setProject={() => updateProject}
         />
       )}
       {step == 2 && <AddCoverProject step={{ get: step, set: setStep }} />}
