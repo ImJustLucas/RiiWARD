@@ -24,4 +24,4 @@ Node.js 18+ and npm
 
 ## Support
 
-Si vous
+Si vous avez des questions vous pouvez contacter @ImJustLucas sur GitHub.
