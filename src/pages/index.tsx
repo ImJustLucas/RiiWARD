@@ -1,9 +1,15 @@
+import { Header } from "@components/Header/Index";
 import { HomeScreen } from "@screens/Homepage";
 
 export default function Home() {
-  // ! Delete the HomeScreen component to remove the landing page
   return (
     <>
+      <Header
+        textHeader={{
+          title: "bring visibility to your project",
+          desc: "Transformez les projets académiques en succès professionnels : votre plateforme pour l'excellence étudiante.",
+        }}
+      />
       <HomeScreen />
     </>
   );
