@@ -1,21 +1,49 @@
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
 import styled from "styled-components";
 
-export const Login: React.FC = () => {
+export const Signin: React.FC = () => {
   return (
     <>
       <HomeContainer>
-        <Title>Log in</Title>
+        <Title>Sign in</Title>
         <SectionContainer>
           <RoundedContainer padding="15% 15%">
             <Form action="">
               <Label htmlFor="email">Email</Label>
-              <Input type="email" id="email" name="email"></Input>
+              <Input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+              ></Input>
+
+              <InputGroup>
+                <Label htmlFor="firstname">First name</Label>
+                <Input
+                  type="firstname"
+                  id="firstname"
+                  name="firstname"
+                  placeholder="First name"
+                ></Input>
+
+                <Label htmlFor="lastname">Last name</Label>
+                <Input
+                  type="lastname"
+                  id="lastname"
+                  name="lastname"
+                  placeholder="Last name"
+                ></Input>
+              </InputGroup>
 
               <Label htmlFor="password">Password</Label>
-              <Input type="password" id="password" name="password"></Input>
+              <Input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+              ></Input>
 
-              <Button type="submit">Log in</Button>
+              <Button type="submit">Sign in</Button>
             </Form>
           </RoundedContainer>
         </SectionContainer>
@@ -46,7 +74,12 @@ const Form = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
+`;
+
+const InputGroup = styled.div`
+  display: flex;
+  gap: 30px;
 `;
 
 const Input = styled.input`
