@@ -1,23 +1,27 @@
 import styled from "styled-components";
 
-export const TextHeader: React.FC = () => {
+export type TextHeaderProps = {
+  title: string;
+  desc?: string;
+};
+
+export const TextHeader: React.FC<TextHeaderProps> = ({ title, desc }) => {
   return (
     <HeaderText>
       <TitleContainer>
-        <h2>bring visibility to your project</h2>
+        <h2>{title}</h2>
       </TitleContainer>
-      <DescContainer>
-        <p>
-          Transformez les projets académiques en succès professionnels : votre
-          plateforme pour l&apos;excellence étudiante.
-        </p>
-      </DescContainer>
+      {desc && (
+        <DescContainer>
+          <p>{desc}</p>
+        </DescContainer>
+      )}
     </HeaderText>
   );
 };
 
 const HeaderText = styled.div`
-  padding: 0px 15px 50px 15px;
+  padding: 0px 15px;
   font-size: 24px;
   cursor: pointer;
 `;
@@ -33,4 +37,5 @@ const DescContainer = styled.div`
   width: 70%;
   margin: auto;
   font-size: 24px;
+  padding-bottom: 32px;
 `;

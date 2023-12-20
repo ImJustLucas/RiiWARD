@@ -1,5 +1,4 @@
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
-import { Header } from "@components/Header/Index";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
@@ -11,7 +10,6 @@ import Wand from "../assets/images/wand.png";
 export const HomeScreen: React.FC = () => {
   return (
     <>
-      <Header />
       <HomeContainer>
         <SectionContainer>
           <RoundedContainer
