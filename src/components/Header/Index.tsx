@@ -1,31 +1,31 @@
-import { TextHeader } from "@components/Header/ContainerText.tsx";
+import { TextHeader, TextHeaderProps } from "@components/Header/ContainerText";
 import Link from "next/link";
 import styled from "styled-components";
 
-export const Header: React.FC = () => {
+type HeaderProps = {
+  textHeader?: TextHeaderProps;
+};
+
+export const Header: React.FC<HeaderProps> = ({ textHeader }) => {
   return (
     <RoundedContainer>
       <HeaderContainer>
-        <LogoContainer>LOGO</LogoContainer>
+        <LogoContainer>
+          <Link href="/">LOGO</Link>
+        </LogoContainer>
         <LinksContainer>
-          <StyledLink href="" target="_blank">
-            Projets
-          </StyledLink>
-          <StyledLink href="" target="_blank">
-            Classement
-          </StyledLink>
-          <StyledLink href="" target="_blank">
-            Profil
-          </StyledLink>
+          <StyledLink href="/projects">Projets</StyledLink>
+          <StyledLink href="">Classement</StyledLink>
+          <StyledLink href="">Profil</StyledLink>
         </LinksContainer>
 
         <ButtonContainer>
-          <StyledSignin href="" target="_blank">
-            Sign in
-          </StyledSignin>
+          <StyledSignin href="">Sign in</StyledSignin>
         </ButtonContainer>
       </HeaderContainer>
-      <TextHeader />
+      {textHeader && (
+        <TextHeader title={textHeader.title} desc={textHeader?.desc} />
+      )}
     </RoundedContainer>
   );
 };
@@ -45,6 +45,10 @@ const HeaderContainer = styled.div`
 const LogoContainer = styled.div`
   font-size: 40px;
   font-family: "Space Grotesk", sans-serif;
+
+  & a {
+    color: black;
+  }
 `;
 
 const LinksContainer = styled.div`
@@ -62,11 +66,12 @@ const StyledSignin = styled(Link)`
   cursor: pointer;
 `;
 
-const StyledLink = styled.div`
+const StyledLink = styled(Link)`
   padding: 0px 15px;
   font-size: 24px;
   cursor: pointer;
   font-family: "Inter", sans-serif;
+  color: black;
 `;
 
 const RoundedContainer = styled.div`
