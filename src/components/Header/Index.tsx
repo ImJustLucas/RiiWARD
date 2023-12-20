@@ -1,4 +1,6 @@
 import { TextHeader, TextHeaderProps } from "@components/Header/ContainerText";
+import { useAuth } from "@contexts/AuthContext";
+import { AuthServices } from "@services/api";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -6,7 +8,19 @@ type HeaderProps = {
   textHeader?: TextHeaderProps;
 };
 
+const _AuthServices = new AuthServices();
+
 export const Header: React.FC<HeaderProps> = ({ textHeader }) => {
+  const { isLogged } = useAuth();
+
+  console.log(isLogged);
+
+  const handleSignOut = async () => {
+    const user = await _AuthServices.signOut();
+
+    console.log("@POST: signout", user);
+  };
+
   return (
     <RoundedContainer>
       <HeaderContainer>
@@ -20,7 +34,13 @@ export const Header: React.FC<HeaderProps> = ({ textHeader }) => {
         </LinksContainer>
 
         <ButtonContainer>
-          <StyledSignin href="">Sign in</StyledSignin>
+          {isLogged ? (
+            <StyledSignin href="" onClick={handleSignOut}>
+              Sign Out
+            </StyledSignin>
+          ) : (
+            <StyledSignin href="/signin">Sign in</StyledSignin>
+          )}
         </ButtonContainer>
       </HeaderContainer>
       {textHeader && (
