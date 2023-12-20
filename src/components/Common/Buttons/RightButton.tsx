@@ -24,15 +24,20 @@ export const RightButton: React.FC<ButtonProps> = ({
 };
 
 const ButtonStyled = styled(Link)`
-  border-radius: 24px;
+  // border-radius: 24px;
+  border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 16px;
-  padding: 16px 24px;
+  // padding: 16px 24px;
+  padding: 10px 30px;
   background-color: ${({ theme }) => theme.colors.dark};
   width: 100%;
 
+  &:hover {
+    transform: scale(1.05);
+  }
   @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
     border-radius: 14px;
     padding: 8px 12px;

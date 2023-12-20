@@ -1,3 +1,4 @@
+import { LeftButton } from "@components/Common/Buttons/LeftButton";
 import { RightButton } from "@components/Common/Buttons/RightButton";
 import { StepBackground } from "@components/StepBackground";
 import { Project } from "@typesDef/project/project";
@@ -21,6 +22,9 @@ export const AddNameProject: React.FC<AddProjectProps> = ({
   };
   return (
     <>
+      <ContainerHomeButton>
+        <LeftButton text="Previous" icon="skip-left" link="/projects" />
+      </ContainerHomeButton>
       <ContainerPage>
         <StepBackground />
         <ContainerAddProject>
@@ -56,6 +60,15 @@ const ContainerPage = styled.div`
   text-align: center;
 `;
 
+const ContainerHomeButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: max-content;
+`;
+
 const ContainerAddProject = styled.div`
   display: flex;
   flex-direction: column;
@@ -79,6 +92,10 @@ const InputName = styled.input`
 
 const ContainerButton = styled.div`
   width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ContainerInput = styled.div`
