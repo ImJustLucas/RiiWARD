@@ -69,7 +69,7 @@ export const Login: React.FC = () => {
         <SectionContainer>
           <RoundedContainer padding="15% 15%">
             <Form action="">
-              <Response className="response">test</Response>
+              <Response className="response"></Response>
               <Label htmlFor="email">Email</Label>
               <Input
                 type="email"
