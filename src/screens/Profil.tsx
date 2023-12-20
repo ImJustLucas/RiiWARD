@@ -1,4 +1,5 @@
-// import Image from "next/image";
+// Import de la composante Image depuis "next/image"
+import Image from "next/image";
 import styled from "styled-components";
 
 export const ProfileScreen: React.FC = () => {
@@ -8,17 +9,15 @@ export const ProfileScreen: React.FC = () => {
         <Title>My profil</Title>
         <InfosUserContainer>
           <RowInfosUser>
-            {/* <Image
-              width={200}
-              height={200}
-              src={
-                "https://gravatar.com/avatar/464e9786f7c2f552b708e4ff87d4c5e9?s=200&d=retro&r=x"
-              }
-              alt="avatar"
-            /> */}
+            {/* Utilisation de la composante Image de next/image */}
+            <Image width={200} height={200} src={""} alt="avatar" />
             <InfosUser>
-              <p>Nom</p>
-              <p>Prénom</p>
+              <p>
+                <input type="text" placeholder="Prénom" />
+              </p>
+              <p>
+                <input type="text" placeholder="Nom" />
+              </p>
             </InfosUser>
           </RowInfosUser>
           <InfosUser>
@@ -60,7 +59,7 @@ const RowInfosUser = styled.div`
 
 const InfosUser = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   width: 100%;
