@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import styled from "styled-components";
 
 export const ProfileScreen: React.FC = () => {
@@ -8,12 +8,14 @@ export const ProfileScreen: React.FC = () => {
         <Title>My profil</Title>
         <InfosUserContainer>
           <RowInfosUser>
-            <Image
+            {/* <Image
+              width={200}
+              height={200}
               src={
                 "https://gravatar.com/avatar/464e9786f7c2f552b708e4ff87d4c5e9?s=200&d=retro&r=x"
               }
               alt="avatar"
-            />
+            /> */}
             <InfosUser>
               <p>Nom</p>
               <p>Prénom</p>
