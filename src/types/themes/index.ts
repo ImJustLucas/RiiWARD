@@ -16,6 +16,8 @@ export type Theme = {
       primary: string;
       secondary: string;
       contrast: string;
+      dark: string;
+      light: string;
     };
 
     text: {
