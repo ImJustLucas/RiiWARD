@@ -85,6 +85,7 @@ const RoundedContainerDiv = styled.div<{
 
 const LinkContainer = styled.div`
   position: absolute;
+  z-index: 10;
   top: 0px;
   right: 32px;
   background: white;

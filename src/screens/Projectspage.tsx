@@ -31,7 +31,7 @@ export const ProjectsScreen: React.FC = () => {
                   avatar: Avatar,
                   username: "Hassina",
                   project: "Awwwwards",
-                  gap: "100px",
+                  gap: "16px",
                   positionx: "left",
                 }}
               >
@@ -56,7 +56,7 @@ export const ProjectsScreen: React.FC = () => {
                   avatar: Avatar,
                   username: "Hassina",
                   project: "Awwwwards",
-                  gap: "100px",
+                  gap: "16px",
                   positionx: "left",
                 }}
               >
