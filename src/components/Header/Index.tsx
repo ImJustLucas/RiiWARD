@@ -16,7 +16,7 @@ export const Header: React.FC<HeaderProps> = ({ textHeader }) => {
         <LinksContainer>
           <StyledLink href="/projects">Projets</StyledLink>
           <StyledLink href="">Classement</StyledLink>
-          <StyledLink href="">Profil</StyledLink>
+          <StyledLink href="/profile">Profil</StyledLink>
         </LinksContainer>
 
         <ButtonContainer>
