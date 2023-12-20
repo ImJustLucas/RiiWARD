@@ -6,7 +6,7 @@ export type UserBarProps = {
   avatar: string;
   project: string;
   gap?: string;
-  positionX?: "left" | "right";
+  positionx?: "left" | "right";
 };
 
 export const UserBar: React.FC<UserBarProps> = ({
@@ -14,10 +14,10 @@ export const UserBar: React.FC<UserBarProps> = ({
   username,
   project,
   gap = "8px",
-  positionX = "right",
+  positionx = "right",
 }) => {
   return (
-    <UserBarContainer gap={gap} positionX={positionX}>
+    <UserBarContainer gap={gap} positionx={positionx}>
       <div>
         <StyledImage src={avatar} alt={username} />
         <div>
@@ -34,7 +34,7 @@ export const UserBar: React.FC<UserBarProps> = ({
 
 const UserBarContainer = styled.div<{
   gap?: string;
-  positionX?: string;
+  positionx?: string;
 }>`
   display: flex;
   align-items: center;
@@ -45,7 +45,7 @@ const UserBarContainer = styled.div<{
   gap: ${({ gap }) => gap};
   position: absolute;
   bottom: 40px;
-  ${({ positionX }) => positionX} : 32px;
+  ${({ positionx }) => positionx} : 32px;
 
   & > div {
     display: flex;

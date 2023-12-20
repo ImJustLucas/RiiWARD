@@ -48,7 +48,7 @@ export const RoundedContainer: React.FC<RoundedContainerProps> = ({
           avatar={userBar.avatar}
           project={userBar.project}
           gap={userBar.gap}
-          positionX={userBar.positionX}
+          positionx={userBar.positionx}
         ></UserBar>
       )}
     </RoundedContainerDiv>

@@ -53,7 +53,7 @@ export const HomeScreen: React.FC = () => {
               username: "Hassina",
               project: "Awwwwards",
               gap: "100px",
-              positionX: "right",
+              positionx: "right",
             }}
           ></RoundedContainer>
         </SectionContainer>
