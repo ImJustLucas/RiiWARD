@@ -66,6 +66,8 @@
     "jest-styled-components": "^7.1.1",
     "prettier": "^3.0.3",
     "supabase": "^1.123.4",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
