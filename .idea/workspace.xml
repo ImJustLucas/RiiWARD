@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="47060340-c397-44f8-8a3f-8905f0887958" name="Changes" comment="git add and custom header:sparkles:">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/Profil.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Profil.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +64,7 @@
       <option name="presentableId" value="Default" />
       <updated>1702903981932</updated>
       <workItem from="1702903983552" duration="21874000" />
-      <workItem from="1703061857748" duration="4225000" />
+      <workItem from="1703061857748" duration="6341000" />
     </task>
     <task id="LOCAL-00001" summary="git add and custom header:sparkles:">
       <option name="closed" value="true" />

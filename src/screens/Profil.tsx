@@ -12,17 +12,13 @@ export const ProfileScreen: React.FC = () => {
             {/* Utilisation de la composante Image de next/image */}
             <Image width={200} height={200} src={""} alt="avatar" />
             <InfosUser>
-              <p>
-                <input type="text" placeholder="Prénom" />
-              </p>
-              <p>
-                <input type="text" placeholder="Nom" />
-              </p>
+              <InputProfile type="text" placeholder="Prénom" />
+              <InputProfile type="text" placeholder="Nom" />
             </InfosUser>
           </RowInfosUser>
           <InfosUser>
-            <p>description</p>
-            <p>Axe</p>
+            <InputDesc type="text" placeholder="Description" />
+            <InputDesc type="text" placeholder="Cursus" />
           </InfosUser>
         </InfosUserContainer>
       </LoginContainer>
@@ -40,7 +36,7 @@ const LoginContainer = styled.div`
 `;
 
 const InfosUserContainer = styled.div`
-  border: 1px solid;
+  border: 1px solid white;
   border-radius: 24px;
   display: flex;
   flex-direction: column;
@@ -48,6 +44,7 @@ const InfosUserContainer = styled.div`
   justify-content: center;
   gap: 50px;
   padding: 65px 50px;
+  background-color: white;
 `;
 
 const RowInfosUser = styled.div`
@@ -65,12 +62,30 @@ const InfosUser = styled.div`
   width: 100%;
 `;
 
+const InputProfile = styled.input`
+  padding: 16px 40px;
+  margin: 10px 0px;
+  border-radius: 24px;
+  color: black;
+  border: 1px solid black;
+`;
+
+const InputDesc = styled.input`
+  width: 75%;
+  padding: 16px 40px;
+  margin: 10px 0px;
+  border-radius: 24px;
+  border: 1px solid black;
+`;
+
 const Title = styled.h1`
   font-size: ${({ theme }) => theme.size.desktop.title};
+  font-family: "Space Grotesk", sans-serif;
   text-align: center;
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.primary};
+  font-weight: 500;
+  color: black;
   position: relative;
+  text-transform: uppercase;
   z-index: 2;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
