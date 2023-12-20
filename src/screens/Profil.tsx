@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 
-export const LoginScreen: React.FC = () => {
+export const ProfileScreen: React.FC = () => {
   return (
     <>
       <LoginContainer>
