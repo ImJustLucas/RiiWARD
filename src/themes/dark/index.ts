@@ -12,6 +12,8 @@ const dark: Theme = {
       primary: "#F5F6F7",
       secondary: createColor(30, 31, 32, 0.2),
       contrast: "",
+      dark: createColor(33, 37, 41, 100),
+      light: createColor(255, 255, 255, 100),
     },
     text: {
       primary: "#2b2d42",

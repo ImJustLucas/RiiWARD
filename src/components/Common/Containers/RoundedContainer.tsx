@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { UserBar, UserBarProps } from "../Bars/UserBar";
 
 type RoundedContainerProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   background?: "light" | "dark";
   link?: string;
   width?: string;
@@ -48,7 +48,7 @@ export const RoundedContainer: React.FC<RoundedContainerProps> = ({
           avatar={userBar.avatar}
           project={userBar.project}
           gap={userBar.gap}
-          positionX={userBar.positionX}
+          positionx={userBar.positionx}
         ></UserBar>
       )}
     </RoundedContainerDiv>
@@ -85,6 +85,7 @@ const RoundedContainerDiv = styled.div<{
 
 const LinkContainer = styled.div`
   position: absolute;
+  z-index: 10;
   top: 0px;
   right: 32px;
   background: white;
