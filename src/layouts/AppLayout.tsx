@@ -15,6 +15,7 @@ export const AppLayout: FC<LayoutProps> = ({ children }) => {
 };
 
 const AppLayoutContainer = styled.div`
+  box-sizing: border-box;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
