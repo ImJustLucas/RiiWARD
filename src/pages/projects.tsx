@@ -1,9 +1,20 @@
-// pages/projects.tsx
-import React from "react";
 import { Header } from "@components/Header/Index";
-import { ProjectsScreen } from "@screens/Projectspage"; // Assurez-vous d'importer le composant Projects
+import { ProjectsScreen } from "@screens/Projectspage";
+import { ProjectsServices } from "@services/api/Projects";
+
+const _ProjectsServices = new ProjectsServices();
 
 const ProjectsPage: React.FC = () => {
+  const fetchProjects = async (): Promise<object[]> => {
+    try {
+      const response = await _ProjectsServices.getProjects();
+      return response || [];
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+      return [];
+    }
+  };
+
   return (
     <>
       <Header
@@ -11,7 +22,7 @@ const ProjectsPage: React.FC = () => {
           title: "Search for the best project",
         }}
       />
-      <ProjectsScreen />
+      <ProjectsScreen fetch={fetchProjects} />
     </>
   );
 };

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,10 +7,25 @@ import styled from "styled-components";
 import Avatar from "../assets/images/homeAvatar.jpg";
 import ProjectImage from "../assets/images/projectImage.png";
 
-export const ProjectsScreen: React.FC = () => {
-  const projects = Array(6).fill(null);
-  const evenIndexProjects = projects.filter((_, index) => index % 2 === 0);
-  const oddIndexProjects = projects.filter((_, index) => index % 2 !== 0);
+type ProjectsScreenProps = {
+  fetch: () => Promise<Array<object>>;
+};
+
+export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
+  const [projects, setProjects] = useState<Array<object>>([]);
+  const [evenIndexProjects, setEvenIndexProjects] = useState<Array<object>>([]);
+  const [oddIndexProjects, setOddIndexProjects] = useState<Array<object>>([]);
+
+  useEffect(() => {
+    fetch().then((data) => setProjects(data));
+  }, [fetch]);
+
+  useEffect(() => {
+    if (projects) {
+      setEvenIndexProjects(projects.filter((_, index) => index % 2 === 0));
+      setOddIndexProjects(projects.filter((_, index) => index % 2 !== 0));
+    }
+  }, [projects]);
 
   return (
     <ProjectsContainer>
@@ -21,55 +37,63 @@ export const ProjectsScreen: React.FC = () => {
       </Link>
       <RoundedContainer width="100%" background="light" padding="36px">
         <MainContainer>
-          <Column>
-            {evenIndexProjects.map((_, index) => (
-              <RoundedContainer
-                key={index}
-                width="100%"
-                link="#"
-                padding="0"
-                height="378px"
-                background="dark"
-                userBar={{
-                  avatar: Avatar,
-                  username: "Hassina",
-                  project: "Awwwwards",
-                  gap: "16px",
-                  positionx: "left",
-                }}
-              >
-                <ImageContainer>
-                  <Backdrop />
-                  <Image src={ProjectImage} alt="Image" />
-                </ImageContainer>
-              </RoundedContainer>
-            ))}
-          </Column>
-          <Column>
-            <StyledSubtitle>FIND YOUR NEXT FAVORITE PROJECT</StyledSubtitle>
-            {oddIndexProjects.map((_, index) => (
-              <RoundedContainer
-                key={index}
-                width="100%"
-                link="#"
-                padding="0"
-                height="378px"
-                background="dark"
-                userBar={{
-                  avatar: Avatar,
-                  username: "Hassina",
-                  project: "Awwwwards",
-                  gap: "16px",
-                  positionx: "left",
-                }}
-              >
-                <ImageContainer>
-                  <Backdrop />
-                  <Image src={ProjectImage} alt="Image" />
-                </ImageContainer>
-              </RoundedContainer>
-            ))}
-          </Column>
+          {projects.length > 0 ? (
+            <>
+              <Column>
+                {evenIndexProjects &&
+                  evenIndexProjects.map((data, index) => (
+                    <RoundedContainer
+                      key={index}
+                      width="100%"
+                      link="#"
+                      padding="0"
+                      height="378px"
+                      background="dark"
+                      userBar={{
+                        avatar: Avatar,
+                        username: "Hassina",
+                        project: "Awwwwards",
+                        gap: "16px",
+                        positionx: "left",
+                      }}
+                    >
+                      <ImageContainer>
+                        <Backdrop />
+                        <Image src={ProjectImage} alt="Image" />
+                      </ImageContainer>
+                    </RoundedContainer>
+                  ))}
+              </Column>
+              <Column>
+                <StyledSubtitle>FIND YOUR NEXT FAVORITE PROJECT</StyledSubtitle>
+                {oddIndexProjects &&
+                  oddIndexProjects.map((data, index) => (
+                    <RoundedContainer
+                      key={index}
+                      width="100%"
+                      link="#"
+                      padding="0"
+                      height="378px"
+                      background="dark"
+                      userBar={{
+                        avatar: Avatar,
+                        username: "Hassina",
+                        project: "Awwwwards",
+                        gap: "16px",
+                        positionx: "left",
+                      }}
+                    >
+                      <ImageContainer>
+                        <Backdrop />
+                        <Image src={ProjectImage} alt="Image" />
+                      </ImageContainer>
+                    </RoundedContainer>
+                  ))}
+              </Column>
+            </>
+          ) : (
+            <StyledLoading>Loading ...</StyledLoading>
+          )}
         </MainContainer>
       </RoundedContainer>
     </ProjectsContainer>
@@ -151,4 +175,11 @@ const Backdrop = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 24px;
+`;
+
+const StyledLoading = styled.div`
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  width: 100%;
 `;
