@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
 import { AuthServices } from "@services/api";
+import { validateEmail } from "@utils/ValidateEmail";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
@@ -21,12 +22,6 @@ export const SigninScreen: React.FC = () => {
   });
   const [disabled, setDisabled] = useState<boolean>(false);
   const router = useRouter();
-
-  const validateEmail = (email: string) => {
-    return email.match(
-      /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    );
-  };
 
   useEffect(() => {
     if (email != "" && password != "") {
