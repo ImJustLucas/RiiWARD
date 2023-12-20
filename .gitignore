@@ -39,5 +39,8 @@ next-env.d.ts
 ./.swc
 .env
 
+# lock files
 package-lock.json
+yarn.lock
+pnpm-lock.yaml
 ```
