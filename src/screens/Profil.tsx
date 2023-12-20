@@ -14,7 +14,7 @@ export const ProfileScreen: React.FC = () => {
           <InfosUserContainer>
             <RowInfosUser>
               {/* Utilisation de la composante Image de next/image */}
-              <Image width={200} height={200} src={""} alt="avatar" />
+              <Image width={200} height={140} src={""} alt="avatar" />
               <InfosUser>
                 <InputProfile type="text" placeholder="Prénom" />
                 <InputProfile type="text" placeholder="Nom" />
@@ -80,6 +80,10 @@ const RowInfosUser = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  & img {
+    background-color: black;
+    border-radius: 50%;
+  }
 `;
 
 const InfosUser = styled.div`
