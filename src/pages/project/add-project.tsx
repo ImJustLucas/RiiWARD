@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AddCategoryProject } from "@screens/Project/AddCategoryProject";
 import { AddNameProject } from "@screens/Project/AddNameProject";
 import { Step2 } from "@screens/Step2";
 import { Project } from "@typesDef/project/project";
@@ -19,6 +20,7 @@ export default function AddProject() {
         />
       )}
       {step == 2 && <Step2 step={{ get: step, set: setStep }} />}
+      {step == 3 && <AddCategoryProject step={{ get: step, set: setStep }} />}
     </>
   );
 }

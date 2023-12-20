@@ -25,18 +25,22 @@ export const Step2: React.FC<Step2Project> = ({ step }) => {
         </InputContainer>
 
         <Actions>
-          <LeftButton
-            text="Back"
-            icon="skip-left"
-            link="#"
-            onClick={() => step.set(step.get - 1)}
-          ></LeftButton>
-          <RightButton
-            text="Next"
-            icon="skip-right"
-            link="/"
-            // onClick={() => step.set(step.get + 1)}
-          ></RightButton>
+          <div>
+            <LeftButton
+              text="Back"
+              icon="skip-left"
+              link="#"
+              onClick={() => step.set(step.get - 1)}
+            ></LeftButton>
+          </div>
+          <div>
+            <RightButton
+              text="Next"
+              icon="skip-right"
+              link="#"
+              onClick={() => step.set(step.get + 1)}
+            ></RightButton>
+          </div>
         </Actions>
       </HomeContainer>
     </>
@@ -115,4 +119,7 @@ const Actions = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  & > div {
+    width: 30%;
+  }
 `;
