@@ -12,7 +12,7 @@ type ErrorType = {
   isError: boolean;
 };
 
-export const Login: React.FC = () => {
+export const SigninScreen: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<ErrorType>({
