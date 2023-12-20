@@ -1,38 +1,59 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
 import { AuthServices } from "@services/api";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
+const _AuthServices = new AuthServices();
+
+type ErrorType = {
+  message: string;
+  isError: boolean;
+};
+
 export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const _AuthServices = new AuthServices();
+  const [error, setError] = useState<ErrorType>({
+    message: "",
+    isError: false,
+  });
+  const [disabled, setDisabled] = useState<boolean>(false);
   const router = useRouter();
 
-  async function login(e) {
+  const validateEmail = (email: string) => {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    );
+  };
+
+  useEffect(() => {
+    if (email != "" && password != "") {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [email, password]);
+
+  async function login(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
 
     if (email != "") {
-      const validateEmail = (email) => {
-        return email.match(
-          /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-        );
-      };
-
       if (!validateEmail(email)) {
-        document.querySelector("#email").classList.add("has-error");
-        document.querySelector(".response").innerHTML =
-          "Please enter a valid email";
-        document.querySelector(".response").classList.add("is-visible");
+        setError({
+          message: "Please enter a valid email",
+          isError: true,
+        });
         return;
       }
     }
 
     if (email != "" && password != "") {
-      document.querySelector(".response").classList.remove("is-visible");
-      document.querySelector("#email").classList.remove("has-error");
-      document.querySelector("#password").classList.remove("has-error");
+      setError({
+        message: "",
+        isError: false,
+      });
 
       const user = await _AuthServices.signIn({
         email,
@@ -41,25 +62,11 @@ export const Login: React.FC = () => {
       if (user.data.user != null) {
         router.push("/profile");
       } else {
-        document.querySelector(".response").innerHTML =
-          "Wrong email or password";
-        document.querySelector(".response").classList.add("is-visible");
+        setError({
+          message: "Wrong email or password",
+          isError: true,
+        });
       }
-    } else {
-      if (email == "") {
-        document.querySelector("#email").classList.add("has-error");
-      } else {
-        document.querySelector("#email").classList.remove("has-error");
-      }
-
-      if (password == "") {
-        document.querySelector("#password").classList.add("has-error");
-      } else {
-        document.querySelector("#password").classList.remove("has-error");
-      }
-
-      document.querySelector(".response").innerHTML = "Please fill all fields";
-      document.querySelector(".response").classList.add("is-visible");
     }
   }
   return (
@@ -69,7 +76,7 @@ export const Login: React.FC = () => {
         <SectionContainer>
           <RoundedContainer padding="15% 15%">
             <Form action="">
-              <Response className="response"></Response>
+              {error.isError && <ErrorDisplay>{error.message}</ErrorDisplay>}
               <Label htmlFor="email">Email</Label>
               <Input
                 type="email"
@@ -77,6 +84,7 @@ export const Login: React.FC = () => {
                 name="email"
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
+                className={error.isError ? "has-error" : ""}
               />
 
               <Label htmlFor="password">Password</Label>
@@ -86,9 +94,10 @@ export const Login: React.FC = () => {
                 name="password"
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
+                className={error.isError ? "has-error" : ""}
               />
 
-              <Button type="submit" onClick={login}>
+              <Button type="submit" onClick={login} disabled={disabled}>
                 Log in
               </Button>
             </Form>
@@ -160,12 +169,7 @@ const Button = styled.button`
   font-size: ${({ theme }) => theme.size.title};
 `;
 
-const Response = styled.p`
-  display: none;
+const ErrorDisplay = styled.p`
   color: red;
   text-align: center;
-
-  &.is-visible {
-    display: block;
-  }
 `;
