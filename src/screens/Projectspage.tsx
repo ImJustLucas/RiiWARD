@@ -7,7 +7,10 @@ import Avatar from "../assets/images/homeAvatar.jpg";
 import ProjectImage from "../assets/images/projectImage.png";
 
 export const ProjectsScreen: React.FC = () => {
-  const projects = Array(3).fill(null);
+  const projects = Array(6).fill(null);
+  const evenIndexProjects = projects.filter((_, index) => index % 2 === 0);
+  const oddIndexProjects = projects.filter((_, index) => index % 2 !== 0);
+
   return (
     <ProjectsContainer>
       <Link href="#">
@@ -19,7 +22,7 @@ export const ProjectsScreen: React.FC = () => {
       <RoundedContainer width="100%" background="light" padding="36px">
         <MainContainer>
           <Column>
-            {projects.map((_, index) => (
+            {evenIndexProjects.map((_, index) => (
               <RoundedContainer
                 key={index}
                 width="100%"
@@ -44,7 +47,7 @@ export const ProjectsScreen: React.FC = () => {
           </Column>
           <Column>
             <StyledSubtitle>FIND YOUR NEXT FAVORITE PROJECT</StyledSubtitle>
-            {projects.map((_, index) => (
+            {oddIndexProjects.map((_, index) => (
               <RoundedContainer
                 key={index}
                 width="100%"
