@@ -1,11 +1,16 @@
 import Link from "next/link";
 import styled from "styled-components";
 
+import { UserBar, UserBarProps } from "../Bars/UserBar";
+
 type RoundedContainerProps = {
   children: React.ReactNode;
   background?: "light" | "dark";
   link?: string;
   width?: string;
+  height?: string;
+  padding?: string;
+  userBar?: UserBarProps;
 };
 
 export const RoundedContainer: React.FC<RoundedContainerProps> = ({
@@ -13,9 +18,17 @@ export const RoundedContainer: React.FC<RoundedContainerProps> = ({
   background = "light",
   link,
   width = "auto",
+  height = "auto",
+  padding = "24px",
+  userBar,
 }) => {
   return (
-    <RoundedContainerDiv background={background} width={width}>
+    <RoundedContainerDiv
+      background={background}
+      width={width}
+      height={height}
+      padding={padding}
+    >
       {link && (
         <LinkContainer>
           <Link href={`${link}`}>
@@ -26,6 +39,15 @@ export const RoundedContainer: React.FC<RoundedContainerProps> = ({
         </LinkContainer>
       )}
       {children}
+      {userBar && (
+        <UserBar
+          username={userBar.username}
+          avatar={userBar.avatar}
+          project={userBar.project}
+          gap={userBar.gap}
+          positionX={userBar.positionX}
+        ></UserBar>
+      )}
     </RoundedContainerDiv>
   );
 };
@@ -33,15 +55,26 @@ export const RoundedContainer: React.FC<RoundedContainerProps> = ({
 const RoundedContainerDiv = styled.div<{
   background?: "light" | "dark";
   width?: string;
+  height?: string;
+  padding?: string;
 }>`
   border-radius: 24px;
-  padding: 24px;
+  padding: ${({ padding }) => padding};
   position: relative;
-  background: ${(props) =>
-    props.background === "light"
-      ? props.theme.colors.background.primary
-      : props.theme.colors.background.secondary};
-  width: ${(props) => props.width};
+  background: ${({ theme, background }) =>
+    background === "light"
+      ? theme.colors.background.light
+      : theme.colors.background.dark};
+  width: ${({ width }) => width};
+  color: ${({ background }) => (background === "light" ? "black" : "white")};
+  height: ${({ height }) => height};
+  box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    width: 100%;
+  }
 `;
 
 const LinkContainer = styled.div`
