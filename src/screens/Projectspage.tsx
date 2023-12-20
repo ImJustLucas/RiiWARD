@@ -32,7 +32,7 @@ export const ProjectsScreen: React.FC = () => {
                   username: "Hassina",
                   project: "Awwwwards",
                   gap: "100px",
-                  positionX: "left",
+                  positionx: "left",
                 }}
               >
                 <ImageContainer>

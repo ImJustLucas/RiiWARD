@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { UserBar, UserBarProps } from "../Bars/UserBar";
 
 type RoundedContainerProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   background?: "light" | "dark";
   link?: string;
   width?: string;

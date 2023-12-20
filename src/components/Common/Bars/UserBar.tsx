@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import styled from "styled-components";
 
 export type UserBarProps = {
   username: string;
-  avatar: string;
+  avatar: StaticImageData;
   project: string;
   gap?: string;
   positionx?: "left" | "right";
