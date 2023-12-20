@@ -38,3 +38,9 @@ next-env.d.ts
 /coverage/
 ./.swc
 .env
+
+# lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+```
