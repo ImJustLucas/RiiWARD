@@ -4,7 +4,7 @@ import { AuthServices } from "@services/api";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-export const Signin: React.FC = () => {
+export const SignupScreen: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const _AuthServices = new AuthServices();
