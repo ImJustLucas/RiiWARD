@@ -15,7 +15,7 @@ export class UsersServices {
     const { session, user } = data;
 
     if (error) {
-      throw error;
+      console.error(error);
     }
 
     return { session, user };
