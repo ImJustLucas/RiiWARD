@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
+import { UsersServices } from "@services/api/Users";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
@@ -7,14 +8,48 @@ import styled from "styled-components";
 import Avatar from "../assets/images/homeAvatar.jpg";
 import ProjectImage from "../assets/images/projectImage.png";
 
-type ProjectsScreenProps = {
-  fetch: () => Promise<Array<object>>;
+type ProjectType = {
+  category: string | null;
+  created_at: string;
+  description: string | null;
+  id: number;
+  image: string | null;
+  name: string;
+  userId: string;
 };
 
+type ProjectsScreenProps = {
+  fetch: () => Promise<Array<ProjectType>>;
+};
+
+const _UsersServices = new UsersServices();
+
 export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
-  const [projects, setProjects] = useState<Array<object>>([]);
-  const [evenIndexProjects, setEvenIndexProjects] = useState<Array<object>>([]);
-  const [oddIndexProjects, setOddIndexProjects] = useState<Array<object>>([]);
+  const [projects, setProjects] = useState<ProjectType[]>([]);
+
+  const [evenIndexProjects, setEvenIndexProjects] = useState<
+    Array<{
+      project: ProjectType;
+      userEmail: string;
+      userAvatar: string | null;
+    }>
+  >([]);
+
+  const [oddIndexProjects, setOddIndexProjects] = useState<
+    Array<{
+      project: ProjectType;
+      userEmail: string;
+      userAvatar: string | null;
+    }>
+  >([]);
+
+  const [projectsWithUserEmail, setProjectsWithUserEmail] = useState<
+    Array<{
+      project: ProjectType;
+      userEmail: string;
+      userAvatar: string | null;
+    }>
+  >([]);
 
   useEffect(() => {
     fetch().then((data) => setProjects(data));
@@ -22,10 +57,31 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
 
   useEffect(() => {
     if (projects) {
-      setEvenIndexProjects(projects.filter((_, index) => index % 2 === 0));
-      setOddIndexProjects(projects.filter((_, index) => index % 2 !== 0));
+      Promise.all(
+        projects.map(async (data) => {
+          const user = await _UsersServices.getUserById(data.userId);
+          return {
+            project: data,
+            userEmail: user?.email,
+            userAvatar: user?.avatar,
+          };
+        }),
+      ).then((updatedProjects) => {
+        setProjectsWithUserEmail(updatedProjects);
+      });
     }
   }, [projects]);
+
+  useEffect(() => {
+    setEvenIndexProjects(
+      projectsWithUserEmail.filter((_, index) => index % 2 === 0),
+    );
+    setOddIndexProjects(
+      projectsWithUserEmail.filter((_, index) => index % 2 !== 0),
+    );
+  }, [projectsWithUserEmail]);
+
+  console.log(projectsWithUserEmail);
 
   return (
     <ProjectsContainer>
@@ -50,16 +106,24 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
                       height="378px"
                       background="dark"
                       userBar={{
-                        avatar: Avatar,
-                        username: "Hassina",
-                        project: "Awwwwards",
+                        avatar: data.userAvatar ? data.userAvatar : Avatar,
+                        username: data.userEmail,
+                        project: data.project.name,
                         gap: "16px",
                         positionx: "left",
                       }}
                     >
                       <ImageContainer>
                         <Backdrop />
-                        <Image src={ProjectImage} alt="Image" />
+                        <Image
+                          src={
+                            data.project.image
+                              ? data.project.image
+                              : ProjectImage
+                          }
+                          alt={data.project.name}
+                          layout="fill"
+                        />
                       </ImageContainer>
                     </RoundedContainer>
                   ))}
@@ -77,8 +141,8 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
                       background="dark"
                       userBar={{
                         avatar: Avatar,
-                        username: "Hassina",
-                        project: "Awwwwards",
+                        username: data.userEmail,
+                        project: data.project.name,
                         gap: "16px",
                         positionx: "left",
                       }}
@@ -175,6 +239,7 @@ const Backdrop = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 24px;
+  z-index: 2;
 `;
 
 const StyledLoading = styled.div`

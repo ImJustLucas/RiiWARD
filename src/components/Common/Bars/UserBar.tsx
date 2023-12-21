@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export type UserBarProps = {
   username: string;
-  avatar: StaticImageData;
+  avatar: StaticImageData | string;
   project: string;
   gap?: string;
   positionx?: "left" | "right";
@@ -46,6 +46,7 @@ const UserBarContainer = styled.div<{
   position: absolute;
   bottom: 40px;
   ${({ positionx }) => positionx} : 32px;
+  z-index: 3;
 
   & > div {
     display: flex;
