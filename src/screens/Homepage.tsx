@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
-import Avatar from "../assets/images/homeAvatar.jpg";
+import Avatar from "../assets/images/avatar.png";
 import HomeImage from "../assets/images/homeImage.png";
 import Wand from "../assets/images/wand.png";
 

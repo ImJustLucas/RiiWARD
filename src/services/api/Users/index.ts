@@ -24,4 +24,18 @@ export class UsersServices {
   async update(data: UserAttributes) {
     return await supabase.auth.updateUser(data);
   }
+
+  async getUserById(id: string) {
+    const { data, error } = await supabase
+      .from("aw_users")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (error) {
+      console.error(error);
+    }
+
+    return data;
+  }
 }
