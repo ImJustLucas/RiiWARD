@@ -12,6 +12,7 @@ import { User } from "@supabase/supabase-js";
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  isLogged: boolean;
 }
 
 const _UsersServices = new UsersServices();
@@ -19,12 +20,14 @@ const _UsersServices = new UsersServices();
 const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
+  isLogged: false,
 });
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [isLogged, setIsLogged] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -32,7 +35,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     _UsersServices
       .getSession()
       .then((session) => {
-        setUser(session.user || null);
+        if (session.user) {
+          setUser(session.user);
+          setIsLogged(true);
+        }
       })
       .catch((err) => {
         console.error("@useAuth", err);
@@ -53,7 +59,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loading }}>
+    <AuthContext.Provider value={{ user, loading, isLogged }}>
       {children}
     </AuthContext.Provider>
   );
