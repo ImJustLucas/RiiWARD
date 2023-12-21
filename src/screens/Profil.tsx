@@ -45,14 +45,14 @@ export const ProfileScreen: React.FC = () => {
           <LeftButton text="Back to home" icon="skip-left" link="/" />
         </ContainerButton>
         <ProfilContainer>
-          <Title>My profil</Title>
+          <Title>My profile</Title>
           <InfosUserContainer>
             <RowInfosUser>
               {/* Utilisation de la composante Image de next/image */}
               <Image width={200} height={140} src={""} alt="avatar" />
               <InfosUser>
-                <InputProfile type="text" placeholder="Prénom" />
-                <InputProfile type="text" placeholder="Nom" />
+                <InputProfile type="text" placeholder="First name" />
+                <InputProfile type="text" placeholder="Last name" />
               </InfosUser>
             </RowInfosUser>
             <InfosUser>
