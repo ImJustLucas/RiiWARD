@@ -1,5 +1,3 @@
-// profile.tsx
-
 interface ProfileResult {
   success: boolean;
   message?: string;
