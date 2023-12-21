@@ -1,12 +1,12 @@
+import Avatar from "@assets/images/avatar.png";
+import HomeImage from "@assets/images/homeImage.png";
+import ProjectImage from "@assets/images/projectImage.png";
+import Wand from "@assets/images/wand.png";
+import { BackdropComponent } from "@components/Common/BackDrop/Backdrop";
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
-
-import Avatar from "../assets/images/avatar.png";
-import HomeImage from "../assets/images/homeImage.png";
-import ProjectImage from "../assets/images/projectImage.png";
-import Wand from "../assets/images/wand.png";
 
 export const HomeScreen: React.FC = () => {
   return (
@@ -59,7 +59,7 @@ export const HomeScreen: React.FC = () => {
             }}
           >
             <ImageContainer>
-              <Backdrop />
+              <BackdropComponent />
               <Image src={ProjectImage} alt="Image" />
             </ImageContainer>
           </RoundedContainer>
@@ -165,15 +165,4 @@ const ImageContainer = styled.div`
     object-position: center;
     border-radius: 24px;
   }
-`;
-
-const Backdrop = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 24px;
-  z-index: 2;
 `;
