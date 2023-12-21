@@ -28,7 +28,8 @@
       "@themes/*": ["./src/themes/*"],
       "@static/*": ["./public/*"],
       "@typesDef/*": ["./src/types/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@assets/*": ["./src/assets/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

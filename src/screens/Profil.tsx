@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Avatar from "@assets/images/avatar.png";
+import ProjectImage from "@assets/images/projectImage.png";
 import { LeftButton } from "@components/Common/Buttons/LeftButton";
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
 import { useAuth } from "@contexts/AuthContext";
@@ -6,9 +8,6 @@ import { getAllUserProject } from "@services/api/Project";
 import { ProjectData } from "@typesDef/project/project";
 import Image from "next/image";
 import styled from "styled-components";
-
-import Avatar from "../assets/images/homeAvatar.jpg";
-import ProjectImage from "../assets/images/projectImage.png";
 
 export const ProfileScreen: React.FC = () => {
   const { user } = useAuth();
