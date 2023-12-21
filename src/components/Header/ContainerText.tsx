@@ -23,7 +23,6 @@ export const TextHeader: React.FC<TextHeaderProps> = ({ title, desc }) => {
 const HeaderText = styled.div`
   padding: 0px 15px;
   font-size: 24px;
-  cursor: pointer;
 `;
 
 const TitleContainer = styled.div`
