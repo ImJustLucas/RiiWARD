@@ -93,7 +93,7 @@ export const SignupScreen: React.FC = () => {
             ></Input>
 
             <Button type="submit" onClick={signup} disabled={disabled}>
-              Sign in
+              Sign up
             </Button>
           </Form>
         </RoundedContainer>

@@ -94,7 +94,7 @@ export const SigninScreen: React.FC = () => {
               />
 
               <Button type="submit" onClick={login} disabled={disabled}>
-                Log in
+                Sign in
               </Button>
             </Form>
           </RoundedContainer>
