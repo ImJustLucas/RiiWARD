@@ -14,6 +14,19 @@ export async function createProject(projet: Project) {
   }
 }
 
+export class ProjectsServices {
+  async getProjects() {
+    // const supabase = createServerSupabaseClient();
+    try {
+      const { data: projects } = await supabase.from("aw_projects").select("*");
+      return projects;
+    } catch (error) {
+      console.error("Error:", error);
+      return null;
+    }
+  }
+}
+
 export async function getAllUserProject(userId: string): Promise<ProjectData> {
   try {
     const { data: projects, error } = await supabase

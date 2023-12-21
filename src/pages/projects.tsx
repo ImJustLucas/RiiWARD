@@ -1,6 +1,6 @@
 import { Header } from "@components/Header/Index";
 import { ProjectsScreen } from "@screens/Projectspage";
-import { ProjectsServices } from "@services/api/Projects";
+import { ProjectsServices } from "@services/api/Project";
 
 const _ProjectsServices = new ProjectsServices();
 
