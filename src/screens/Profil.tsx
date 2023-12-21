@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Avatar from "@assets/images/avatar.png";
 import ProjectImage from "@assets/images/projectImage.png";
+import { BackdropComponent } from "@components/Common/BackDrop/Backdrop";
 import { LeftButton } from "@components/Common/Buttons/LeftButton";
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
 import { useAuth } from "@contexts/AuthContext";
@@ -48,7 +49,6 @@ export const ProfileScreen: React.FC = () => {
           <Title>My profile</Title>
           <InfosUserContainer>
             <RowInfosUser>
-              {/* Utilisation de la composante Image de next/image */}
               <Image width={200} height={140} src={""} alt="avatar" />
               <InfosUser>
                 <InputProfile type="text" placeholder="First name" />
@@ -83,7 +83,7 @@ export const ProfileScreen: React.FC = () => {
                     }}
                   >
                     <ImageContainer>
-                      <Backdrop />
+                      <BackdropComponent />
                       <Image src={ProjectImage} alt="Image" />
                     </ImageContainer>
                   </RoundedContainer>
@@ -108,7 +108,7 @@ export const ProfileScreen: React.FC = () => {
                     }}
                   >
                     <ImageContainer>
-                      <Backdrop />
+                      <BackdropComponent />
                       <Image src={ProjectImage} alt="Image" />
                     </ImageContainer>
                   </RoundedContainer>
@@ -247,14 +247,4 @@ const ImageContainer = styled.div`
     object-position: center;
     border-radius: 24px;
   }
-`;
-
-const Backdrop = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 24px;
 `;

@@ -1,22 +1,12 @@
 import { Header } from "@components/Header/Index";
 import { ProjectsScreen } from "@screens/Projectspage";
-import { ProjectsServices } from "@services/api/Projects";
+import { ProjectsServices } from "@services/api/Project";
+import { Project } from "@typesDef/project/project";
 
 const _ProjectsServices = new ProjectsServices();
 
-type ProjectType = {
-  category: string | null;
-  created_at: string;
-  description: string | null;
-  id: number;
-  image: string | null;
-  name: string;
-  userId: string;
-  // Add any other properties as needed
-};
-
 const ProjectsPage: React.FC = () => {
-  const fetchProjects = async (): Promise<ProjectType[]> => {
+  const fetchProjects = async (): Promise<Project[]> => {
     try {
       const response = await _ProjectsServices.getProjects();
       return response || [];
