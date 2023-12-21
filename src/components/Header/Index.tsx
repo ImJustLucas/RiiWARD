@@ -28,9 +28,9 @@ export const Header: React.FC<HeaderProps> = ({ textHeader }) => {
           <Link href="/">LOGO</Link>
         </LogoContainer>
         <LinksContainer>
-          <StyledLink href="/projects">Projets</StyledLink>
-          <StyledLink href="">Classement</StyledLink>
-          <StyledLink href="/profile">Profil</StyledLink>
+          <StyledLink href="/projects">Projects</StyledLink>
+          <StyledLink href="">Ranking</StyledLink>
+          <StyledLink href="/profile">Profile</StyledLink>
         </LinksContainer>
 
         <ButtonContainer>
