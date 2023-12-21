@@ -1,3 +1,5 @@
+import { PostgrestError } from "@supabase/supabase-js";
+
 export type Project = {
   id: number;
   name: string;
@@ -6,3 +8,8 @@ export type Project = {
   category: string;
   userId?: string;
 };
+
+export interface ProjectData {
+  project: Array<Project> | null;
+  error: PostgrestError | null;
+}
