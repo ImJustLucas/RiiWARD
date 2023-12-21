@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
 import { AuthServices } from "@services/api";
 import { validateEmail } from "@utils/ValidateEmail";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
@@ -70,7 +71,7 @@ export const SigninScreen: React.FC = () => {
       <HomeContainer>
         <Title>Sign in</Title>
         <SectionContainer>
-          <RoundedContainer padding="15% 15%">
+          <RoundedContainer padding="15% 15%" customStyles={roundedStyles}>
             <Form action="">
               {error.isError && <ErrorDisplay>{error.message}</ErrorDisplay>}
               <Label htmlFor="email">Email</Label>
@@ -97,12 +98,21 @@ export const SigninScreen: React.FC = () => {
                 Sign in
               </Button>
             </Form>
+            <StyledText>
+              No account ? <StyledLink href="/signup">Sign up</StyledLink>
+            </StyledText>
           </RoundedContainer>
         </SectionContainer>
       </HomeContainer>
     </>
   );
 };
+
+const roundedStyles = `
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
 
 const HomeContainer = styled.div`
   height: calc(100vh - 100px);
@@ -168,4 +178,14 @@ const Button = styled.button`
 const ErrorDisplay = styled.p`
   color: red;
   text-align: center;
+`;
+
+const StyledText = styled.p`
+  color: ${({ theme }) => theme.colors.dark};
+  text-align: center;
+`;
+
+const StyledLink = styled(Link)`
+  color: blue;
+  text-decoration: underline;
 `;

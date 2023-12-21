@@ -85,7 +85,7 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
     <ProjectsContainer>
       <Link href="/project/add-project">
         <StyledButton>
-          <span>Add you own Project</span>
+          <span>Add your own Project</span>
           <i className="ri-add-line"></i>
         </StyledButton>
       </Link>

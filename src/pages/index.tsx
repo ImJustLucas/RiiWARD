@@ -7,7 +7,7 @@ export default function Home() {
       <Header
         textHeader={{
           title: "bring visibility to your project",
-          desc: "Transformez les projets académiques en succès professionnels : votre plateforme pour l'excellence étudiante.",
+          desc: "Turn academic projects into professional success: your platform for student excellence.",
         }}
       />
       <HomeScreen />
