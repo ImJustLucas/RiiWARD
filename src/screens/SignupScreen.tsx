@@ -35,28 +35,17 @@ export const SignupScreen: React.FC = () => {
   async function signup(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
 
-    if (email != "") {
-      if (email != "") {
-        if (!validateEmail(email)) {
-          setError({
-            message: "Please enter a valid email",
-            isError: true,
-          });
-          return;
-        }
-      } else {
-        email.split("@");
-        if (email.split("@")[1] != "edu.devinci.fr") {
-          setError({
-            message: "Please enter a edu.devinci email",
-            isError: true,
-          });
-          return;
-        }
+    if (email !== "") {
+      if (!validateEmail(email)) {
+        setError({
+          message: "Please enter a valid email",
+          isError: true,
+        });
+        return;
       }
     }
 
-    if (email != "" && password != "") {
+    if (email !== "" && password !== "") {
       setError({
         message: "",
         isError: false,
@@ -65,8 +54,8 @@ export const SignupScreen: React.FC = () => {
         email,
         password,
       });
-
-      if (user.data.user != null) {
+      console.log(user);
+      if (user.data.user !== null) {
         router.push("/profile");
       } else {
         setError({
@@ -78,40 +67,38 @@ export const SignupScreen: React.FC = () => {
   }
 
   return (
-    <>
-      <HomeContainer>
-        <Title>Sign in</Title>
-        <SectionContainer>
-          <RoundedContainer padding="15% 15%">
-            <Form action="">
-              {error.isError && <ErrorDisplay>{error.message}</ErrorDisplay>}
+    <HomeContainer>
+      <Title>Sign up</Title>
+      <SectionContainer>
+        <RoundedContainer padding="15% 15%">
+          <Form action="">
+            {error.isError && <ErrorDisplay>{error.message}</ErrorDisplay>}
 
-              <Label htmlFor="email">Email</Label>
-              <Input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
-              ></Input>
+            <Label htmlFor="email">Email</Label>
+            <Input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+            ></Input>
 
-              <Label htmlFor="password">Password</Label>
-              <Input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-              ></Input>
+            <Label htmlFor="password">Password</Label>
+            <Input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+            ></Input>
 
-              <Button type="submit" onClick={signup} disabled={disabled}>
-                Sign in
-              </Button>
-            </Form>
-          </RoundedContainer>
-        </SectionContainer>
-      </HomeContainer>
-    </>
+            <Button type="submit" onClick={signup} disabled={disabled}>
+              Sign in
+            </Button>
+          </Form>
+        </RoundedContainer>
+      </SectionContainer>
+    </HomeContainer>
   );
 };
 

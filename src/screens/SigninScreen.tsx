@@ -68,7 +68,7 @@ export const SigninScreen: React.FC = () => {
   return (
     <>
       <HomeContainer>
-        <Title>Log in</Title>
+        <Title>Sign in</Title>
         <SectionContainer>
           <RoundedContainer padding="15% 15%">
             <Form action="">
