@@ -11,13 +11,12 @@ type HeaderProps = {
 const _AuthServices = new AuthServices();
 
 export const Header: React.FC<HeaderProps> = ({ textHeader }) => {
-  const { isLogged } = useAuth();
-
-  console.log(isLogged);
+  const { isLogged, setUser, setIsLogged } = useAuth();
 
   const handleSignOut = async () => {
     const user = await _AuthServices.signOut();
-
+    setUser(null);
+    setIsLogged(false);
     console.log("@POST: signout", user);
   };
 
