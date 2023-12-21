@@ -9,18 +9,23 @@ export default function AddProject() {
   const [project, setProject] = useState<Project>({} as Project);
   const updateProject = (updatedProject: Project) => {
     setProject(updatedProject);
-    console.log("New Project", project);
   };
   return (
     <>
       {step == 1 && (
         <AddNameProject
           step={{ get: step, set: setStep }}
-          setProject={() => updateProject}
+          project={project}
+          setProject={() => updateProject(project)}
         />
       )}
       {step == 2 && <AddCoverProject step={{ get: step, set: setStep }} />}
-      {step == 3 && <AddCategoryProject step={{ get: step, set: setStep }} />}
+      {step == 3 && (
+        <AddCategoryProject
+          step={{ get: step, set: setStep }}
+          project={project}
+        />
+      )}
     </>
   );
 }

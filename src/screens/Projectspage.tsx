@@ -13,7 +13,7 @@ export const ProjectsScreen: React.FC = () => {
 
   return (
     <ProjectsContainer>
-      <Link href="#">
+      <Link href="/project/add-project">
         <StyledButton>
           <span>Add you own Project</span>
           <i className="ri-add-line"></i>

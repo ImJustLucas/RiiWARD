@@ -62,11 +62,10 @@ const HomeContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: ${({ theme }) => theme.size.extraTitle};
+  font-size: ${({ theme }) => theme.size.desktop.title};
   text-transform: uppercase;
   text-align: center;
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.black};
+  font-weight: 400;
   position: relative;
   z-index: 2;
 

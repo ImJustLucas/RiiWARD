@@ -1,6 +1,9 @@
 import { LeftButton } from "@components/Common/Buttons/LeftButton";
 import { RightButton } from "@components/Common/Buttons/RightButton";
 import { StepBackground } from "@components/StepBackground";
+import { useAuth } from "@contexts/AuthContext";
+import { createProject } from "@services/api/Project";
+import { Project } from "@typesDef/project/project";
 import styled from "styled-components";
 
 type AddCategoryProjectProps = {
@@ -8,6 +11,7 @@ type AddCategoryProjectProps = {
     get: number;
     set: (newStep: number) => void;
   };
+  project: Project;
 };
 
 const categories = [
@@ -27,7 +31,16 @@ const categories = [
 
 export const AddCategoryProject: React.FC<AddCategoryProjectProps> = ({
   step,
+  project,
 }) => {
+  const { user } = useAuth();
+  const handleCLickCategory = (category: string) => {
+    project.category = category;
+  };
+  const handleCreateProject = async () => {
+    project.userId = user?.id;
+    await createProject(project);
+  };
   return (
     <>
       <ContainerPage>
@@ -36,7 +49,10 @@ export const AddCategoryProject: React.FC<AddCategoryProjectProps> = ({
           <Title>Choose your category</Title>
           <ContainerCategory>
             {categories.map((category, key) => (
-              <Card key={key}>
+              <Card
+                onClick={() => handleCLickCategory(category.name)}
+                key={key}
+              >
                 <h3>{category.name}</h3>
               </Card>
             ))}
@@ -54,8 +70,8 @@ export const AddCategoryProject: React.FC<AddCategoryProjectProps> = ({
               <RightButton
                 text="Next"
                 icon="skip-right"
-                link="/"
-                // onClick={() => step.set(step.get + 1)}
+                link="/projects"
+                onClick={() => handleCreateProject()}
               />
             </div>
           </ContainerButton>

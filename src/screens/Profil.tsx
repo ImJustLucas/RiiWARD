@@ -1,8 +1,44 @@
+import { useEffect, useState } from "react";
 import { LeftButton } from "@components/Common/Buttons/LeftButton";
+import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
+import { useAuth } from "@contexts/AuthContext";
+import { getAllUserProject } from "@services/api/Project";
+import { ProjectData } from "@typesDef/project/project";
 import Image from "next/image";
 import styled from "styled-components";
 
+import Avatar from "../assets/images/homeAvatar.jpg";
+import ProjectImage from "../assets/images/projectImage.png";
+
 export const ProfileScreen: React.FC = () => {
+  const { user } = useAuth();
+  const [projects, setProjects] = useState<ProjectData>({
+    project: null,
+    error: null,
+  });
+
+  useEffect(() => {
+    const getProjects = async () => {
+      try {
+        const { project, error } = await getAllUserProject(user?.id as string);
+        setProjects({ project, error });
+      } catch (error) {
+        console.error("Erreur lors de la récupération des projets :", error);
+      }
+    };
+
+    getProjects();
+  }, []);
+
+  console.log(projects);
+
+  const evenIndexProjects = projects.project?.filter(
+    (_, index) => index % 2 === 0,
+  );
+  const oddIndexProjects = projects.project?.filter(
+    (_, index) => index % 2 !== 0,
+  );
+
   return (
     <>
       <ContainerPageProfil>
@@ -28,6 +64,59 @@ export const ProfileScreen: React.FC = () => {
         </ProfilContainer>
         <ContainerProjectProfil>
           <Title>My projects</Title>
+          <RoundedContainer width="100%" background="light" padding="36px">
+            <MainContainer>
+              <Column>
+                {evenIndexProjects?.map((project, index) => (
+                  <RoundedContainer
+                    key={index}
+                    width="100%"
+                    link="#"
+                    padding="0"
+                    height="378px"
+                    background="dark"
+                    userBar={{
+                      avatar: Avatar,
+                      username: project.name,
+                      project: project.description,
+                      gap: "16px",
+                      positionx: "left",
+                    }}
+                  >
+                    <ImageContainer>
+                      <Backdrop />
+                      <Image src={ProjectImage} alt="Image" />
+                    </ImageContainer>
+                  </RoundedContainer>
+                ))}
+              </Column>
+              <Column>
+                <StyledSubtitle>FIND YOUR NEXT FAVORITE PROJECT</StyledSubtitle>
+                {oddIndexProjects?.map((project, index) => (
+                  <RoundedContainer
+                    key={index}
+                    width="100%"
+                    link="#"
+                    padding="0"
+                    height="378px"
+                    background="dark"
+                    userBar={{
+                      avatar: Avatar,
+                      username: project.name,
+                      project: project.description,
+                      gap: "16px",
+                      positionx: "left",
+                    }}
+                  >
+                    <ImageContainer>
+                      <Backdrop />
+                      <Image src={ProjectImage} alt="Image" />
+                    </ImageContainer>
+                  </RoundedContainer>
+                ))}
+              </Column>
+            </MainContainer>
+          </RoundedContainer>
         </ContainerProjectProfil>
       </ContainerPageProfil>
     </>
@@ -123,4 +212,50 @@ const Title = styled.h1`
   @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
     font-size: ${({ theme }) => theme.size.desktop.medium};
   }
+`;
+
+const StyledSubtitle = styled.h2`
+  text-align: right;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  margin-top: 24px;
+  font-size: ${({ theme }) => theme.size.title};
+`;
+
+const MainContainer = styled.main`
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  box-sizing: border-box;
+`;
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  width: 50%;
+`;
+
+const ImageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 24px;
+  }
+`;
+
+const Backdrop = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 24px;
 `;

@@ -1,3 +1,4 @@
+import { LeftButton } from "@components/Common/Buttons/LeftButton";
 import { RightButton } from "@components/Common/Buttons/RightButton";
 import { StepBackground } from "@components/StepBackground";
 import { Project } from "@typesDef/project/project";
@@ -8,28 +9,48 @@ type AddProjectProps = {
     get: number;
     set: (newStep: number) => void;
   };
+  project: Project;
   setProject: React.Dispatch<React.SetStateAction<Project>>;
 };
 
 export const AddNameProject: React.FC<AddProjectProps> = ({
   step,
+  project,
   setProject,
 }) => {
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const projectName = event.target.value;
-    setProject((prevProject) => ({ ...prevProject, name: projectName }));
+  const handleInputNameChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    project.name = event.target.value;
+  };
+  const handleInputDescriptionChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    project.description = event.target.value;
+  };
+  const handlePassStep = () => {
+    setProject((project) => project);
+    step.set(step.get + 1);
   };
   return (
     <>
+      <ContainerHomeButton>
+        <LeftButton text="Previous" icon="skip-left" link="/projects" />
+      </ContainerHomeButton>
       <ContainerPage>
         <StepBackground />
         <ContainerAddProject>
           <Title>Give your project a name</Title>
           <ContainerInput>
             <InputName
-              onChange={handleInputChange}
+              onChange={handleInputNameChange}
               type="text"
               placeholder="Project name"
+            />
+            <InputName
+              onChange={handleInputDescriptionChange}
+              type="text"
+              placeholder="Description"
             />
           </ContainerInput>
           <ContainerButton>
@@ -37,7 +58,7 @@ export const AddNameProject: React.FC<AddProjectProps> = ({
               text="Next"
               icon="skip-right"
               link="#"
-              onClick={() => step.set(step.get + 1)}
+              onClick={() => handlePassStep()}
             />
           </ContainerButton>
         </ContainerAddProject>
@@ -54,6 +75,15 @@ const ContainerPage = styled.div`
   width: 100%;
   height: 100vh;
   text-align: center;
+`;
+
+const ContainerHomeButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: max-content;
 `;
 
 const ContainerAddProject = styled.div`
@@ -79,10 +109,16 @@ const InputName = styled.input`
 
 const ContainerButton = styled.div`
   width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ContainerInput = styled.div`
   display: flex;
+  flex-direction: column;
+  gap: 16px;
   text-align: center;
   width: 100%;
   justify-content: center;

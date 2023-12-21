@@ -24,19 +24,23 @@ export const LeftButton: React.FC<ButtonProps> = ({
 };
 
 const ButtonStyled = styled(Link)`
-  border-radius: 24px;
+  // border-radius: 24px;
+  border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 16px;
-  padding: 16px 24px;
+  // padding: 16px 24px;
+  padding: 10px 30px;
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.dark};
-
+  &:hover {
+    transform: scale(1.05);
+  }
   @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
     border-radius: 14px;
     padding: 8px 12px;
   }
-  width: 100%;
 `;
 
 const Text = styled.span`
