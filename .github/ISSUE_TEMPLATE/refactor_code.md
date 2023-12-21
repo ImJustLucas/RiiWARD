@@ -41,5 +41,3 @@ Include any additional information, such as benchmarks, code snippets, or links 
 ---
 
 Looking forward to your insightful contributions! ✨
-
-[Your Project Team]
