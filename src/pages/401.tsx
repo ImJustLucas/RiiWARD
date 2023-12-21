@@ -14,9 +14,7 @@ const Custom401 = () => {
   return (
     <RoundedContainer customStyles={containerStyle}>
       <H1>401 - Unauthorized</H1>
-      <Paragraph style={{}}>
-        You do not have permission to view this page.
-      </Paragraph>
+      <Paragraph>You do not have permission to view this page.</Paragraph>
     </RoundedContainer>
   );
 };
