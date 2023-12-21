@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
+import { useAuth } from "@contexts/AuthContext";
 import { AuthServices } from "@services/api";
 import { validateEmail } from "@utils/ValidateEmail";
 import { useRouter } from "next/router";
@@ -23,6 +24,8 @@ export const SigninScreen: React.FC = () => {
   const [disabled, setDisabled] = useState<boolean>(false);
 
   const router = useRouter();
+
+  const { setUser, setIsLogged } = useAuth();
 
   useEffect(() => {
     if (email != "" && password != "") {
@@ -56,6 +59,8 @@ export const SigninScreen: React.FC = () => {
         password,
       });
       if (user.data.user != null) {
+        setUser(user.data.user);
+        setIsLogged(true);
         router.push("/profile");
       } else {
         setError({

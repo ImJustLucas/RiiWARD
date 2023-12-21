@@ -13,6 +13,8 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   isLogged: boolean;
+  setUser: (user: User | null) => void;
+  setIsLogged: (isLogged: boolean) => void;
 }
 
 const _UsersServices = new UsersServices();
@@ -21,6 +23,8 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
   isLogged: false,
+  setUser: () => {},
+  setIsLogged: () => {},
 });
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({
@@ -59,8 +63,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loading, isLogged }}>
-      {children}
+    <AuthContext.Provider
+      value={{ user, loading, isLogged, setUser, setIsLogged }}
+    >
+      {loading ? <div>Loading...</div> : children}
     </AuthContext.Provider>
   );
 };
