@@ -7,12 +7,18 @@ const light: Theme = {
   colors: {
     primary: "#00b4d8",
     secondary: "#90e0ef",
+    dark: "#212529",
+    grey: "#323639",
+    lightgrey: "#F5F6F7",
+    black: "#000000",
+    white: "#FFFFFF",
 
     background: {
-      primary:
-        "linear-gradient(123deg, #FFF 23.25%, #C5F1FB 48.67%, #F1F6F6 76.07%)",
+      primary: createColor(245, 246, 247, 100),
       secondary: createColor(246, 6, 123, 0.2),
       contrast: "",
+      dark: createColor(33, 37, 41, 100),
+      light: createColor(255, 255, 255, 100),
     },
     text: {
       primary: "#2b2d42",

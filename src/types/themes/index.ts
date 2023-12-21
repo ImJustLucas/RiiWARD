@@ -11,11 +11,18 @@ export type Theme = {
   colors: {
     primary: string;
     secondary: string;
+    dark: string;
+    grey: string;
+    lightgrey: string;
+    black: string;
+    white: string;
 
     background: {
       primary: string;
       secondary: string;
       contrast: string;
+      dark: string;
+      light: string;
     };
 
     text: {

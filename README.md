@@ -1,35 +1,27 @@
-# Just a next boilerplate 💙
+# Project Awwward
 
-Magnificent Next.js boilerplate with TypeScript, ESLint, Prettier and everything else you need to bootstrap your Next.js project.
+Transformez les projets académiques en succès professionnels : votre plateforme pour l'excellence étudiante.
 
 ## Requirements
 
 Node.js 18+ and npm
 
-## Getting Started
+## Stack technique
 
-To use this boilerplate, click on the green button "Use this template" at the top of this page.
-
-Then, click create repository from template.
-
-Finally, clone your new repository and run `npm install` to install the dependencies.
-
-## Features
-
-- ⚡ Next.js
-- 🎨 Styled Components
-- 📏 ESLint
-- 💖 Prettier
-- 🐶 Husky
-- 🚫 Lint-staged
-- 🗂 Absolute import
-- 📄 TypeScript
-- 📊 Jest
-- ⏲ Dayjs
-- 📦 RedAxios
-- 📝 Sonner
-- ✨ Remixicon
+- ⚡ [Next.js](https://nextjs.org/)
+- 📚 [Supabase](https://supabase.com/)
+- 🎨 [Styled Components](https://styled-components.com/)
+- 📏 [ESLint](https://eslint.org/)
+- 💖 [Prettier](https://prettier.io/)
+- 🐶 [Husky](https://github.com/typicode/husky)
+- 🚫 [Lint-staged](https://www.npmjs.com/package/lint-staged)
+- 📄 [TypeScript](https://www.typescriptlang.org/)
+- 📊 [Jest](https://jestjs.io/)
+- ⏲ [Dayjs](https://day.js.org/)
+- 📦 [RedAxios](https://github.com/developit/redaxios)
+- 📝 [Sonner](https://sonner.emilkowal.ski/)
+- ✨ [Remixicon](https://remixicon.com/)
 
 ## Support
 
-If you like this boilerplate, give it a ⭐️ and share it with your friends!
+Si vous avez des questions vous pouvez contacter @ImJustLucas sur GitHub.

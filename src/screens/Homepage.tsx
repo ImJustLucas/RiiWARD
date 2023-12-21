@@ -1,150 +1,168 @@
-import { SocialBar } from "@components/Footer/SocialBar";
+import Avatar from "@assets/images/avatar.png";
+import HomeImage from "@assets/images/homeImage.png";
+import ProjectImage from "@assets/images/projectImage.png";
+import Wand from "@assets/images/wand.png";
+import { BackdropComponent } from "@components/Common/BackDrop/Backdrop";
+import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
+import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
 export const HomeScreen: React.FC = () => {
   return (
     <>
-      <HeaderContainer>
-        <p>✨ ImJustLucas present ✨</p>
-      </HeaderContainer>
       <HomeContainer>
-        <Title>Just a boilerplate</Title>
-        <Subtitle>
-          Magnificent Next.js boilerplate with TypeScript, ESLint, Prettier and
-          everything else you need to bootstrap your Next.js project.
-        </Subtitle>
-        <StyledLink
-          href="https://github.com/ImJustLucas/Next-Boilerplate"
-          target="_blank"
-        >
-          I want to use it!
-        </StyledLink>
+        <SectionContainer>
+          <RoundedContainer
+            background="dark"
+            width="50%"
+            height="402px"
+            padding="50px"
+          >
+            <StyledSubtitle>
+              <h2>VOTE FOR THE PROJECT OF THE MONTH</h2>
+            </StyledSubtitle>
+          </RoundedContainer>
+          <RoundedContainer width="50%" height="402px" padding="50px">
+            <StyledSubtitle>
+              <h2>ADD YOUR PROJECT AND SHARE IT WITH THE OTHER STUDENT</h2>
+            </StyledSubtitle>
+          </RoundedContainer>
+        </SectionContainer>
+        <SectionContainer>
+          <RoundedContainer
+            width="33%"
+            padding="24px 24px 0 24px"
+            height="467px"
+          >
+            <Column>
+              <h3>
+                CHECK THE PROJECT OF THE MONTH{" "}
+                <StyledWand src={Wand} alt="Wand" />
+              </h3>
+              <i className="ri-arrow-right-double-fill"></i>
+              <Image src={HomeImage} alt="Test" loading="lazy" />
+            </Column>
+          </RoundedContainer>
+          <RoundedContainer
+            width="66%"
+            padding="0"
+            background="dark"
+            link="#"
+            height="467px"
+            userBar={{
+              avatar: Avatar,
+              username: "Hassina",
+              project: "Awwwwards",
+              gap: "100px",
+              positionx: "right",
+            }}
+          >
+            <ImageContainer>
+              <BackdropComponent />
+              <Image src={ProjectImage} alt="Image" />
+            </ImageContainer>
+          </RoundedContainer>
+        </SectionContainer>
+        <Link href="/projects">
+          <StyledButton>
+            <span>Wanna see more projects ?</span>
+            <i className="ri-arrow-right-up-line"></i>
+          </StyledButton>
+        </Link>
       </HomeContainer>
-      <FooterContainer>
-        <SocialBar />
-        <span>•</span>
-        <span>Made with 💙 by ImJustLucas</span>
-      </FooterContainer>
     </>
   );
 };
-
-const HeaderContainer = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  width: 90%;
-  padding: 32px 0;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.text.contrast};
-`;
-
-const FooterContainer = styled.footer`
-  width: 100%;
-  padding: 32px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  color: ${({ theme }) => theme.colors.text.contrast};
-
-  svg path {
-    fill: ${({ theme }) => theme.colors.text.contrast};
-  }
-`;
 
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 64px;
+  gap: 50px;
 `;
 
-const Title = styled.h1`
-  font-size: ${({ theme }) => theme.size.desktop.extraTitle};
-  text-align: center;
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.primary};
-  position: relative;
-  z-index: 2;
-
-  &::after {
-    content: "🤩";
-    position: absolute;
-    right: -20px;
-    top: -25px;
-    transform: rotate(20deg);
-    z-index: -1;
-  }
+const SectionContainer = styled.div`
+  display: flex;
+  gap: 50px;
+  width: 100%;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
-    font-size: ${({ theme }) => theme.size.desktop.medium};
-  }
-`;
-const Subtitle = styled.p`
-  font-size: 24px;
-  max-width: 500px;
-  text-align: center;
-  z-index: 2;
-  position: relative;
-  color: ${({ theme }) => theme.colors.text.contrast};
-
-  &::after {
-    content: "🥳";
-    position: absolute;
-    left: -30px;
-    bottom: -25px;
-    transform: rotate(-20deg);
-    z-index: -1;
-    font-size: ${({ theme }) => theme.size.desktop.extraTitle};
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
-    font-size: ${({ theme }) => theme.size.desktop.small};
-    width: 80%;
-
-    &::after {
-      font-size: ${({ theme }) => theme.size.desktop.medium};
-    }
+    flex-direction: column;
   }
 `;
 
-const StyledLink = styled(Link)`
-  font-size: ${({ theme }) => theme.size.medium};
+const StyledSubtitle = styled.div`
+  font-size: ${({ theme }) => theme.size.extraTitle};
   text-align: center;
-  color: ${({ theme }) => theme.colors.text.contrast};
-  font-weight: 700;
-  position: relative;
-  transition: all 0.3s ease-in-out;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  font-family: "Space Grotesk", sans-serif;
+`;
 
-  &::before {
-    content: "👉";
-    position: absolute;
-    font-size: 26px;
-    left: -50px;
-    transition: all 0.3s ease-in-out;
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  & h3 {
+    font-size: ${({ theme }) => theme.size.title};
+    font-weight: 500;
+    text-align: center;
+    font-family: "Inter", sans-serif;
   }
 
-  &::after {
-    content: "👈";
-    position: absolute;
-    font-size: 26px;
-    right: -50px;
-    transition: all 0.3s ease-in-out;
+  & i {
+    font-size: ${({ theme }) => theme.size.title};
+  }
+`;
+
+const StyledWand = styled(Image)`
+  width: ${({ theme }) => theme.size.title};
+  height: ${({ theme }) => theme.size.title};
+`;
+
+const StyledButton = styled.button`
+  display: flex;
+  padding: 14px 32px;
+  gap: 20px;
+  background: ${({ theme }) => theme.colors.background.dark};
+  border-radius: 24px;
+  border: 1px solid ${({ theme }) => theme.colors.background.dark};
+  transition: 0.3s ease-in-out;
+  align-items: center;
+  cursor: pointer;
+
+  & span {
+    font-size: ${({ theme }) => theme.size.large};
+    font-weight: 500;
+    font-family: "Inter", sans-serif;
+    color: white;
+  }
+
+  & i {
+    color: white;
+    font-size: ${({ theme }) => theme.size.medium};
   }
 
   &:hover {
-    &::before {
-      left: -40px;
-    }
+    transform: scale(1.05);
+  }
+`;
 
-    &::after {
-      right: -40px;
-    }
+const ImageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 24px;
   }
 `;
