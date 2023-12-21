@@ -81,8 +81,6 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
     );
   }, [projectsWithUserEmail]);
 
-  console.log(projectsWithUserEmail);
-
   return (
     <ProjectsContainer>
       <Link href="/project/add-project">
@@ -140,7 +138,7 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
                       height="378px"
                       background="dark"
                       userBar={{
-                        avatar: Avatar,
+                        avatar: data.userAvatar ? data.userAvatar : Avatar,
                         username: data.userEmail,
                         project: data.project.name,
                         gap: "16px",
@@ -149,7 +147,15 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
                     >
                       <ImageContainer>
                         <Backdrop />
-                        <Image src={ProjectImage} alt="Image" />
+                        <Image
+                          src={
+                            data.project.image
+                              ? data.project.image
+                              : ProjectImage
+                          }
+                          alt={data.project.name}
+                          layout="fill"
+                        />
                       </ImageContainer>
                     </RoundedContainer>
                   ))}

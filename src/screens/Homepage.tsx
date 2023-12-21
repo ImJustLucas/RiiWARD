@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import Avatar from "../assets/images/avatar.png";
 import HomeImage from "../assets/images/homeImage.png";
+import ProjectImage from "../assets/images/projectImage.png";
 import Wand from "../assets/images/wand.png";
 
 export const HomeScreen: React.FC = () => {
@@ -45,6 +46,7 @@ export const HomeScreen: React.FC = () => {
           </RoundedContainer>
           <RoundedContainer
             width="66%"
+            padding="0"
             background="dark"
             link="#"
             height="467px"
@@ -55,9 +57,14 @@ export const HomeScreen: React.FC = () => {
               gap: "100px",
               positionx: "right",
             }}
-          ></RoundedContainer>
+          >
+            <ImageContainer>
+              <Backdrop />
+              <Image src={ProjectImage} alt="Image" />
+            </ImageContainer>
+          </RoundedContainer>
         </SectionContainer>
-        <Link href="#">
+        <Link href="/projects">
           <StyledButton>
             <span>Wanna see more projects ?</span>
             <i className="ri-arrow-right-up-line"></i>
@@ -142,12 +149,31 @@ const StyledButton = styled.button`
   }
 
   &:hover {
-    filter: none;
-    background: #ffffff;
-
-    & span,
-    & i {
-      color: ${({ theme }) => theme.colors.background.dark};
-    }
+    transform: scale(1.05);
   }
+`;
+
+const ImageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 24px;
+  }
+`;
+
+const Backdrop = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 24px;
+  z-index: 2;
 `;
