@@ -16,7 +16,6 @@ export async function createProject(projet: Project) {
 
 export class ProjectsServices {
   async getProjects() {
-    // const supabase = createServerSupabaseClient();
     try {
       const { data: projects } = await supabase.from("aw_projects").select("*");
       return projects;

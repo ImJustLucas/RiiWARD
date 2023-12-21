@@ -49,7 +49,6 @@ export const ProfileScreen: React.FC = () => {
           <Title>My profil</Title>
           <InfosUserContainer>
             <RowInfosUser>
-              {/* Utilisation de la composante Image de next/image */}
               <Image width={200} height={140} src={""} alt="avatar" />
               <InfosUser>
                 <InputProfile type="text" placeholder="Prénom" />
