@@ -168,7 +168,7 @@ const Form = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 32px;
 `;
 
 const Input = styled.input`
