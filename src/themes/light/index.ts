@@ -1,6 +1,5 @@
 import { Theme } from "@typesDef/themes";
 import { createColor } from "@utils/createColor";
-// import { create } from "domain";
 
 const light: Theme = {
   id: 0,
