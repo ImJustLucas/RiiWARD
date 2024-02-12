@@ -19,7 +19,7 @@ La structure des messages de commit doit respecter la forme suivante, doivent ê
 Exemple:
 
 ```
-<gitmoji> <type> <description> [(#<issue number>)]
+<⚙️> <FIX> <Fix login> [(#002)]
 
 [optional body]
 
