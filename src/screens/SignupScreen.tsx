@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useEffect } from "react";
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
 import { AuthServices } from "@services/api";
 import { validateEmail } from "@utils/ValidateEmail";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { toast } from "sonner";
 import styled from "styled-components";
 
 const _AuthServices = new AuthServices();
@@ -20,29 +21,37 @@ export const SignupScreen: React.FC = () => {
     message: "",
     isError: false,
   });
-  const [disabled, setDisabled] = useState<boolean>(false);
 
   const router = useRouter();
-
-  useEffect(() => {
-    if (email != "" && password != "") {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  }, [email, password]);
 
   async function signup(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
 
-    if (email !== "") {
-      if (!validateEmail(email)) {
-        setError({
-          message: "Please enter a valid email",
-          isError: true,
-        });
-        return;
-      }
+    if (email == "" && password == "") {
+      setError({
+        message: "Please enter a valid email and password",
+        isError: true,
+      });
+      toast.error("Please enter a valid email and password");
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setError({
+        message: "Please enter a valid email",
+        isError: true,
+      });
+      toast.error("Please enter a valid email");
+      return;
+    }
+
+    if (password == "") {
+      setError({
+        message: "Please enter a valid password",
+        isError: true,
+      });
+      toast.error("Please enter a valid password");
+      return;
     }
 
     if (email !== "" && password !== "") {
@@ -62,64 +71,99 @@ export const SignupScreen: React.FC = () => {
           message: "Something went wrong FF",
           isError: true,
         });
+        toast.error("Something went wrong FF");
       }
     }
   }
 
   return (
     <HomeContainer>
-      <Title>Sign up</Title>
-      <SectionContainer>
-        <RoundedContainer padding="15% 15%">
-          <Form action="">
-            {error.isError && <ErrorDisplay>{error.message}</ErrorDisplay>}
+      <RoundedContainer padding="10% 15%" customStyles={roundedStyles}>
+        <FormHeader>
+          <BackLink href="/">
+            <ArrowBack className="ri-arrow-left-line"></ArrowBack>
+          </BackLink>
+          <FormTitle>
+            R<SpanTitle>ii</SpanTitle>WARD
+          </FormTitle>
+        </FormHeader>
+        <Form action="">
+          <Label htmlFor="email">Email</Label>
+          <Input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+            className={error.isError ? "has-error" : ""}
+          ></Input>
 
-            <Label htmlFor="email">Email</Label>
-            <Input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
-            ></Input>
+          <Label htmlFor="password">Password</Label>
+          <Input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            className={error.isError ? "has-error" : ""}
+          ></Input>
 
-            <Label htmlFor="password">Password</Label>
-            <Input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            ></Input>
-
-            <Button type="submit" onClick={signup} disabled={disabled}>
-              Sign up
-            </Button>
-          </Form>
-        </RoundedContainer>
-      </SectionContainer>
+          <Button type="submit" onClick={signup}>
+            Sign up
+          </Button>
+        </Form>
+        <Separator />
+        <ButtonLink href="/signin">Sign in</ButtonLink>
+      </RoundedContainer>
     </HomeContainer>
   );
 };
 
-const HomeContainer = styled.div`
-  height: calc(100vh - 100px);
+const roundedStyles = `
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 50px;
+  gap: 24px;
+  width: 350px;
+  position: relative
 `;
 
-const Title = styled.h1`
+const HomeContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+`;
+
+const FormHeader = styled.div`
+  position: relative;
+`;
+
+const BackLink = styled.a`
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: -16px;
+`;
+
+const ArrowBack = styled.i`
+  font-size: ${({ theme }) => theme.size.large};
+  color: ${({ theme }) => theme.colors.dark};
+`;
+
+const FormTitle = styled.h1`
   font-size: ${({ theme }) => theme.size.extraTitle};
-  text-transform: uppercase;
+  font-family: "Space Grotesk", sans-serif;
+  color: ${({ theme }) => theme.colors.dark};
+  text-align: center;
 `;
 
-const SectionContainer = styled.div`
-  width: 80vw;
-  max-width: 750px;
+const SpanTitle = styled.span`
+  font-size: ${({ theme }) => theme.size.extraTitle};
+  font-family: "Space Grotesk", sans-serif;
+  color: ${({ theme }) => theme.colors.blue};
 `;
+
 const Form = styled.form`
   width: 100%;
   display: flex;
@@ -132,7 +176,7 @@ const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.black};
   border-radius: 24px;
   width: 100%;
-  height: 70px;
+  height: 35px;
   padding: 8px 16px;
 
   &.has-error {
@@ -152,18 +196,48 @@ const Label = styled.label`
   border-width: 0;
 `;
 
-const Button = styled.button`
-  box-sizing: border-box;
-  border: 1px solid ${({ theme }) => theme.colors.black};
-  border-radius: 24px;
-  height: 70px;
-  background: #212529;
-  color: white;
-  text-align: center;
-  font-size: ${({ theme }) => theme.size.title};
+const Separator = styled.div`
+  height: 2px;
+  background: ${({ theme }) => theme.colors.dark};
 `;
 
-const ErrorDisplay = styled.p`
-  color: red;
+const Button = styled.button`
+  box-sizing: border-box;
+  border-radius: 24px;
+  height: 35px;
+  background: ${({ theme }) => theme.colors.blue};
+  width: fit-content;
+  margin: 0 auto;
+  font-weight: 600;
+  padding: 8px 24px;
+  color: ${({ theme }) => theme.colors.white};
   text-align: center;
+  font-size: ${({ theme }) => theme.size.normal};
+  transition: 0.3s;
+  border: 2px solid ${({ theme }) => theme.colors.blue};
+
+  &:hover {
+    background: none;
+    color: ${({ theme }) => theme.colors.blue};
+  }
+`;
+
+const ButtonLink = styled(Link)`
+  box-sizing: border-box;
+  border-radius: 24px;
+  height: 35px;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 8px 24px;
+  color: ${({ theme }) => theme.colors.dark};
+  text-align: center;
+  font-size: ${({ theme }) => theme.size.normal};
+  transition: 0.3s;
+  font-weight: 600;
+  border: 2px solid ${({ theme }) => theme.colors.dark};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.dark};
+    color: ${({ theme }) => theme.colors.white};
+  }
 `;
