@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 type LinkSeeAllProps = {
@@ -25,7 +26,7 @@ export const LinkSeeAll: React.FC<LinkSeeAllProps> = ({ content, link }) => {
   );
 };
 
-const SeeAllLink = styled.a`
+const SeeAllLink = styled(Link)`
   position: relative;
   &::before {
     content: "";
