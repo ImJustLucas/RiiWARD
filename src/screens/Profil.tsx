@@ -22,12 +22,12 @@ export const ProfileScreen: React.FC = () => {
   // const tabProjects = [
   //   {
   //     title: "Projet 1",
-  //     description: "Description du projet 1",
+  //     description: "Description du projet 1 => Projet de test, aucune données",
   //     image: "https://via.placeholder.com/150",
   //   },
   //   {
   //     title: "Projet 2",
-  //     description: "Description du projet 2",
+  //     description: "Description du projet 2 => Projet de test, aucune données",
   //     image: "https://via.placeholder.com/150",
   //   },
   // ];
@@ -80,7 +80,7 @@ export const ProfileScreen: React.FC = () => {
               <RowContainer>
                 <RowSkills style={{ justifyContent: "space-around" }}>
                   {tabTags.map((tag, index) => (
-                    <TagSkill content={tag} key={index} />
+                    <TagSkill content={tag} isIcon={false} key={index} />
                   ))}
                 </RowSkills>
               </RowContainer>
@@ -107,23 +107,35 @@ export const ProfileScreen: React.FC = () => {
             }}
           >
             <RowContainer style={{ height: "100%", gap: "12px" }}>
-              {projects.project
-                ?.slice(0, 2)
-                .map((project, index) => (
-                  <CardProject
-                    key={index}
-                    title={project.name}
-                    description={project.description}
-                    image={
-                      project.image
-                        ? project.image
-                        : "https://via.placeholder.com/150"
-                    }
-                  />
-                ))}
+              {projects.project && projects.project?.length !== 0 ? (
+                projects.project
+                  ?.slice(0, 2)
+                  .map((project, index) => (
+                    <CardProject
+                      key={index}
+                      title={project.name}
+                      description={project.description}
+                      image={
+                        project.image
+                          ? project.image
+                          : "https://via.placeholder.com/150"
+                      }
+                    />
+                  ))
+              ) : (
+                <ColumnContainer
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "90%",
+                  }}
+                >
+                  <p>Aucun projet référencé.</p>
+                </ColumnContainer>
+              )}
             </RowContainer>
             <div style={{ height: "fit-content", textAlign: "end" }}>
-              <LinkSeeAll content="Voir tous les projets" />
+              <LinkSeeAll link="/" content="Voir tous les projets" />
             </div>
           </ColumnContainer>
         </ProjectContainer>

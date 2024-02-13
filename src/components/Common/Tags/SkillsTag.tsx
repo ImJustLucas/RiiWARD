@@ -2,10 +2,20 @@ import styled from "styled-components";
 
 type SkillTagProps = {
   content: string;
+  icon?: string;
+  isIcon: boolean;
 };
 
-export const TagSkill: React.FC<SkillTagProps> = ({ content }) => {
-  return <SkillTag>{content}</SkillTag>;
+export const TagSkill: React.FC<SkillTagProps> = ({
+  content,
+  icon,
+  isIcon,
+}) => {
+  return (
+    <SkillTag>
+      {content} {isIcon ? <i className={icon}></i> : null}
+    </SkillTag>
+  );
 };
 
 const SkillTag = styled.div`

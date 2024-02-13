@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 type LinkSeeAllProps = {
   content: string;
+  link: string;
 };
 
-export const LinkSeeAll: React.FC<LinkSeeAllProps> = ({ content }) => {
+export const LinkSeeAll: React.FC<LinkSeeAllProps> = ({ content, link }) => {
   return (
-    <SeeAllLink>
-      {content}{" "}
+    <SeeAllLink href={link}>
+      {content}
       <svg
         width="8"
         height="13"
