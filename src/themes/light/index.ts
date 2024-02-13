@@ -12,8 +12,7 @@ const light: Theme = {
     lightgrey: "#F5F6F7",
     black: "#000000",
     white: "#FFFFFF",
-    electricBlue: "#1F1EF1",
-
+    blue: "#1f1ef1",
     background: {
       primary: createColor(245, 246, 247, 100),
       secondary: createColor(246, 6, 123, 0.2),
