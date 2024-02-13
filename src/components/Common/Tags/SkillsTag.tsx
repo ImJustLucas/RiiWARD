@@ -25,7 +25,7 @@ const SkillTag = styled.div`
   align-items: center;
   padding: 10px 28px;
   gap: 10px;
-  border: 2px solid ${({ theme }) => theme.colors.electricBlue};
+  border: 2px solid ${({ theme }) => theme.colors.blue};
   border-radius: 24px;
   font-family: "Space Grotesk";
   font-style: normal;

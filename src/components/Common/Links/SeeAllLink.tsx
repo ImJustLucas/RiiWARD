@@ -33,7 +33,7 @@ const SeeAllLink = styled(Link)`
     width: 0;
     position: absolute;
     bottom: 0;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.electricBlue};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.blue};
     transition: width 0.3s ease;
     opacity: 0;
   }
@@ -47,14 +47,14 @@ const SeeAllLink = styled(Link)`
   gap: 8px;
   width: fit-content;
   &:hover {
-    color: ${({ theme }) => theme.colors.electricBlue};
+    color: ${({ theme }) => theme.colors.blue};
     cursor: pointer;
     &::before {
       opacity: 1;
       width: 100%;
     }
     & svg path {
-      fill: ${({ theme }) => theme.colors.electricBlue};
+      fill: ${({ theme }) => theme.colors.blue};
     }
   }
 `;
