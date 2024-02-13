@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { CardProject } from "@components/CardProjects/CardProject";
 import { TagSkill } from "@components/Common/Tags/SkillsTag";
 import { useAuth } from "@contexts/AuthContext";
 import { ProjectsServices } from "@services/api";
@@ -15,6 +16,19 @@ export const ProfileScreen: React.FC = () => {
     "Next.js",
     "Figma",
     "Adobe XD",
+  ];
+
+  const tabProjects = [
+    {
+      title: "Projet 1",
+      description: "Description du projet 1",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      title: "Projet 2",
+      description: "Description du projet 2",
+      image: "https://via.placeholder.com/150",
+    },
   ];
 
   const { user } = useAuth();
@@ -56,7 +70,7 @@ export const ProfileScreen: React.FC = () => {
                 <p>Mail</p>
               </RowContainer>
               <RowContainer style={{ gap: "12px" }}>
-                <p>Cursus</p>
+                <p>Cursus: </p>
                 <p>Développeur</p>
               </RowContainer>
             </InfosUserContainer>
@@ -65,7 +79,7 @@ export const ProfileScreen: React.FC = () => {
             <TitleSection>Skills</TitleSection>
             <ContainerInfosSkills>
               <RowContainer>
-                <RowSkills>
+                <RowSkills style={{ justifyContent: "space-around" }}>
                   {tabTags.map((tag, index) => (
                     <TagSkill content={tag} key={index} />
                   ))}
@@ -85,6 +99,28 @@ export const ProfileScreen: React.FC = () => {
           >
             Project
           </TitleSection>
+          <ColumnContainer
+            style={{
+              width: "100%",
+              justifyContent: "flex-end",
+              padding: "12px 24px",
+              gap: "12px",
+            }}
+          >
+            <RowContainer style={{ height: "100%", gap: "12px" }}>
+              {tabProjects.map((project, index) => (
+                <CardProject
+                  key={index}
+                  title={project.title}
+                  description={project.description}
+                  image={project.image}
+                />
+              ))}
+            </RowContainer>
+            <div style={{ height: "fit-content", textAlign: "end" }}>
+              <p>Voir plus</p>
+            </div>
+          </ColumnContainer>
         </ProjectContainer>
       </ProfilPageContainer>
     </>
@@ -130,7 +166,7 @@ const SkillsContainer = styled(ColumnContainer)`
   padding: 12px 24px;
 `;
 
-const ProjectContainer = styled(ColumnContainer)`
+const ProjectContainer = styled(RowContainer)`
   width: 100%;
   border-radius: 16px;
   background-color: #ffffff;
@@ -162,7 +198,6 @@ const ContainerInfosSkills = styled(ColumnContainer)`
 `;
 
 const RowSkills = styled(RowContainer)`
-  justify-content: space-around;
   width: 100%;
   flex-wrap: wrap;
   gap: 12px;
