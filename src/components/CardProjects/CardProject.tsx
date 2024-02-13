@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styled from "styled-components";
 
 type CardProjectProps = {
@@ -15,7 +14,7 @@ export const CardProject: React.FC<CardProjectProps> = ({
   return (
     <CardProjectComponent>
       <ContainerImageProject>
-        <Image src={image} alt={title} />
+        <img src={image} alt={title} />
       </ContainerImageProject>
       <ContainerInfosProjet>
         <h3>{title}</h3>
