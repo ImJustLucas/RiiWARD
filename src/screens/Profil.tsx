@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { CardProject } from "@components/CardProjects/CardProject";
+import { LinkSeeAll } from "@components/Common/Links/SeeAllLink";
 import { TagSkill } from "@components/Common/Tags/SkillsTag";
 import { useAuth } from "@contexts/AuthContext";
 import { ProjectsServices } from "@services/api";
@@ -18,18 +19,18 @@ export const ProfileScreen: React.FC = () => {
     "Adobe XD",
   ];
 
-  const tabProjects = [
-    {
-      title: "Projet 1",
-      description: "Description du projet 1",
-      image: "https://via.placeholder.com/150",
-    },
-    {
-      title: "Projet 2",
-      description: "Description du projet 2",
-      image: "https://via.placeholder.com/150",
-    },
-  ];
+  // const tabProjects = [
+  //   {
+  //     title: "Projet 1",
+  //     description: "Description du projet 1",
+  //     image: "https://via.placeholder.com/150",
+  //   },
+  //   {
+  //     title: "Projet 2",
+  //     description: "Description du projet 2",
+  //     image: "https://via.placeholder.com/150",
+  //   },
+  // ];
 
   const { user } = useAuth();
   const projectService = new ProjectsServices();
@@ -53,8 +54,6 @@ export const ProfileScreen: React.FC = () => {
     getProjects();
   }, []);
 
-  console.log(projects);
-
   return (
     <>
       <ProfilPageContainer>
@@ -63,11 +62,11 @@ export const ProfileScreen: React.FC = () => {
             <TitleSection>About me</TitleSection>
             <InfosUserContainer>
               <RowContainer style={{ gap: "12px" }}>
-                <h3>Full name</h3>
-                <h3>Name</h3>
+                <h3>Nom</h3>
+                <h3>Prénom</h3>
               </RowContainer>
               <RowContainer>
-                <p>Mail</p>
+                <p>{user?.email || "Email user"}</p>
               </RowContainer>
               <RowContainer style={{ gap: "12px" }}>
                 <p>Cursus: </p>
@@ -108,17 +107,23 @@ export const ProfileScreen: React.FC = () => {
             }}
           >
             <RowContainer style={{ height: "100%", gap: "12px" }}>
-              {tabProjects.map((project, index) => (
-                <CardProject
-                  key={index}
-                  title={project.title}
-                  description={project.description}
-                  image={project.image}
-                />
-              ))}
+              {projects.project
+                ?.slice(0, 2)
+                .map((project, index) => (
+                  <CardProject
+                    key={index}
+                    title={project.name}
+                    description={project.description}
+                    image={
+                      project.image
+                        ? project.image
+                        : "https://via.placeholder.com/150"
+                    }
+                  />
+                ))}
             </RowContainer>
             <div style={{ height: "fit-content", textAlign: "end" }}>
-              <p>Voir plus</p>
+              <LinkSeeAll content="Voir tous les projets" />
             </div>
           </ColumnContainer>
         </ProjectContainer>
