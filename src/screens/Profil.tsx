@@ -1,17 +1,39 @@
 import { useEffect, useState } from "react";
-import Avatar from "@assets/images/avatar.png";
-import ProjectImage from "@assets/images/projectImage.png";
-import { BackdropComponent } from "@components/Common/BackDrop/Backdrop";
-import { LeftButton } from "@components/Common/Buttons/LeftButton";
-import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
+import { CardProject } from "@components/CardProjects/CardProject";
+import { LinkSeeAll } from "@components/Common/Links/SeeAllLink";
+import { TagSkill } from "@components/Common/Tags/SkillsTag";
 import { useAuth } from "@contexts/AuthContext";
-import { getAllUserProject } from "@services/api/Project";
+import { ProjectsServices } from "@services/api";
 import { ProjectData } from "@typesDef/project/project";
-import Image from "next/image";
 import styled from "styled-components";
 
 export const ProfileScreen: React.FC = () => {
+  const tabTags = [
+    "React",
+    "Node",
+    "TypeScript",
+    "JavaScript",
+    "React Native",
+    "Next.js",
+    "Figma",
+    "Adobe XD",
+  ];
+
+  // const tabProjects = [
+  //   {
+  //     title: "Projet 1",
+  //     description: "Description du projet 1 => Projet de test, aucune données",
+  //     image: "https://via.placeholder.com/150",
+  //   },
+  //   {
+  //     title: "Projet 2",
+  //     description: "Description du projet 2 => Projet de test, aucune données",
+  //     image: "https://via.placeholder.com/150",
+  //   },
+  // ];
+
   const { user } = useAuth();
+  const projectService = new ProjectsServices();
   const [projects, setProjects] = useState<ProjectData>({
     project: null,
     error: null,
@@ -20,7 +42,9 @@ export const ProfileScreen: React.FC = () => {
   useEffect(() => {
     const getProjects = async () => {
       try {
-        const { project, error } = await getAllUserProject(user?.id as string);
+        const { project, error } = await projectService.getAllUserProject(
+          user?.id as string,
+        );
         setProjects({ project, error });
       } catch (error) {
         console.error("Erreur lors de la récupération des projets :", error);
@@ -30,221 +54,168 @@ export const ProfileScreen: React.FC = () => {
     getProjects();
   }, []);
 
-  console.log(projects);
-
-  const evenIndexProjects = projects.project?.filter(
-    (_, index) => index % 2 === 0,
-  );
-  const oddIndexProjects = projects.project?.filter(
-    (_, index) => index % 2 !== 0,
-  );
-
   return (
     <>
-      <ContainerPageProfil>
-        <ContainerButton>
-          <LeftButton text="Back to home" icon="skip-left" link="/" />
-        </ContainerButton>
-        <ProfilContainer>
-          <Title>My profile</Title>
-          <InfosUserContainer>
-            <RowInfosUser>
-              <Image width={200} height={140} src={""} alt="avatar" />
-              <InfosUser>
-                <InputProfile type="text" placeholder="First name" />
-                <InputProfile type="text" placeholder="Last name" />
-              </InfosUser>
-            </RowInfosUser>
-            <InfosUser>
-              <InputDesc type="text" placeholder="Description" />
-              <InputDesc type="text" placeholder="Cursus" />
-            </InfosUser>
-          </InfosUserContainer>
-        </ProfilContainer>
-        <ContainerProjectProfil>
-          <Title>My projects</Title>
-          <RoundedContainer width="100%" background="light" padding="36px">
-            <MainContainer>
-              <Column>
-                {evenIndexProjects?.map((project, index) => (
-                  <RoundedContainer
-                    key={index}
-                    width="100%"
-                    link="#"
-                    padding="0"
-                    height="378px"
-                    background="dark"
-                    userBar={{
-                      avatar: Avatar,
-                      username: project.name,
-                      project: project.description,
-                      gap: "16px",
-                      positionx: "left",
-                    }}
-                  >
-                    <ImageContainer>
-                      <BackdropComponent />
-                      <Image src={ProjectImage} alt="Image" />
-                    </ImageContainer>
-                  </RoundedContainer>
-                ))}
-              </Column>
-              <Column>
-                <StyledSubtitle>FIND YOUR NEXT FAVORITE PROJECT</StyledSubtitle>
-                {oddIndexProjects?.map((project, index) => (
-                  <RoundedContainer
-                    key={index}
-                    width="100%"
-                    link="#"
-                    padding="0"
-                    height="378px"
-                    background="dark"
-                    userBar={{
-                      avatar: Avatar,
-                      username: project.name,
-                      project: project.description,
-                      gap: "16px",
-                      positionx: "left",
-                    }}
-                  >
-                    <ImageContainer>
-                      <BackdropComponent />
-                      <Image src={ProjectImage} alt="Image" />
-                    </ImageContainer>
-                  </RoundedContainer>
-                ))}
-              </Column>
-            </MainContainer>
-          </RoundedContainer>
-        </ContainerProjectProfil>
-      </ContainerPageProfil>
+      <ProfilPageContainer>
+        <RowInfosContainer>
+          <UserContainer>
+            <TitleSection>About me</TitleSection>
+            <InfosUserContainer>
+              <RowContainer style={{ gap: "12px" }}>
+                <h3>Nom</h3>
+                <h3>Prénom</h3>
+              </RowContainer>
+              <RowContainer>
+                <p>{user?.email || "Email user"}</p>
+              </RowContainer>
+              <RowContainer style={{ gap: "12px" }}>
+                <p>Cursus: </p>
+                <p>Développeur</p>
+              </RowContainer>
+            </InfosUserContainer>
+          </UserContainer>
+          <SkillsContainer>
+            <TitleSection>Skills</TitleSection>
+            <ContainerInfosSkills>
+              <RowContainer>
+                <RowSkills style={{ justifyContent: "space-around" }}>
+                  {tabTags.map((tag, index) => (
+                    <TagSkill content={tag} isIcon={false} key={index} />
+                  ))}
+                </RowSkills>
+              </RowContainer>
+            </ContainerInfosSkills>
+          </SkillsContainer>
+        </RowInfosContainer>
+        <ProjectContainer>
+          <TitleSection
+            style={{
+              rotate: "-90deg",
+              width: "fit-content",
+              marginTop: "auto",
+              marginBottom: "auto",
+            }}
+          >
+            Project
+          </TitleSection>
+          <ColumnContainer
+            style={{
+              width: "100%",
+              justifyContent: "flex-end",
+              padding: "12px 24px",
+              gap: "12px",
+            }}
+          >
+            <RowContainer style={{ height: "100%", gap: "12px" }}>
+              {projects.project && projects.project?.length !== 0 ? (
+                projects.project
+                  ?.slice(0, 2)
+                  .map((project, index) => (
+                    <CardProject
+                      key={index}
+                      title={project.name}
+                      description={project.description}
+                      image={
+                        project.image
+                          ? project.image
+                          : "https://via.placeholder.com/150"
+                      }
+                    />
+                  ))
+              ) : (
+                <ColumnContainer
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "90%",
+                  }}
+                >
+                  <p>Aucun projet référencé.</p>
+                </ColumnContainer>
+              )}
+            </RowContainer>
+            <div style={{ height: "fit-content", textAlign: "end" }}>
+              <LinkSeeAll link="/" content="Voir tous les projets" />
+            </div>
+          </ColumnContainer>
+        </ProjectContainer>
+      </ProfilPageContainer>
     </>
   );
 };
 
-const ProfilContainer = styled.section`
+const ColumnContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 50px;
-  padding: 50px 50px;
 `;
 
-const ContainerPageProfil = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-
-const ContainerButton = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  width: max-content;
-`;
-
-const ContainerProjectProfil = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-`;
-
-const InfosUserContainer = styled.div`
-  border: 1px solid white;
-  border-radius: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 50px;
-  padding: 65px 50px;
-  background-color: white;
-`;
-
-const RowInfosUser = styled.div`
+const RowContainer = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  & img {
-    background-color: black;
-    border-radius: 50%;
-  }
 `;
 
-const InfosUser = styled.div`
-  display: flex;
-  flex-direction: column;
+const ProfilPageContainer = styled(ColumnContainer)`
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
+  height: 80vh;
+  background-color: #f5f6f7;
+  gap: 12px;
 `;
 
-const InputProfile = styled.input`
-  padding: 16px 40px;
-  margin: 10px 0px;
-  border-radius: 24px;
-  color: black;
-  border: 1px solid black;
+const RowInfosContainer = styled(RowContainer)`
+  width: 100%;
+  height: 50%;
+  gap: 12px;
 `;
 
-const InputDesc = styled.input`
-  width: 75%;
-  padding: 16px 40px;
-  margin: 10px 0px;
-  border-radius: 24px;
-  border: 1px solid black;
+const UserContainer = styled(ColumnContainer)`
+  width: 30%;
+  border-radius: 16px;
+  background-color: #ffffff;
+  padding: 12px 24px;
 `;
 
-const Title = styled.h1`
-  font-size: ${({ theme }) => theme.size.desktop.title};
-  font-family: "Space Grotesk", sans-serif;
-  text-align: center;
+const SkillsContainer = styled(ColumnContainer)`
+  width: 70%;
+  border-radius: 16px;
+  background-color: #ffffff;
+  padding: 12px 24px;
+`;
+
+const ProjectContainer = styled(RowContainer)`
+  width: 100%;
+  border-radius: 16px;
+  background-color: #ffffff;
+  height: 50%;
+`;
+
+const TitleSection = styled.h2`
+  font-family: "Space Grotesk";
+  font-style: normal;
   font-weight: 500;
-  color: black;
-  position: relative;
+  font-size: 40px;
+  line-height: 51px;
   text-transform: uppercase;
-  z-index: 2;
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
-    font-size: ${({ theme }) => theme.size.desktop.medium};
-  }
+  color: #000000;
 `;
 
-const StyledSubtitle = styled.h2`
-  text-align: right;
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  margin-top: 24px;
-  font-size: ${({ theme }) => theme.size.title};
-`;
-
-const MainContainer = styled.main`
-  display: flex;
-  gap: 50px;
-  width: 100%;
-  box-sizing: border-box;
-`;
-
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  width: 50%;
-`;
-
-const ImageContainer = styled.div`
+const InfosUserContainer = styled(ColumnContainer)`
+  gap: 12px;
   width: 100%;
   height: 100%;
-  position: relative;
+  justify-content: center;
+`;
 
-  & img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 24px;
-  }
+const ContainerInfosSkills = styled(ColumnContainer)`
+  width: 100%;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+`;
+
+const RowSkills = styled(RowContainer)`
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 12px;
 `;
