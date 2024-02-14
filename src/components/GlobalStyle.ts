@@ -203,10 +203,6 @@ export default createGlobalStyle`
         color: ${({ theme }) => theme.colors.text.secondary};
         transition: all 0.3s;
         cursor: pointer;
-
-        :hover {
-            filter: brightness(0.8);
-        }
     }
 
     p, span {
