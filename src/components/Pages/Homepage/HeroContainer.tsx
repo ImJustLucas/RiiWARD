@@ -15,8 +15,10 @@ export const Hero: React.FC = () => {
         votre plateforme d’excellence étudiante.
       </Subtitle>
       <ActionContainer>
-        <DefaultButton type="primary">Découvrir tout les projets</DefaultButton>
-        <DefaultButton type="primary" bordered>
+        <DefaultButton type="primary" href="/projects">
+          Découvrir tout les projets
+        </DefaultButton>
+        <DefaultButton type="primary" bordered href="/auth/signup">
           Se créer un compte
         </DefaultButton>
       </ActionContainer>
