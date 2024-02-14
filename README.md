@@ -45,7 +45,7 @@ Transforms academic projects to professional success.
 
 ## 2. Screenshot
 
-![RiiWARD](./assets/riiward.png)
+![RiiWARD](./public/image-site.png)
 
 ## 3. Diagram and architecture
 
