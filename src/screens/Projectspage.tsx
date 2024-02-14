@@ -177,7 +177,8 @@ const ProjectsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 50px;
-  width: 100%;
+  width: calc(100% - 100px);
+  padding: 0 50px 50px;
 `;
 
 const StyledButton = styled.button`

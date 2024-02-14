@@ -47,7 +47,7 @@ export const AddProjectBar: React.FC<AddProjectBarProps> = ({
             type="button"
           >
             <i className="ri-arrow-left-line"></i>
-            Previous
+            Précédent
           </LeftButton>
         )}
       </div>
@@ -58,7 +58,7 @@ export const AddProjectBar: React.FC<AddProjectBarProps> = ({
       </StepBar>
       <RightButtonContainer>
         <RightButton onClick={step.get !== step.max ? nextStep : submit}>
-          {step.get != 6 ? "Next" : "Submit"}
+          {step.get != 6 ? "Suivant" : "Soumettre"}
         </RightButton>
       </RightButtonContainer>
     </Container>
@@ -74,7 +74,8 @@ const Container = styled.section`
   background-color: ${({ theme }) => theme.colors.white};
   position: absolute;
   bottom: 32px;
-  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 16px;
 
   & > * {

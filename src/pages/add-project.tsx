@@ -167,6 +167,7 @@ export default function AddProject() {
 const GlobalContainerAddProject = styled.div`
   width: 100%;
   height: 100%;
+  position: relative;
 `;
 
 const ContainerHomeButton = styled.div`

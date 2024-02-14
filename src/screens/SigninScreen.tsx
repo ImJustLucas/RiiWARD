@@ -144,7 +144,7 @@ const FormHeader = styled.div`
   position: relative;
 `;
 
-const BackLink = styled.a`
+const BackLink = styled(Link)`
   position: absolute;
   top: 50%;
   -ms-transform: translateY(-50%);
