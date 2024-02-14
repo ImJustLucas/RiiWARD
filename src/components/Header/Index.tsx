@@ -1,3 +1,4 @@
+import { DefaultButton } from "@components/Common/Buttons/DefaultButton";
 import { useAuth } from "@contexts/AuthContext";
 import { AuthServices } from "@services/api";
 import Link from "next/link";
@@ -32,21 +33,21 @@ export const Header: React.FC = () => {
           <LinksContainer>
             <StyledLink href="/">Home</StyledLink>
             <StyledLink href="/projects">Projects</StyledLink>
-            <StyledLink href="/About">About</StyledLink>
             <StyledLink href="/users/me">Me</StyledLink>
           </LinksContainer>
         </RoundedContainer>
         <div>
-          {isLogged ? (
-            <StyledSignin href="" onClick={handleSignOut}>
-              Sign Out
-              <i className="ri-arrow-right-up-line"></i>
-            </StyledSignin>
-          ) : (
-            <StyledSignin href="/auth/signin">
-              Sign in <i className="ri-arrow-right-up-line"></i>
-            </StyledSignin>
-          )}
+          <ContainerButtons>
+            {isLogged ? (
+              <DefaultButton type="default" onClick={handleSignOut}>
+                Sign out
+              </DefaultButton>
+            ) : (
+              <StyledSignin href="/auth/signin">
+                <DefaultButton type="default">Sign in</DefaultButton>
+              </StyledSignin>
+            )}
+          </ContainerButtons>
         </div>
       </HeaderContainer>
     </NavigationContainer>
@@ -60,6 +61,10 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+const ContainerButtons = styled.div`
+  display: flex;
 `;
 
 const NavigationContainer = styled.div`
@@ -115,15 +120,8 @@ const LinksContainer = styled.div`
 `;
 
 const StyledSignin = styled(Link)`
-  background-color: black;
-  color: white;
-  padding: 8px 24px;
-  border-radius: 15px;
-  font-size: 16px;
   cursor: pointer;
   max-width: fit-content;
-  display: flex;
-  gap: 12px;
 `;
 
 const RoundedContainer = styled.div`

@@ -10,4 +10,17 @@ export class SkillsServices {
 
     return data;
   }
+
+  async getAllSkillUser(projectId: string) {
+    const { data, error } = await supabase
+      .from("aw_skill_project")
+      .select("skillId")
+      .eq("projectId", projectId);
+
+    if (error) {
+      console.error(error);
+    }
+
+    return data;
+  }
 }

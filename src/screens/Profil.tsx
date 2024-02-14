@@ -4,6 +4,7 @@ import { LinkSeeAll } from "@components/Common/Links/SeeAllLink";
 import { TagSkill } from "@components/Common/Tags/SkillsTag";
 import { useAuth } from "@contexts/AuthContext";
 import { ProjectsServices } from "@services/api";
+import { SkillsServices } from "@services/api";
 import { ProjectData } from "@typesDef/project/project";
 import styled from "styled-components";
 
@@ -19,23 +20,16 @@ export const ProfileScreen: React.FC = () => {
     "Adobe XD",
   ];
 
-  // const tabProjects = [
-  //   {
-  //     title: "Projet 1",
-  //     description: "Description du projet 1 => Projet de test, aucune données",
-  //     image: "https://via.placeholder.com/150",
-  //   },
-  //   {
-  //     title: "Projet 2",
-  //     description: "Description du projet 2 => Projet de test, aucune données",
-  //     image: "https://via.placeholder.com/150",
-  //   },
-  // ];
-
+  const skillService = new SkillsServices();
   const { user } = useAuth();
   const projectService = new ProjectsServices();
   const [projects, setProjects] = useState<ProjectData>({
     project: null,
+    error: null,
+  });
+
+  const [skills, setSkill] = useState({
+    skills: null,
     error: null,
   });
 
@@ -46,6 +40,21 @@ export const ProfileScreen: React.FC = () => {
           user?.id as string,
         );
         setProjects({ project, error });
+
+        if (project) {
+          const skills = await Promise.all(
+            project.map(
+              async (project) =>
+                await skillService.getAllSkillUser(
+                  project.id as unknown as string,
+                ),
+            ),
+          );
+          // const skills = await skillService.getAllSkillUser(
+          //   project.map((project) => project.id),
+          // );
+          setSkill({ skills: skills || null, error: null });
+        }
       } catch (error) {
         console.error("Erreur lors de la récupération des projets :", error);
       }
@@ -53,6 +62,8 @@ export const ProfileScreen: React.FC = () => {
 
     getProjects();
   }, []);
+
+  console.log("skills", skills);
 
   return (
     <>
