@@ -8,7 +8,7 @@ type LayoutProps = {
 
 export const AppLayout: FC<LayoutProps> = ({ children }) => {
   return (
-    <AppLayoutContainer>
+    <AppLayoutContainer className="AppLayout">
       <AuthProvider>{children}</AuthProvider>
     </AppLayoutContainer>
   );

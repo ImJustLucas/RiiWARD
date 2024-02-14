@@ -9,7 +9,7 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
-    domains: ["www.noiise.com", "another-domain.com", "example.com"], // Add domains here
+    domains: ["images.pexels.com", "another-domain.com", "example.com"], // Add domains here
   },
 };
 

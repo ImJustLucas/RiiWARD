@@ -38,4 +38,14 @@ export class UsersServices {
 
     return data;
   }
+
+  async getAllUsers() {
+    const { data, error } = await supabase.from("aw_users").select("*");
+
+    if (error) {
+      console.error(error);
+    }
+
+    return data;
+  }
 }
