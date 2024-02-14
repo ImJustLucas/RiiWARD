@@ -39,7 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <AppLayout>
         <GlobalStyle />
         <Component {...pageProps} />
-        <Toaster richColors={true} />
+        <Toaster richColors={true} closeButton />
       </AppLayout>
     </GlobalThemeProvider>
   );

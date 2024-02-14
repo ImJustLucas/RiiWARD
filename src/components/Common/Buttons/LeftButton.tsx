@@ -31,7 +31,7 @@ const ButtonStyled = styled(Link)`
   align-items: center;
   gap: 16px;
   // padding: 16px 24px;
-  padding: 10px 30px;
+  padding: 8px 16px;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.dark};
   &:hover {
@@ -44,8 +44,8 @@ const ButtonStyled = styled(Link)`
 `;
 
 const Text = styled.span`
-  font-size: 32px;
-  line-height: 32px;
+  font-size: 24px;
+  line-height: 24px;
   font-weight: normal;
   color: ${({ theme }) => theme.colors.white};
 
