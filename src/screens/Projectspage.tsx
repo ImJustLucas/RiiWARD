@@ -79,7 +79,7 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
       {isLogged ? (
         <Link href="/add-project">
           <StyledButton>
-            <span>Add your own Project</span>
+            <span>Ajoutez votre projet</span>
             <i className="ri-arrow-right-up-line"></i>
           </StyledButton>
         </Link>
@@ -127,7 +127,9 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
                   ))}
               </Column>
               <Column>
-                <StyledSubtitle>FIND YOUR NEXT FAVORITE PROJECT</StyledSubtitle>
+                <StyledSubtitle>
+                  TROUVEZ VOTRE PROCHAIN PROJET PRÉFÉRÉ
+                </StyledSubtitle>
                 {oddIndexProjects &&
                   oddIndexProjects.map((data, index) => (
                     <RoundedContainer
@@ -162,7 +164,7 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
               </Column>
             </>
           ) : (
-            <StyledLoading>Loading ...</StyledLoading>
+            <StyledLoading>Chargement ...</StyledLoading>
           )}
         </MainContainer>
       </RoundedContainer>

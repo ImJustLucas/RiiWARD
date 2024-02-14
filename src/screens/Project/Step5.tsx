@@ -59,7 +59,7 @@ export const Step5: React.FC<AddProjectProps> = ({
           <Select
             options={data}
             onChange={setHandle}
-            placeholder="Collaborators of your project"
+            placeholder="Collaborateurs de votre projet"
             isClearable={false}
             styles={{
               control: (baseStyles, state) => ({
