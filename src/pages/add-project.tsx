@@ -21,7 +21,7 @@ export default function AddProject() {
   const [step, setStep] = useState<number>(1);
   const [project, setProject] = useState<Project>({} as Project);
   const [translateY, setTranslateY] = useState<number>(0);
-  const { user } = useAuth();
+  const { isLogged, user } = useAuth();
   const _ProjectsServices = new ProjectsServices();
   const router = useRouter();
 
@@ -89,67 +89,79 @@ export default function AddProject() {
           padding: 0;
         }
       `}</style>
+
       <ContainerHomeButton>
         <LeftButton text="Back to home" icon="skip-left" link="/projects" />
       </ContainerHomeButton>
-      <StepBackground />
-      <FormContainer>
-        <Form
-          style={{ transform: `translateY(-${translateY}px)` }}
-          onKeyDown={handleKeyPress}
-        >
-          <Step1
-            project={project}
-            setProject={() => updateProject(project)}
-            id="step-1"
-            className={step > 1 ? "show disabled" : step >= 1 ? "show" : ""}
-            style={{ top: step >= 1 ? "0" : "100vh" }}
+      {isLogged ? (
+        <GlobalContainerAddProject>
+          <StepBackground />
+          <FormContainer>
+            <Form
+              style={{ transform: `translateY(-${translateY}px)` }}
+              onKeyDown={handleKeyPress}
+            >
+              <Step1
+                project={project}
+                setProject={() => updateProject(project)}
+                id="step-1"
+                className={step > 1 ? "show disabled" : step >= 1 ? "show" : ""}
+                style={{ top: step >= 1 ? "0" : "100vh" }}
+              />
+              <Step2
+                project={project}
+                setProject={() => updateProject(project)}
+                id="step-2"
+                className={step > 2 ? "show disabled" : step >= 2 ? "show" : ""}
+                style={{ top: step >= 2 ? "0" : "100vh" }}
+              />
+              <Step3
+                project={project}
+                setProject={() => updateProject(project)}
+                id="step-3"
+                className={step > 3 ? "show disabled" : step >= 3 ? "show" : ""}
+                style={{ top: step >= 3 ? "0" : "100vh" }}
+              />
+              <Step4
+                project={project}
+                setProject={() => updateProject(project)}
+                id="step-4"
+                className={step > 4 ? "show disabled" : step >= 4 ? "show" : ""}
+                style={{ top: step >= 4 ? "0" : "100vh" }}
+              />
+              <Step5
+                project={project}
+                setProject={() => updateProject(project)}
+                id="step-5"
+                className={step > 5 ? "show disabled" : step >= 5 ? "show" : ""}
+                style={{ top: step >= 5 ? "0" : "100vh" }}
+              />
+              <Step6
+                project={project}
+                setProject={() => updateProject(project)}
+                id="step-6"
+                className={step > 6 ? "show disabled" : step >= 6 ? "show" : ""}
+                style={{ top: step >= 6 ? "0" : "100vh" }}
+              />
+            </Form>
+          </FormContainer>
+          <AddProjectBar
+            step={{ get: step, set: setStep, max: maxStep }}
+            translate={{ get: translateY, set: setTranslateY }}
+            submit={handleSubmit}
           />
-          <Step2
-            project={project}
-            setProject={() => updateProject(project)}
-            id="step-2"
-            className={step > 2 ? "show disabled" : step >= 2 ? "show" : ""}
-            style={{ top: step >= 2 ? "0" : "100vh" }}
-          />
-          <Step3
-            project={project}
-            setProject={() => updateProject(project)}
-            id="step-3"
-            className={step > 3 ? "show disabled" : step >= 3 ? "show" : ""}
-            style={{ top: step >= 3 ? "0" : "100vh" }}
-          />
-          <Step4
-            project={project}
-            setProject={() => updateProject(project)}
-            id="step-4"
-            className={step > 4 ? "show disabled" : step >= 4 ? "show" : ""}
-            style={{ top: step >= 4 ? "0" : "100vh" }}
-          />
-          <Step5
-            project={project}
-            setProject={() => updateProject(project)}
-            id="step-5"
-            className={step > 5 ? "show disabled" : step >= 5 ? "show" : ""}
-            style={{ top: step >= 5 ? "0" : "100vh" }}
-          />
-          <Step6
-            project={project}
-            setProject={() => updateProject(project)}
-            id="step-6"
-            className={step > 6 ? "show disabled" : step >= 6 ? "show" : ""}
-            style={{ top: step >= 6 ? "0" : "100vh" }}
-          />
-        </Form>
-      </FormContainer>
-      <AddProjectBar
-        step={{ get: step, set: setStep, max: maxStep }}
-        translate={{ get: translateY, set: setTranslateY }}
-        submit={handleSubmit}
-      />
+        </GlobalContainerAddProject>
+      ) : (
+        <div>Not logged</div>
+      )}
     </>
   );
 }
+
+const GlobalContainerAddProject = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
 const ContainerHomeButton = styled.div`
   position: absolute;

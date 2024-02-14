@@ -3,6 +3,7 @@ import Avatar from "@assets/images/avatar.png";
 import ProjectImage from "@assets/images/projectImage.png";
 import { BackdropComponent } from "@components/Common/BackDrop/Backdrop";
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
+import { useAuth } from "@contexts/AuthContext";
 import { UsersServices } from "@services/api/Users";
 import { Project } from "@typesDef/project/project";
 import Image from "next/image";
@@ -16,6 +17,7 @@ type ProjectsScreenProps = {
 const _UsersServices = new UsersServices();
 
 export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
+  const { isLogged } = useAuth();
   const [projects, setProjects] = useState<Project[]>([]);
 
   const [evenIndexProjects, setEvenIndexProjects] = useState<
@@ -74,12 +76,19 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
 
   return (
     <ProjectsContainer>
-      <Link href="/add-project">
-        <StyledButton>
-          <span>Add your own Project</span>
-          <i className="ri-add-line"></i>
-        </StyledButton>
-      </Link>
+      {isLogged ? (
+        <Link href="/add-project">
+          <StyledButton>
+            <span>Add your own Project</span>
+            <i className="ri-arrow-right-up-line"></i>
+          </StyledButton>
+        </Link>
+      ) : (
+        <ContainerSignup>
+          <p>Connectez vous pour ajouter un projet</p>
+        </ContainerSignup>
+      )}
+
       <RoundedContainer width="100%" background="light" padding="36px">
         <MainContainer>
           {projects.length > 0 ? (
@@ -170,26 +179,31 @@ const ProjectsContainer = styled.div`
 `;
 
 const StyledButton = styled.button`
-  background: ${({ theme }) => theme.colors.background.dark};
+  background: ${({ theme }) => theme.colors.blue};
   border-radius: 15px;
-  padding: 10px 30px;
+  padding: 8px 24px;
   color: white;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 16px;
   border: none;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
   display: flex;
   align-items: center;
-  gap: 10px;
-
-  &:hover {
-    transform: scale(1.05);
-  }
+  gap: 8px;
 
   & span {
     color: white;
   }
+`;
+
+const ContainerSignup = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.dark};
 `;
 
 const MainContainer = styled.main`

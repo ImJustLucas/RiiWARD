@@ -65,7 +65,7 @@ export const SignupScreen: React.FC = () => {
       });
       console.log(user);
       if (user.data.user !== null) {
-        router.push("/profile");
+        router.push("/users/me");
       } else {
         setError({
           message: "Something went wrong FF",
@@ -113,7 +113,7 @@ export const SignupScreen: React.FC = () => {
           </Button>
         </Form>
         <Separator />
-        <ButtonLink href="/signin">Sign in</ButtonLink>
+        <ButtonLink href="signin">Sign in</ButtonLink>
       </RoundedContainer>
     </HomeContainer>
   );

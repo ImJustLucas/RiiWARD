@@ -70,7 +70,7 @@ export const SigninScreen: React.FC = () => {
       if (user.data.user != null) {
         setUser(user.data.user);
         setIsLogged(true);
-        router.push("/profile");
+        router.push("/users/me");
       } else {
         setError({
           message: "Wrong email or password",
@@ -118,7 +118,7 @@ export const SigninScreen: React.FC = () => {
             </Button>
           </Form>
           <Separator />
-          <ButtonLink href="/signup">Sign up</ButtonLink>
+          <ButtonLink href="signup">Sign up</ButtonLink>
         </RoundedContainer>
       </HomeContainer>
     </>
