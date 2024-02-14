@@ -39,7 +39,7 @@
 
 ## 1. Description
 
-![RiiWARD logo](./assets/riiward-logo.png)
+![RiiWARD logo](./public/logo.png)
 
 Transforms academic projects to professional success.
 
