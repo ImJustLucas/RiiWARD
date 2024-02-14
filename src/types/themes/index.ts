@@ -17,7 +17,6 @@ export type Theme = {
     black: string;
     white: string;
     blue: string;
-
     background: {
       primary: string;
       secondary: string;
