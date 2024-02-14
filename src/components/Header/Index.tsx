@@ -92,7 +92,7 @@ const TitleContainer = styled.div`
   }
 `;
 
-const StyledLink = styled.a<StyledLinkProps>`
+const StyledLink = styled(Link)<StyledLinkProps>`
   padding: 0px 15px;
   font-size: 16px;
   cursor: pointer;
