@@ -1,6 +1,8 @@
 import React, { ReactNode } from "react";
 import { useAuth } from "@contexts/AuthContext";
 
+import Loading from "./Loading";
+
 interface ProtectedPageProps {
   children: ReactNode;
 }
@@ -9,7 +11,7 @@ const ProtectedPage: React.FC<ProtectedPageProps> = ({ children }) => {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return <div>Chargement...</div>;
+    return <Loading />;
   }
 
   if (!user) {

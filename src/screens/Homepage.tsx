@@ -13,7 +13,9 @@ export const HomeScreen: React.FC = () => {
       <TitleContainer>
         Les projets les plus <span className="electric-blue">populaires</span>
       </TitleContainer>
-      <DefaultButton type="primary">Découvrir tout les projets</DefaultButton>
+      <DefaultButton type="primary" href="/projects">
+        Découvrir tout les projets
+      </DefaultButton>
       <Footer />
     </HomeContainer>
   );

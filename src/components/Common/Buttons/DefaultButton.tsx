@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 type DefaultButtonProps = {
@@ -6,6 +7,7 @@ type DefaultButtonProps = {
   type: "default" | "primary" | "danger";
   bordered?: boolean;
   icon?: boolean;
+  href?: string;
 };
 
 export const DefaultButton: React.FC<DefaultButtonProps> = ({
@@ -14,16 +16,23 @@ export const DefaultButton: React.FC<DefaultButtonProps> = ({
   type = "default",
   bordered,
   icon = true,
+  href,
 }) => {
   return (
-    <Button onClick={onClick} $type={type} $bordered={bordered}>
+    <Button
+      as={href ? Link : "button"}
+      onClick={onClick}
+      $type={type}
+      $bordered={bordered}
+      href={href}
+    >
       {children}
       {icon && <i className="ri-arrow-right-up-line" />}
     </Button>
   );
 };
 
-const Button = styled.button<{
+const Button = styled.div<{
   $type: "default" | "primary" | "secondary" | "danger";
   $bordered?: boolean;
 }>`
