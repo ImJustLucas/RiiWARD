@@ -29,28 +29,28 @@ export const SignupScreen: React.FC = () => {
 
     if (email == "" && password == "") {
       setError({
-        message: "Please enter a valid email and password",
+        message: "Veuillez saisir un email et un mot de passe",
         isError: true,
       });
-      toast.error("Please enter a valid email and password");
+      toast.error("Veuillez saisir un email et un mot de passe");
       return;
     }
 
     if (!validateEmail(email)) {
       setError({
-        message: "Please enter a valid email",
+        message: "Veuillez saisir un email valide",
         isError: true,
       });
-      toast.error("Please enter a valid email");
+      toast.error("Veuillez saisir un email valide");
       return;
     }
 
     if (password == "") {
       setError({
-        message: "Please enter a valid password",
+        message: "Veillez saisir un mot de passe",
         isError: true,
       });
-      toast.error("Please enter a valid password");
+      toast.error("Veillez saisir un mot de passe");
       return;
     }
 
@@ -68,10 +68,10 @@ export const SignupScreen: React.FC = () => {
         router.push("/users/me");
       } else {
         setError({
-          message: "Something went wrong FF",
+          message: "Une erreur est survenue",
           isError: true,
         });
-        toast.error("Something went wrong FF");
+        toast.error("Une erreur est survenue");
       }
     }
   }
@@ -98,22 +98,22 @@ export const SignupScreen: React.FC = () => {
             className={error.isError ? "has-error" : ""}
           ></Input>
 
-          <Label htmlFor="password">Password</Label>
+          <Label htmlFor="password">Mot de passe</Label>
           <Input
             type="password"
             id="password"
             name="password"
-            placeholder="Password"
+            placeholder="Mot de passe"
             onChange={(e) => setPassword(e.target.value)}
             className={error.isError ? "has-error" : ""}
           ></Input>
 
           <Button type="submit" onClick={signup}>
-            Sign up
+            S&apos;inscrire
           </Button>
         </Form>
         <Separator />
-        <ButtonLink href="signin">Sign in</ButtonLink>
+        <ButtonLink href="signin">Se connecter</ButtonLink>
       </RoundedContainer>
     </HomeContainer>
   );

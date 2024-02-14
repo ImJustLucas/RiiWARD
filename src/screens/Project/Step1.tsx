@@ -27,7 +27,7 @@ export const Step1: React.FC<AddProjectProps> = ({
         <InputName
           onChange={handleInputNameChange}
           type="text"
-          placeholder="Title of your project"
+          placeholder="Titre de votre projet"
           required
         />
       </ContainerInput>

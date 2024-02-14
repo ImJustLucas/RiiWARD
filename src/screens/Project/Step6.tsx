@@ -32,7 +32,7 @@ export const Step6: React.FC<AddProjectProps> = ({
     <>
       <ContainerInput id={id} className={className} style={style}>
         <InputProgressContainer>
-          <Label htmlFor="progress">Progress (%)</Label>
+          <Label htmlFor="progress">Progression (%)</Label>
           <InputRange
             type="range"
             onChange={handleRangeChange}
@@ -43,7 +43,7 @@ export const Step6: React.FC<AddProjectProps> = ({
           <p>{progress}%</p>
         </InputProgressContainer>
         <InputRecruitContainer>
-          <Label htmlFor="recruit">Recruit</Label>
+          <Label htmlFor="recruit">Recrutement</Label>
           <InputCheckbox
             type="checkbox"
             onChange={handleCheckboxChange}

@@ -34,32 +34,34 @@ export default function AddProject() {
     project.category = "Développement";
 
     if (project.name === undefined) {
-      toast.error("Please fill in the title of your project.");
+      toast.error("Veuillez remplir le titre de votre projet.");
       return;
     }
 
     if (project.description === undefined) {
-      toast.error("Please fill in the description of your project.");
+      toast.error("Veuillez remplir la description de votre projet.");
       return;
     }
 
     if (project.skillsId === "") {
-      toast.error("Please fill in the skills used in your project.");
+      toast.error("Veuillez remplir les skills utilisés pour votre projet.");
       return;
     }
 
     if (project.image === undefined) {
-      toast.error("Please fill in the image of your project.");
+      toast.error("Veuillez sélectionner une image pour votre projet.");
       return;
     }
 
     if (project.collaborators === "") {
-      toast.error("Please fill in the collaborators of your project.");
+      toast.error("Veuillez remplir les collaborateurs de votre projet.");
       return;
     }
 
     if (project.progress === undefined) {
-      toast.error("Please fill in the progress of your project.");
+      toast.error(
+        "Veuillez remplir le pourcentage d'avancement de votre projet.",
+      );
       return;
     }
 
@@ -67,9 +69,9 @@ export default function AddProject() {
       "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
     const post = await _ProjectsServices.createProject(project);
     if (post?.error !== null) {
-      toast.error("Something wrong occured, please try again later.");
+      toast.error("Une erreur est survenue lors de l'ajout du projet.");
     } else {
-      toast.success("Project successfully added.");
+      toast.success("Project ajouté avec succès. Redirection en cours...");
       setTimeout(() => {
         router.push("/projects");
       }, 1500);
@@ -91,7 +93,11 @@ export default function AddProject() {
       `}</style>
 
       <ContainerHomeButton>
-        <LeftButton text="Back to home" icon="skip-left" link="/projects" />
+        <LeftButton
+          text="Retour à l'accueil"
+          icon="skip-left"
+          link="/projects"
+        />
       </ContainerHomeButton>
       {isLogged ? (
         <GlobalContainerAddProject>

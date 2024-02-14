@@ -26,7 +26,7 @@ export const Step2: React.FC<AddProjectProps> = ({
         <InputName
           onChange={handleInputDescriptionChange}
           type="text"
-          placeholder="Description of your project"
+          placeholder="Description de votre projet"
         />
       </ContainerInput>
     </>

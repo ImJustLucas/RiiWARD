@@ -30,21 +30,21 @@ export const Header: React.FC = () => {
         </TitleContainer>
         <RoundedContainer>
           <LinksContainer>
-            <StyledLink href="/">Home</StyledLink>
-            <StyledLink href="/projects">Projects</StyledLink>
+            <StyledLink href="/">Accueil</StyledLink>
+            <StyledLink href="/projects">Projets</StyledLink>
             <StyledLink href="/About">About</StyledLink>
-            <StyledLink href="/users/me">Me</StyledLink>
+            <StyledLink href="/users/me">Moi</StyledLink>
           </LinksContainer>
         </RoundedContainer>
         <div>
           {isLogged ? (
             <StyledSignin href="" onClick={handleSignOut}>
-              Sign Out
+              Se déconnecter
               <i className="ri-arrow-right-up-line"></i>
             </StyledSignin>
           ) : (
             <StyledSignin href="/auth/signin">
-              Sign in <i className="ri-arrow-right-up-line"></i>
+              Se connecter <i className="ri-arrow-right-up-line"></i>
             </StyledSignin>
           )}
         </div>
