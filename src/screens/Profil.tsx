@@ -128,6 +128,7 @@ export const ProfileScreen: React.FC = () => {
                     alignItems: "center",
                     justifyContent: "center",
                     width: "90%",
+                    height: "160px",
                   }}
                 >
                   <p>Aucun projet référencé.</p>
@@ -159,8 +160,8 @@ const RowContainer = styled.div`
 const ProfilPageContainer = styled(ColumnContainer)`
   align-items: center;
   justify-content: center;
-  width: 100%;
   height: 80vh;
+  padding: 0 50px 50px;
   background-color: #f5f6f7;
   gap: 12px;
 `;
