@@ -24,8 +24,18 @@ export default function ProjectById() {
     fetchProjects(router.query.id as string);
   }, [router.query.id, router.isReady]);
 
-  if (!data || data.length === 0 || !router.isReady) {
+  if (!data || !router.isReady) {
     return <div>Loading...</div>;
+  }
+
+  if (data.length === 0) {
+    console.error("Error: no project found with the given id");
+    router.push("/404");
+  }
+
+  if (data.length > 1) {
+    console.error("Error: more than one project found with the same id");
+    return <div>Error: more than one project found with the same id</div>;
   }
 
   return <SingleProjectScreen data={data[0]} />;

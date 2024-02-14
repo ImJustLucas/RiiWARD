@@ -3,6 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 
 type SocialLinksProps = {
+  description: string;
   socialLinks: {
     github?: string;
     linkedin?: string;
@@ -14,17 +15,13 @@ type SocialLinksProps = {
 };
 
 export const ProjectDescription: React.FC<SocialLinksProps> = ({
+  description,
   socialLinks,
 }) => {
   return (
     <ProjectDescriptionContainer className="ProjectDescription">
       <p className="card-title">A propos</p>
-      <p className="description">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-        officiis accusantium qui consequuntur molestiae vero ipsum nostrum porro
-        tenetur, magni labore odio enim quam consequatur beatae molestias
-        perferendis libero possimus.
-      </p>
+      <p className="description">{description || ""}</p>
       <SocialIconContainer>
         {socialLinks.github && (
           <Link

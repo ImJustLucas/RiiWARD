@@ -23,6 +23,7 @@ export const SingleProjectScreen: React.FC<SingleProjectProps> = ({ data }) => {
       <ProjectName name={data.name as string} />
       <ProjectScore score={data.score || 45} />
       <ProjectDescription
+        description={data.description}
         socialLinks={{
           github: "https://github.com/ImJustLucas/RiiWARD",
           discord: "https://discord.gg/BdTUKgF5NW",
