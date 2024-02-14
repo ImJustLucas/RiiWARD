@@ -134,9 +134,11 @@ export const ProfileScreen: React.FC = () => {
                 </ColumnContainer>
               )}
             </RowContainer>
-            <div style={{ height: "fit-content", textAlign: "end" }}>
-              <LinkSeeAll link="/" content="Voir tous les projets" />
-            </div>
+            {projects.project && projects.project?.length !== 0 ? (
+              <div style={{ height: "fit-content", textAlign: "end" }}>
+                <LinkSeeAll link="/" content="Voir tous les projets" />
+              </div>
+            ) : null}
           </ColumnContainer>
         </ProjectContainer>
       </ProfilPageContainer>
@@ -187,7 +189,8 @@ const ProjectContainer = styled(RowContainer)`
   width: 100%;
   border-radius: 16px;
   background-color: #ffffff;
-  height: 50%;
+  min-height: 50%;
+  height: auto;
 `;
 
 const TitleSection = styled.h2`
