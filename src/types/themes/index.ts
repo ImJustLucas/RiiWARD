@@ -1,6 +1,6 @@
 type ButtonTheme = {
   background: string;
-
+  danger: string;
   text: string;
   outline: string;
 };
@@ -17,6 +17,11 @@ export type Theme = {
     black: string;
     white: string;
     blue: string;
+
+    danger: string;
+    warning: string;
+    success: string;
+
     background: {
       primary: string;
       secondary: string;
