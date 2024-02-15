@@ -20,7 +20,7 @@ export const Step3: React.FC<AddProjectProps> = ({
   project,
 }) => {
   const [data, setData] = useState<{ value: string; label: string }[]>([]);
-  const [selectedOptions, setSelectedOptions] = useState<string>("");
+  const [selectedOptions, setSelectedOptions] = useState<string[]>("");
   const _SkillsServices = new SkillsServices();
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export const Step3: React.FC<AddProjectProps> = ({
   }, [selectedOptions]);
 
   const setHandle = (e) => {
-    setSelectedOptions(e.value);
+    setSelectedOptions(Array.isArray(e) ? e.map((skill) => skill.value) : []);
   };
 
   return (
@@ -59,6 +59,7 @@ export const Step3: React.FC<AddProjectProps> = ({
             onChange={setHandle}
             placeholder="Skills utilisés dans votre projet"
             isClearable={false}
+            isMulti
             styles={{
               control: (baseStyles, state) => ({
                 ...baseStyles,
