@@ -7,16 +7,22 @@ import { ProjectsServices } from "@services/api";
 import { SkillsServices } from "@services/api";
 import { ProjectData } from "@typesDef/project/project";
 import { Skill, SkillData } from "@typesDef/skill/skill";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 export const ProfileScreen: React.FC = () => {
   const skillService = new SkillsServices();
-  const { user } = useAuth();
+  const router = useRouter();
+  const { user, isLogged } = useAuth();
   const projectService = new ProjectsServices();
   const [projects, setProjects] = useState<ProjectData>({
     project: null,
     error: null,
   });
+
+  if (isLogged === false) {
+    router.push("/auth/signin");
+  }
 
   const [skills, setSkill] = useState<SkillData>({
     skills: null,
@@ -53,101 +59,108 @@ export const ProfileScreen: React.FC = () => {
 
   return (
     <>
-      <ProfilPageContainer>
-        <RowInfosContainer>
-          <UserContainer>
-            <TitleSection>À propos</TitleSection>
-            <InfosUserContainer>
-              <RowContainer style={{ gap: "12px" }}>
-                <h3>Nom</h3>
-                <h3>Prénom</h3>
-              </RowContainer>
-              <RowContainer>
-                <p>{user?.email || "Email user"}</p>
-              </RowContainer>
-              <RowContainer style={{ gap: "12px" }}>
-                <p>Cursus: </p>
-                <p>Développeur</p>
-              </RowContainer>
-            </InfosUserContainer>
-          </UserContainer>
-          <SkillsContainer>
-            <TitleSection>Skills</TitleSection>
-            <ContainerInfosSkills>
-              <RowContainer>
-                <RowSkills style={{ justifyContent: "space-around" }}>
-                  {skills.skills && skills.skills?.length > 0 ? (
-                    skills.skills?.map((tag, index) => (
-                      <TagSkill
-                        content={tag.content}
-                        isIcon={false}
+      {isLogged === false ? (
+        <p>
+          Vous devez être connecté pour accéder à cette page. <br />
+          Redirection vers la page de connexion
+        </p>
+      ) : (
+        <ProfilPageContainer>
+          <RowInfosContainer>
+            <UserContainer>
+              <TitleSection>À propos</TitleSection>
+              <InfosUserContainer>
+                <RowContainer style={{ gap: "12px" }}>
+                  <h3>Nom</h3>
+                  <h3>Prénom</h3>
+                </RowContainer>
+                <RowContainer>
+                  <p>{user?.email || "Email user"}</p>
+                </RowContainer>
+                <RowContainer style={{ gap: "12px" }}>
+                  <p>Cursus: </p>
+                  <p>Développeur</p>
+                </RowContainer>
+              </InfosUserContainer>
+            </UserContainer>
+            <SkillsContainer>
+              <TitleSection>Skills</TitleSection>
+              <ContainerInfosSkills>
+                <RowContainer>
+                  <RowSkills style={{ justifyContent: "space-around" }}>
+                    {skills.skills && skills.skills?.length > 0 ? (
+                      skills.skills?.map((tag, index) => (
+                        <TagSkill
+                          content={tag.content}
+                          isIcon={false}
+                          key={index}
+                        />
+                      ))
+                    ) : (
+                      <p>Aucun skills</p>
+                    )}
+                  </RowSkills>
+                </RowContainer>
+              </ContainerInfosSkills>
+            </SkillsContainer>
+          </RowInfosContainer>
+          <ProjectContainer>
+            <TitleSection
+              style={{
+                rotate: "-90deg",
+                width: "fit-content",
+                marginTop: "auto",
+                marginBottom: "auto",
+              }}
+            >
+              Projet
+            </TitleSection>
+            <ColumnContainer
+              style={{
+                width: "100%",
+                justifyContent: "flex-end",
+                padding: "12px 24px",
+                gap: "12px",
+              }}
+            >
+              <RowContainer style={{ height: "100%", gap: "12px" }}>
+                {projects.project && projects.project?.length !== 0 ? (
+                  projects.project
+                    ?.slice(0, 2)
+                    .map((project, index) => (
+                      <CardProject
                         key={index}
+                        title={project.name}
+                        description={project.description}
+                        image={
+                          project.image
+                            ? project.image
+                            : "https://via.placeholder.com/150"
+                        }
                       />
                     ))
-                  ) : (
-                    <p>Aucun skills</p>
-                  )}
-                </RowSkills>
+                ) : (
+                  <ColumnContainer
+                    style={{
+                      alignItems: "center",
+                      justifyContent: "center",
+                      width: "90%",
+                      height: "160px",
+                    }}
+                  >
+                    <p>Aucun projet référencé.</p>
+                  </ColumnContainer>
+                )}
               </RowContainer>
-            </ContainerInfosSkills>
-          </SkillsContainer>
-        </RowInfosContainer>
-        <ProjectContainer>
-          <TitleSection
-            style={{
-              rotate: "-90deg",
-              width: "fit-content",
-              marginTop: "auto",
-              marginBottom: "auto",
-            }}
-          >
-            Projet
-          </TitleSection>
-          <ColumnContainer
-            style={{
-              width: "100%",
-              justifyContent: "flex-end",
-              padding: "12px 24px",
-              gap: "12px",
-            }}
-          >
-            <RowContainer style={{ height: "100%", gap: "12px" }}>
               {projects.project && projects.project?.length !== 0 ? (
-                projects.project
-                  ?.slice(0, 2)
-                  .map((project, index) => (
-                    <CardProject
-                      key={index}
-                      title={project.name}
-                      description={project.description}
-                      image={
-                        project.image
-                          ? project.image
-                          : "https://via.placeholder.com/150"
-                      }
-                    />
-                  ))
-              ) : (
-                <ColumnContainer
-                  style={{
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "90%",
-                    height: "160px",
-                  }}
-                >
-                  <p>Aucun projet référencé.</p>
-                </ColumnContainer>
-              )}
-            </RowContainer>
-            {projects.project && projects.project?.length !== 0 ? (
-              <div style={{ height: "fit-content", textAlign: "end" }}>
-                <LinkSeeAll link="/" content="Voir tous les projets" />
-              </div>
-            ) : null}
-          </ColumnContainer>
-        </ProjectContainer>
-      </ProfilPageContainer>
+                <div style={{ height: "fit-content", textAlign: "end" }}>
+                  <LinkSeeAll link="/" content="Voir tous les projets" />
+                </div>
+              ) : null}
+            </ColumnContainer>
+          </ProjectContainer>
+        </ProfilPageContainer>
+      )}
     </>
   );
 };
