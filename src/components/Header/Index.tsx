@@ -33,18 +33,18 @@ export const Header: React.FC = () => {
           <LinksContainer>
             <StyledLink href="/">Home</StyledLink>
             <StyledLink href="/projects">Projects</StyledLink>
-            <StyledLink href="/users/me">Me</StyledLink>
+            <StyledLink href="/users/me">Moi</StyledLink>
           </LinksContainer>
         </RoundedContainer>
         <div>
           <ContainerButtons>
             {isLogged ? (
               <DefaultButton type="default" onClick={handleSignOut}>
-                Sign out
+                Se deconnecter
               </DefaultButton>
             ) : (
               <StyledSignin href="/auth/signin">
-                <DefaultButton type="default">Sign in</DefaultButton>
+                <DefaultButton type="default">Se connecter</DefaultButton>
               </StyledSignin>
             )}
           </ContainerButtons>
