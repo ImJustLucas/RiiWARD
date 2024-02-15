@@ -185,11 +185,17 @@ const ProjectTitle = styled.div`
   grid-area: title;
   font-size: 20px;
   color: #1f1ef1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const ProjectUser = styled.div`
   grid-area: user;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const ProjectVote = styled.div`
@@ -221,6 +227,9 @@ const ProjectVote = styled.div`
 const ProjectDescription = styled.div`
   margin-top: 4px;
   grid-area: description;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const ImageContainer = styled.div`
