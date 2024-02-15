@@ -2,7 +2,7 @@ import { CardContainer } from "@styles/components/Container";
 import styled from "styled-components";
 
 export const ProjectHiring: React.FC<{
-  isHiring: boolean;
+  isHiring?: boolean;
 }> = ({ isHiring = false }) => {
   return (
     <ProjectHiringContainer className="ProjectHiring">
@@ -11,7 +11,7 @@ export const ProjectHiring: React.FC<{
         {isHiring ? (
           <i className="ri-check-line" />
         ) : (
-          <i className="ri-check-close" />
+          <i className="ri-close-line" />
         )}
       </p>
     </ProjectHiringContainer>
@@ -24,6 +24,10 @@ const ProjectHiringContainer = styled(CardContainer)`
     &.icon {
       font-size: 48px;
       margin-top: 40px;
+
+      i {
+        color: ${({ theme }) => theme.colors.primary};
+      }
     }
   }
 `;

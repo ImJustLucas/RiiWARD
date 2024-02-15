@@ -1,12 +1,19 @@
 import { CardContainer } from "@styles/components/Container";
 import styled from "styled-components";
 
-export const ProjectAdvencement: React.FC = () => {
+export const ProjectAdvencement: React.FC<{
+  progress?: number;
+}> = ({ progress = 0 }) => {
   return (
     <ProjectAdvencementContainer className="ProjectAdvencement">
       <p className="card-title">Progression</p>
       <div className="progressbar">
-        <div className="progressbar__inner"></div>
+        <div
+          className="progressbar__inner"
+          style={{
+            width: `${progress}%`,
+          }}
+        ></div>
       </div>
     </ProjectAdvencementContainer>
   );

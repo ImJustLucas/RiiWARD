@@ -57,10 +57,12 @@ export class ProjectsServices {
 
   async getProjectById(projectId: string) {
     try {
-      const { data: project, error } = await supabase
-        .from("aw_projects")
-        .select("*")
-        .eq("id", projectId);
+      const { data: project, error } = await supabase.rpc(
+        "populate_projects_by_id",
+        {
+          projectids: [projectId],
+        },
+      );
       return { project, error };
     } catch (error) {
       console.error("Error:", error);

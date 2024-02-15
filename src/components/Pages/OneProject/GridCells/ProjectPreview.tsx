@@ -1,13 +1,17 @@
 import { CardContainer } from "@styles/components/Container";
 import styled from "styled-components";
 
-export const ProjectPreview: React.FC = () => {
+export const ProjectPreview: React.FC<{
+  preview?: string;
+}> = ({ preview }) => {
   return (
     <ProjectPreviewContainer className="ProjectPreview">
       <div
         className="project-preview-img"
         style={{
-          backgroundImage: `url(https://picsum.photos/seed/${Math.random()}/800/600)`,
+          backgroundImage: preview
+            ? preview
+            : `url(https://picsum.photos/seed/${Math.random()}/800/600)`,
         }}
       ></div>
     </ProjectPreviewContainer>

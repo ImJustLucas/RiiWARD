@@ -19,11 +19,7 @@ const ProjectsPage: React.FC = () => {
 
   return (
     <>
-      <Header
-        textHeader={{
-          title: "Search for the best project",
-        }}
-      />
+      <Header />
       <ProjectsSwiper fetch={fetchProjects} />
       <ProjectsScreen fetch={fetchProjects} />
     </>

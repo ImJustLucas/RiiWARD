@@ -23,7 +23,7 @@ export const SingleProjectScreen: React.FC<SingleProjectProps> = ({ data }) => {
       <Header />
       <GridWrapper>
         <GridParent>
-          <ProjectPreview />
+          <ProjectPreview preview={data.image} />
           <ProjectName name={data.name as string} />
           <ProjectScore score={data.score || 45} />
           <ProjectDescription
@@ -35,10 +35,10 @@ export const SingleProjectScreen: React.FC<SingleProjectProps> = ({ data }) => {
             }}
           />
           <ProjectContributors />
-          <ProjectSkills />
+          <ProjectSkills skills={data.skills} />
           <LikeBtnCell />
-          <ProjectHiring isHiring />
-          <ProjectAdvencement />
+          <ProjectHiring isHiring={data.recruit} />
+          <ProjectAdvencement progress={data.progress} />
         </GridParent>
       </GridWrapper>
     </>
