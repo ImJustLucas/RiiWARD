@@ -13,6 +13,11 @@ const light: Theme = {
     black: "#000000",
     white: "#FFFFFF",
     blue: "#1f1ef1",
+
+    danger: "#F11E44",
+    warning: "#F19D1E",
+    success: "#00D68F",
+
     background: {
       primary: createColor(245, 246, 247, 100),
       secondary: createColor(246, 6, 123, 0.2),
@@ -29,6 +34,7 @@ const light: Theme = {
       background: "",
       text: "",
       outline: "",
+      danger: "#F11E44",
     },
   },
 };

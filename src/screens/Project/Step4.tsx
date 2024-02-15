@@ -33,7 +33,7 @@ export const Step4: React.FC<AddProjectProps> = ({
       <ContainerInput id={id} className={className} style={style}>
         <Button onClick={handleClick} type="button">
           <i className="ri-upload-2-line"></i>
-          Upload image
+          Choisir une image
         </Button>
         <input
           type="file"

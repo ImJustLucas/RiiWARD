@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Avatar from "@assets/images/avatar.png";
 import ProjectImage from "@assets/images/projectImage.png";
 import { BackdropComponent } from "@components/Common/BackDrop/Backdrop";
 import { DefaultButton } from "@components/Common/Buttons/DefaultButton";
@@ -8,7 +7,6 @@ import { useAuth } from "@contexts/AuthContext";
 import { UsersServices } from "@services/api/Users";
 import { Project } from "@typesDef/project/project";
 import Image from "next/image";
-import Link from "next/link";
 import styled from "styled-components";
 
 type ProjectsScreenProps = {
@@ -21,27 +19,10 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
   const { isLogged } = useAuth();
   const [projects, setProjects] = useState<Project[]>([]);
 
-  const [evenIndexProjects, setEvenIndexProjects] = useState<
-    Array<{
-      project: Project;
-      userEmail: string;
-      userAvatar: string | null;
-    }>
-  >([]);
-
-  const [oddIndexProjects, setOddIndexProjects] = useState<
-    Array<{
-      project: Project;
-      userEmail: string;
-      userAvatar: string | null;
-    }>
-  >([]);
-
   const [projectsWithUserEmail, setProjectsWithUserEmail] = useState<
     Array<{
       project: Project;
       userEmail: string;
-      userAvatar: string | null;
     }>
   >([]);
 
@@ -57,7 +38,6 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
           return {
             project: data,
             userEmail: user?.email,
-            userAvatar: user?.avatar,
           };
         }),
       ).then((updatedProjects) => {
@@ -65,15 +45,6 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
       });
     }
   }, [projects]);
-
-  useEffect(() => {
-    setEvenIndexProjects(
-      projectsWithUserEmail.filter((_, index) => index % 2 === 0),
-    );
-    setOddIndexProjects(
-      projectsWithUserEmail.filter((_, index) => index % 2 !== 0),
-    );
-  }, [projectsWithUserEmail]);
 
   return (
     <ProjectsContainer>
@@ -87,25 +58,23 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
         </ContainerSignup>
       )}
 
-      <RoundedContainer width="100%" background="light" padding="36px">
+      <RoundedContainer background="light" padding="36px">
         <MainContainer>
           {projects.length > 0 ? (
             <>
-              <Column>
-                {evenIndexProjects &&
-                  evenIndexProjects.map((data, index) => (
+              <Grid>
+                {projectsWithUserEmail &&
+                  projectsWithUserEmail.map((data, index) => (
                     <RoundedContainer
                       key={index}
                       width="100%"
-                      link="#"
                       padding="0"
-                      height="378px"
+                      height="256px"
                       background="dark"
                       userBar={{
-                        avatar: data.userAvatar ? data.userAvatar : Avatar,
                         username: data.userEmail,
                         project: data.project.name,
-                        gap: "16px",
+                        gap: "10px",
                         positionx: "left",
                       }}
                     >
@@ -123,44 +92,10 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
                       </ImageContainer>
                     </RoundedContainer>
                   ))}
-              </Column>
-              <Column>
-                <StyledSubtitle>FIND YOUR NEXT FAVORITE PROJECT</StyledSubtitle>
-                {oddIndexProjects &&
-                  oddIndexProjects.map((data, index) => (
-                    <RoundedContainer
-                      key={index}
-                      width="100%"
-                      link="#"
-                      padding="0"
-                      height="378px"
-                      background="dark"
-                      userBar={{
-                        avatar: data.userAvatar ? data.userAvatar : Avatar,
-                        username: data.userEmail,
-                        project: data.project.name,
-                        gap: "16px",
-                        positionx: "left",
-                      }}
-                    >
-                      <ImageContainer>
-                        <BackdropComponent />
-                        <Image
-                          src={
-                            data.project.image
-                              ? data.project.image
-                              : ProjectImage
-                          }
-                          alt={data.project.name}
-                          layout="fill"
-                        />
-                      </ImageContainer>
-                    </RoundedContainer>
-                  ))}
-              </Column>
+              </Grid>
             </>
           ) : (
-            <StyledLoading>Loading ...</StyledLoading>
+            <StyledLoading>Chargement ...</StyledLoading>
           )}
         </MainContainer>
       </RoundedContainer>
@@ -168,12 +103,29 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
   );
 };
 
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, minmax(300px, 1fr));
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    grid-template-columns: repeat(2, minmax(auto, 425px));
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    grid-template-columns: repeat(3, minmax(auto, 425px));
+  }
+`;
+
 const ProjectsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 50px;
-  width: 100%;
+  width: calc(100% - 100px);
+  padding: 0 50px 50px;
 `;
 
 const ContainerSignup = styled.div`
@@ -191,21 +143,6 @@ const MainContainer = styled.main`
   gap: 50px;
   width: 100%;
   box-sizing: border-box;
-`;
-
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  width: 50%;
-`;
-
-const StyledSubtitle = styled.h2`
-  text-align: right;
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  margin-top: 24px;
-  font-size: ${({ theme }) => theme.size.title};
 `;
 
 const ImageContainer = styled.div`

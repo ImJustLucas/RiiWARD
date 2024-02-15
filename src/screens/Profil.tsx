@@ -56,7 +56,7 @@ export const ProfileScreen: React.FC = () => {
       <ProfilPageContainer>
         <RowInfosContainer>
           <UserContainer>
-            <TitleSection>About me</TitleSection>
+            <TitleSection>À propos</TitleSection>
             <InfosUserContainer>
               <RowContainer style={{ gap: "12px" }}>
                 <h3>Nom</h3>
@@ -101,7 +101,7 @@ export const ProfileScreen: React.FC = () => {
               marginBottom: "auto",
             }}
           >
-            Project
+            Projet
           </TitleSection>
           <ColumnContainer
             style={{
@@ -133,6 +133,7 @@ export const ProfileScreen: React.FC = () => {
                     alignItems: "center",
                     justifyContent: "center",
                     width: "90%",
+                    height: "160px",
                   }}
                 >
                   <p>Aucun projet référencé.</p>
@@ -164,8 +165,8 @@ const RowContainer = styled.div`
 const ProfilPageContainer = styled(ColumnContainer)`
   align-items: center;
   justify-content: center;
-  width: 100%;
   height: 80vh;
+  padding: 0 50px 50px;
   background-color: #f5f6f7;
   gap: 12px;
 `;
@@ -194,8 +195,6 @@ const ProjectContainer = styled(RowContainer)`
   width: 100%;
   border-radius: 16px;
   background-color: #ffffff;
-  min-height: 50%;
-  height: auto;
 `;
 
 const TitleSection = styled.h2`

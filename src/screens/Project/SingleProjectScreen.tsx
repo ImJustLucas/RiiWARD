@@ -1,3 +1,4 @@
+import { Header } from "@components/Header/Index";
 import {
   LikeBtnCell,
   ProjectAdvencement,
@@ -18,26 +19,38 @@ type SingleProjectProps = {
 
 export const SingleProjectScreen: React.FC<SingleProjectProps> = ({ data }) => {
   return (
-    <GridParent>
-      <ProjectPreview />
-      <ProjectName name={data.name as string} />
-      <ProjectScore score={data.score || 45} />
-      <ProjectDescription
-        description={data.description}
-        socialLinks={{
-          github: "https://github.com/ImJustLucas/RiiWARD",
-          discord: "https://discord.gg/BdTUKgF5NW",
-          website: "projet-awwward.vercel.app",
-        }}
-      />
-      <ProjectContributors />
-      <ProjectSkills />
-      <LikeBtnCell />
-      <ProjectHiring isHiring />
-      <ProjectAdvencement />
-    </GridParent>
+    <>
+      <Header />
+      <GridWrapper>
+        <GridParent>
+          <ProjectPreview />
+          <ProjectName name={data.name as string} />
+          <ProjectScore score={data.score || 45} />
+          <ProjectDescription
+            description={data.description}
+            socialLinks={{
+              github: "https://github.com/ImJustLucas/RiiWARD",
+              discord: "https://discord.gg/BdTUKgF5NW",
+              website: "projet-awwward.vercel.app",
+            }}
+          />
+          <ProjectContributors />
+          <ProjectSkills />
+          <LikeBtnCell />
+          <ProjectHiring isHiring />
+          <ProjectAdvencement />
+        </GridParent>
+      </GridWrapper>
+    </>
   );
 };
+
+const GridWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+`;
 
 const GridParent = styled.div`
   display: grid;

@@ -32,28 +32,28 @@ export const SigninScreen: React.FC = () => {
 
     if (email == "" && password == "") {
       setError({
-        message: "Please enter a valid email and password",
+        message: "Veuillez saisir un email et un mot de passe",
         isError: true,
       });
-      toast.error("Please enter a valid email and password");
+      toast.error("Veuillez saisir un email et un mot de passe");
       return;
     }
 
     if (!validateEmail(email)) {
       setError({
-        message: "Please enter a valid email",
+        message: "Veuillez saisir un email valide",
         isError: true,
       });
-      toast.error("Please enter a valid email");
+      toast.error("Veuillez saisir un email valide");
       return;
     }
 
     if (password == "") {
       setError({
-        message: "Please enter a valid password",
+        message: "Veuillez saisir un mot de passe",
         isError: true,
       });
-      toast.error("Please enter a valid password");
+      toast.error("Veuillez saisir un mot de passe");
       return;
     }
 
@@ -73,10 +73,10 @@ export const SigninScreen: React.FC = () => {
         router.push("/users/me");
       } else {
         setError({
-          message: "Wrong email or password",
+          message: "Email ou mot de passe incorrects",
           isError: true,
         });
-        toast.error("Wrong email or password");
+        toast.error("Email ou mot de passe incorrects");
       }
     }
   }
@@ -103,22 +103,22 @@ export const SigninScreen: React.FC = () => {
               className={error.isError ? "has-error" : ""}
             />
 
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">Mot de passe</Label>
             <Input
               type="password"
               id="password"
               name="password"
-              placeholder="Password"
+              placeholder="Mot de passe"
               onChange={(e) => setPassword(e.target.value)}
               className={error.isError ? "has-error" : ""}
             />
 
             <Button type="submit" onClick={login}>
-              Sign in
+              Se connecter
             </Button>
           </Form>
           <Separator />
-          <ButtonLink href="signup">Sign up</ButtonLink>
+          <ButtonLink href="signup">S&apos;inscrire</ButtonLink>
         </RoundedContainer>
       </HomeContainer>
     </>
@@ -144,7 +144,7 @@ const FormHeader = styled.div`
   position: relative;
 `;
 
-const BackLink = styled.a`
+const BackLink = styled(Link)`
   position: absolute;
   top: 50%;
   -ms-transform: translateY(-50%);
