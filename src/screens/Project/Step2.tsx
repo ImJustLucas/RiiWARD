@@ -16,7 +16,7 @@ export const Step2: React.FC<AddProjectProps> = ({
   style,
 }) => {
   const handleInputDescriptionChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
     project.description = event.target.value;
   };
@@ -25,7 +25,6 @@ export const Step2: React.FC<AddProjectProps> = ({
       <ContainerInput id={id} className={className} style={style}>
         <InputName
           onChange={handleInputDescriptionChange}
-          type="text"
           placeholder="Description de votre projet"
         />
       </ContainerInput>

@@ -17,14 +17,18 @@ export const Step4: React.FC<AddProjectProps> = ({
   style,
 }) => {
   const hiddenFileInput = useRef(null);
-  const [file, setFile] = useState();
+  const [file, setFile] = useState<File | undefined>(undefined);
 
-  function handleChange(event) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    if (!event.target.files) return;
     setFile(event.target.files[0]);
     project.image = event.target.files[0].name;
   }
 
   const handleClick = () => {
+    if (!hiddenFileInput.current) return;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     hiddenFileInput.current.click();
   };
 

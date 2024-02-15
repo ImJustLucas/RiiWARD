@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
+import { useEffect, useState } from "react";
 import ProjectImage from "@assets/images/projectImage.png";
 import { DefaultButton } from "@components/Common/Buttons/DefaultButton";
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
@@ -7,6 +9,7 @@ import { Project } from "@typesDef/project/project";
 import Image from "next/image";
 import styled from "styled-components";
 import { register } from "swiper/element/bundle";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 type ProjectsSwiperProps = {
   fetch: () => Promise<Array<Project>>;
@@ -46,104 +49,105 @@ export const ProjectsSwiper: React.FC<ProjectsSwiperProps> = ({ fetch }) => {
     }
   }, [projects]);
 
-  const swiperRef = useRef(null);
+  // const swiperRef = useRef(null);
 
   useEffect(() => {
     register();
 
-    const params = {
-      autoplay: {
-        delay: 5000,
-        pauseOnMouseEnter: true,
-        reverseDirection: true,
-      },
-      centeredSlides: true,
-      breakpoints: {
-        slidesPerView: 1,
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 8,
-        },
-        1024: {
-          slidesPerView: 2.8,
-          spaceBetween: 20,
-        },
-        1224: {
-          slidesPerView: 3.2,
-          spaceBetween: 20,
-        },
-        1824: {
-          slidesPerView: 3,
-          spaceBetween: 180,
-        },
-      },
-    };
+    // const params = {
+    //   autoplay: {
+    //     delay: 5000,
+    //     pauseOnMouseEnter: true,
+    //     reverseDirection: true,
+    //   },
+    //   centeredSlides: true,
+    //   breakpoints: {
+    //     slidesPerView: 1,
+    //     768: {
+    //       slidesPerView: 2,
+    //       spaceBetween: 8,
+    //     },
+    //     1024: {
+    //       slidesPerView: 2.8,
+    //       spaceBetween: 20,
+    //     },
+    //     1224: {
+    //       slidesPerView: 3.2,
+    //       spaceBetween: 20,
+    //     },
+    //     1824: {
+    //       slidesPerView: 3,
+    //       spaceBetween: 180,
+    //     },
+    //   },
+    // };
+    //@ts-ignore
 
-    Object.assign(swiperRef.current, params);
+    // Object.assign(swiperRef.current, params);
 
-    swiperRef.current.initialize();
+    //@ts-ignore
+    // swiperRef.current.initialize();
   }, []);
 
   return (
     <ProjectsSwiperContainer>
-      <Swiper>
-        <swiper-container init="false" ref={swiperRef}>
-          {projectsWithUserEmail &&
-            projectsWithUserEmail.map((data, index) => (
-              <swiper-slide key={index}>
-                <RoundedContainer
-                  width="360px"
-                  padding="10px"
-                  key={index}
-                  customStyles={containerStyle}
-                >
-                  <RoundedContainer
-                    width="100%"
-                    padding="10px"
-                    background="dark"
-                  >
-                    <ImageContainer>
-                      <Image
-                        src={
-                          data.project.image ? data.project.image : ProjectImage
-                        }
-                        alt={data.project.name}
-                        layout="fill"
-                      />
-                    </ImageContainer>
-                  </RoundedContainer>
-                  <ProjectContainer>
-                    <ProjectTitle>{data.project.name}</ProjectTitle>
-                    <ProjectUser>{data.userEmail}</ProjectUser>
-                    <ProjectVote>
-                      30
-                      <i className="ri-hearts-line is-active"></i>
-                      {/*<i className="ri-hearts-fill is-active"></i>*/}
-                    </ProjectVote>
-                    <ProjectDescription>
-                      {data.project.description}
-                    </ProjectDescription>
-                    <DefaultButton
-                      type="primary"
-                      href={`/projects/${data.project.id}`}
-                    >
-                      {" "}
-                    </DefaultButton>
-                  </ProjectContainer>
+      <SwiperContainer spaceBetween={50} slidesPerView={3}>
+        {projectsWithUserEmail &&
+          projectsWithUserEmail.map((data, index) => (
+            <SwiperSlide key={index}>
+              <RoundedContainer
+                width="360px"
+                padding="10px"
+                key={index}
+                customStyles={containerStyle}
+              >
+                <RoundedContainer width="100%" padding="10px" background="dark">
+                  <ImageContainer>
+                    <Image
+                      src={
+                        data.project.image ? data.project.image : ProjectImage
+                      }
+                      alt={data.project.name}
+                      layout="fill"
+                    />
+                  </ImageContainer>
                 </RoundedContainer>
-              </swiper-slide>
-            ))}
-        </swiper-container>
-      </Swiper>
+                <ProjectContainer>
+                  <ProjectTitle>{data.project.name}</ProjectTitle>
+                  <ProjectUser>{data.userEmail}</ProjectUser>
+                  <ProjectVote>
+                    30
+                    <i className="ri-hearts-line is-active"></i>
+                    {/*<i className="ri-hearts-fill is-active"></i>*/}
+                  </ProjectVote>
+                  <ProjectDescription>
+                    {data.project.description}
+                  </ProjectDescription>
+                  <DefaultButton
+                    type="primary"
+                    href={`/projects/${data.project.id}`}
+                  >
+                    {" "}
+                  </DefaultButton>
+                </ProjectContainer>
+              </RoundedContainer>
+            </SwiperSlide>
+          ))}
+      </SwiperContainer>
     </ProjectsSwiperContainer>
   );
 };
 
-const Swiper = styled.div`
+const SwiperContainer = styled(Swiper)`
   width: 100vw;
   margin: 0 -100px;
   @media (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     max-width: 1440px;
+  }
+
+  .swiper-wrapper {
+    display: flex;
+    gap: 24px;
   }
 `;
 

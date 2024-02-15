@@ -13,6 +13,8 @@ type AddProjectProps = {
   style: React.CSSProperties;
 };
 
+const _SkillsServices = new SkillsServices();
+
 export const Step3: React.FC<AddProjectProps> = ({
   id,
   className,
@@ -20,8 +22,7 @@ export const Step3: React.FC<AddProjectProps> = ({
   project,
 }) => {
   const [data, setData] = useState<{ value: string; label: string }[]>([]);
-  const [selectedOptions, setSelectedOptions] = useState<string[]>("");
-  const _SkillsServices = new SkillsServices();
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchSkills = async (): Promise<Skill[]> => {
@@ -36,6 +37,8 @@ export const Step3: React.FC<AddProjectProps> = ({
 
     const fetchData = async () => {
       const data = await fetchSkills();
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
       setData(data.map((skill) => ({ value: skill.id, label: skill.content })));
     };
 
@@ -44,9 +47,9 @@ export const Step3: React.FC<AddProjectProps> = ({
 
   useEffect(() => {
     project.skillsId = selectedOptions;
-  }, [selectedOptions]);
+  }, [selectedOptions, project]);
 
-  const setHandle = (e) => {
+  const setHandle = (e: unknown) => {
     setSelectedOptions(Array.isArray(e) ? e.map((skill) => skill.value) : []);
   };
 
