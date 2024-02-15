@@ -6,20 +6,10 @@ import { useAuth } from "@contexts/AuthContext";
 import { ProjectsServices } from "@services/api";
 import { SkillsServices } from "@services/api";
 import { ProjectData } from "@typesDef/project/project";
+import { Skill, SkillData } from "@typesDef/skill/skill";
 import styled from "styled-components";
 
 export const ProfileScreen: React.FC = () => {
-  const tabTags = [
-    "React",
-    "Node",
-    "TypeScript",
-    "JavaScript",
-    "React Native",
-    "Next.js",
-    "Figma",
-    "Adobe XD",
-  ];
-
   const skillService = new SkillsServices();
   const { user } = useAuth();
   const projectService = new ProjectsServices();
@@ -28,7 +18,7 @@ export const ProfileScreen: React.FC = () => {
     error: null,
   });
 
-  const [skills, setSkill] = useState({
+  const [skills, setSkill] = useState<SkillData>({
     skills: null,
     error: null,
   });
@@ -42,18 +32,16 @@ export const ProfileScreen: React.FC = () => {
         setProjects({ project, error });
 
         if (project) {
-          const skills = await Promise.all(
-            project.map(
-              async (project) =>
-                await skillService.getAllSkillUser(
-                  project.id as unknown as string,
-                ),
-            ),
+          const fetchSkills = await skillService.getAllSkillUser(
+            project.map((p) => p.id),
           );
-          // const skills = await skillService.getAllSkillUser(
-          //   project.map((project) => project.id),
-          // );
-          setSkill({ skills: skills || null, error: null });
+
+          const fetchSkillsWithContent = fetchSkills.map((skill: Skill) => ({
+            ...skill,
+            content: skill,
+          }));
+
+          setSkill({ skills: fetchSkillsWithContent, error: null });
         }
       } catch (error) {
         console.error("Erreur lors de la récupération des projets :", error);
@@ -62,8 +50,6 @@ export const ProfileScreen: React.FC = () => {
 
     getProjects();
   }, []);
-
-  console.log("skills", skills);
 
   return (
     <>
@@ -90,9 +76,17 @@ export const ProfileScreen: React.FC = () => {
             <ContainerInfosSkills>
               <RowContainer>
                 <RowSkills style={{ justifyContent: "space-around" }}>
-                  {tabTags.map((tag, index) => (
-                    <TagSkill content={tag} isIcon={false} key={index} />
-                  ))}
+                  {skills.skills && skills.skills?.length > 0 ? (
+                    skills.skills?.map((tag, index) => (
+                      <TagSkill
+                        content={tag.content}
+                        isIcon={false}
+                        key={index}
+                      />
+                    ))
+                  ) : (
+                    <p>Aucun skills</p>
+                  )}
                 </RowSkills>
               </RowContainer>
             </ContainerInfosSkills>
