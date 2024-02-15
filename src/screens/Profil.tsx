@@ -194,17 +194,19 @@ const RowInfosContainer = styled(RowContainer)`
 `;
 
 const UserContainer = styled(ColumnContainer)`
-  width: 30%;
+  width: 25%;
   border-radius: 16px;
   background-color: #ffffff;
   padding: 12px 24px;
+  min-width: 25%;
 `;
 
 const SkillsContainer = styled(ColumnContainer)`
-  width: 70%;
+  width: 65%;
   border-radius: 16px;
   background-color: #ffffff;
   padding: 12px 24px;
+  min-width: 65%;
 `;
 
 const ProjectContainer = styled(RowContainer)`

@@ -8,7 +8,6 @@ export type UserBarProps = {
 };
 
 export const UserBar: React.FC<UserBarProps> = ({
-  username,
   project,
   gap = "8px",
   positionx = "right",
@@ -16,7 +15,7 @@ export const UserBar: React.FC<UserBarProps> = ({
   return (
     <UserBarContainer gap={gap} positionx={positionx}>
       <UserBarText>
-        <span>{project}</span> par {username}
+        <span>{project}</span>
       </UserBarText>
       <LikeButton>
         <p>30</p>
