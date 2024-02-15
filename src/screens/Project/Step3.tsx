@@ -57,7 +57,7 @@ export const Step3: React.FC<AddProjectProps> = ({
           <Select
             options={data}
             onChange={setHandle}
-            placeholder="Skills used in your project"
+            placeholder="Skills utilisés dans votre projet"
             isClearable={false}
             isMulti
             styles={{
