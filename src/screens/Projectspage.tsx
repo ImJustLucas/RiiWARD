@@ -49,9 +49,9 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
   return (
     <ProjectsContainer>
       {isLogged ? (
-        <DefaultButton href="/projects/add" type="primary">
-          Ajouter votre projet
-        </DefaultButton>
+        <Link href="/add-project">
+          <DefaultButton type="primary">Add your own project</DefaultButton>
+        </Link>
       ) : (
         <ContainerSignup>
           <p>Connectez vous pour ajouter un projet</p>

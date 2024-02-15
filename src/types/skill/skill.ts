@@ -6,6 +6,6 @@ export type Skill = {
 };
 
 export interface SkillData {
-  project: Array<Skill> | null;
+  skills: Array<Skill> | null;
   error: PostgrestError | null;
 }
