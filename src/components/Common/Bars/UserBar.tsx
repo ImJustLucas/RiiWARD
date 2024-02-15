@@ -1,16 +1,13 @@
-import Image, { StaticImageData } from "next/image";
 import styled from "styled-components";
 
 export type UserBarProps = {
   username: string;
-  avatar: StaticImageData | string;
   project: string;
   gap?: string;
   positionx?: "left" | "right";
 };
 
 export const UserBar: React.FC<UserBarProps> = ({
-  avatar,
   username,
   project,
   gap = "8px",
@@ -18,15 +15,13 @@ export const UserBar: React.FC<UserBarProps> = ({
 }) => {
   return (
     <UserBarContainer gap={gap} positionx={positionx}>
-      <div>
-        <StyledImage src={avatar} alt={username} />
-        <div>
-          <UserBarUsername>{username}</UserBarUsername>
-          <UserBarProject>{project}</UserBarProject>
-        </div>
-      </div>
+      <UserBarText>
+        <span>{project}</span> by {username}
+      </UserBarText>
       <LikeButton>
+        <p>30</p>
         <i className="ri-hearts-line"></i>
+        {/*<i className="ri-hearts-fill"></i>*/}
       </LikeButton>
     </UserBarContainer>
   );
@@ -36,79 +31,61 @@ const UserBarContainer = styled.div<{
   gap?: string;
   positionx?: string;
 }>`
+  border-radius: 12px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  border-radius: 15px;
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.3);
+  justify-content: space-between;
+  width: 70%;
+  padding: 16px;
+  background: rgba(31, 30, 241, 0.8);
   backdrop-filter: blur(3.5px);
   gap: ${({ gap }) => gap};
   position: absolute;
-  bottom: 40px;
-  ${({ positionx }) => positionx} : 32px;
+  bottom: 11px;
+  left: 0;
+  right: 0;
   z-index: 3;
+`;
 
-  & > div {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+const UserBarText = styled.h3`
+  display: inline;
+  font-size: 16px;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  word-break: break-word;
 
-    & > div {
-      display: flex;
-      flex-direction: column;
-      font-size: 16px;
-      font-weight: 500;
-    }
+  span {
+    font-weight: bold;
+    color: #ffffff;
   }
 `;
 
-const StyledImage = styled(Image)`
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center;
-  width: 64px;
-  height: 64px;
-  background: #ffffff;
-`;
-
-const UserBarUsername = styled.h3`
-  font-size: 20px;
-  color: #ffffff;
-  font-weight: 700;
-  font-family: "Inter", sans-serif;
-`;
-
-const UserBarProject = styled.span`
-  font-size: 18px;
-  color: #ffffff;
-  font-weight: 400;
-  font-family: "Inter", sans-serif;
-`;
-
 const LikeButton = styled.button`
-  background: ${({ theme }) => theme.colors.background.dark};
-  border-radius: 50%;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 63px;
-  width: 63px;
-  border: 1px solid ${({ theme }) => theme.colors.background.dark};
+  height: 26px;
   cursor: pointer;
   border: none;
   transition: 0.3s ease-in-out;
   cursor: pointer;
+  gap: 8px;
+  padding: 0;
 
-  & i {
+  p {
     color: #ffffff;
-    font-size: 28px;
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: bold;
   }
 
-  &:hover {
-    background: #ffffff;
-
-    & i {
-      color: #000000;
-    }
+  & i {
+    margin-top: -5px;
+    color: #ffffff;
+    font-size: 26px;
+    height: 26px;
+    width: 26px;
   }
 `;
