@@ -12,6 +12,7 @@ export type Project = {
   recruit?: boolean;
   userId?: string;
   score?: number;
+  skillsId: string | string[];
 };
 
 export interface ProjectData {

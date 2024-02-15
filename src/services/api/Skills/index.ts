@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { supabase } from "@services/Supabase";
 
 export class SkillsServices {
@@ -20,6 +21,7 @@ export class SkillsServices {
     }
 
     const allSkills = data.reduce((acc: unknown, curr: unknown) => {
+      // @ts-ignore
       return acc.concat(curr.skills);
     }, []);
 

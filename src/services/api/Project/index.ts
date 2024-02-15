@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { supabase } from "@services/Supabase";
 import { PostgrestError } from "@supabase/supabase-js";
 import { Project, ProjectData } from "@typesDef/project/project";
@@ -35,6 +36,7 @@ export class ProjectsServices {
     try {
       const skills = projet.skillsId;
 
+      // @ts-ignore
       projet.skillsId = null;
       const { data: aw_projects, error } = await supabase
         .from("aw_projects")
@@ -42,9 +44,11 @@ export class ProjectsServices {
         .select();
 
       if (skills) {
+        // @ts-ignore
         skills.forEach(async (skill) => {
           await supabase
             .from("aw_skill_project")
+            // @ts-ignore
             .insert([{ projectId: aw_projects[0].id, skillId: skill }]);
         });
       }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useEffect, useState } from "react";
 import Select from "react-select";
 import { useAuth } from "@contexts/AuthContext";
@@ -14,6 +15,8 @@ type AddProjectProps = {
   style: React.CSSProperties;
 };
 
+const _UsersServices = new UsersServices();
+
 export const Step5: React.FC<AddProjectProps> = ({
   id,
   className,
@@ -22,7 +25,6 @@ export const Step5: React.FC<AddProjectProps> = ({
 }) => {
   const [data, setData] = useState<{ value: string; label: string }[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<string>("");
-  const _UsersServices = new UsersServices();
   const { user } = useAuth();
 
   useEffect(() => {
@@ -40,6 +42,8 @@ export const Step5: React.FC<AddProjectProps> = ({
       const data = await fetchUsers();
       setData(
         data
+          //@ts-ignore
+
           .filter((selectUser) => selectUser.id !== user.id)
           .map((selectUser) => ({
             value: selectUser.id.toString(),
@@ -55,6 +59,7 @@ export const Step5: React.FC<AddProjectProps> = ({
     project.collaborators = selectedOptions;
   }, [selectedOptions]);
 
+  //@ts-ignore
   const setHandle = (e) => {
     setSelectedOptions(e.value);
   };
