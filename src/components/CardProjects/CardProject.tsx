@@ -25,6 +25,7 @@ export const CardProject: React.FC<CardProjectProps> = ({
 };
 
 const CardProjectComponent = styled.div`
+  max-width: 50%;
   display: flex;
   flex-direction: row;
   width: 100%;

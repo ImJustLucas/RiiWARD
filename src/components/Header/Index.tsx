@@ -76,6 +76,7 @@ const NavigationContainer = styled.div`
   justify-content: center;
   margin-bottom: 50px;
   width: 100%;
+  min-height: 10vh;
 `;
 
 const TitleContainer = styled.div`
