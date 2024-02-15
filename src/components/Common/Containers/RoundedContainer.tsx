@@ -48,7 +48,6 @@ export const RoundedContainer: React.FC<RoundedContainerProps> = ({
       {userBar && (
         <UserBar
           username={userBar.username}
-          avatar={userBar.avatar}
           project={userBar.project}
           gap={userBar.gap}
           positionx={userBar.positionx}
