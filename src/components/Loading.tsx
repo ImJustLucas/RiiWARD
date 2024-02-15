@@ -18,7 +18,7 @@ const spin = keyframes`
 
 const Spinner = styled.div`
   border: 5px solid black;
-  border-top: 5px solid #3498db;
+  border-top: 5px solid ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   width: 50px;
   height: 50px;

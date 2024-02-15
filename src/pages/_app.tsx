@@ -6,6 +6,7 @@ import { GlobalThemeProvider } from "@contexts/GlobalTheme";
 import { AppLayout } from "@layouts/AppLayout";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { Toaster } from "sonner";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -38,6 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <AppLayout>
         <GlobalStyle />
         <Component {...pageProps} />
+        <Toaster richColors={true} closeButton />
       </AppLayout>
     </GlobalThemeProvider>
   );

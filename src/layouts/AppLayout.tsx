@@ -8,7 +8,7 @@ type LayoutProps = {
 
 export const AppLayout: FC<LayoutProps> = ({ children }) => {
   return (
-    <AppLayoutContainer>
+    <AppLayoutContainer className="AppLayout">
       <AuthProvider>{children}</AuthProvider>
     </AppLayoutContainer>
   );
@@ -20,8 +20,7 @@ const AppLayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 50px;
+  justify-content: flex-start;
   // background: ${({ theme }) => theme.colors.background.primary};
   background-size: 400% 400%;
   animation: main-background 10s ease infinite;
