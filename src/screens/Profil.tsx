@@ -185,7 +185,6 @@ const ProfilPageContainer = styled(ColumnContainer)`
   padding: 0 50px 50px;
   background-color: #f5f6f7;
   gap: 12px;
-  min-width: 100%;
 `;
 
 const RowInfosContainer = styled(RowContainer)`
@@ -195,26 +194,25 @@ const RowInfosContainer = styled(RowContainer)`
 `;
 
 const UserContainer = styled(ColumnContainer)`
-  width: 30%;
+  width: 25%;
   border-radius: 16px;
   background-color: #ffffff;
   padding: 12px 24px;
-  min-width: 30%;
+  min-width: 25%;
 `;
 
 const SkillsContainer = styled(ColumnContainer)`
-  width: 70%;
+  width: 65%;
   border-radius: 16px;
   background-color: #ffffff;
   padding: 12px 24px;
-  min-width: 70%;
+  min-width: 65%;
 `;
 
 const ProjectContainer = styled(RowContainer)`
   width: 100%;
   border-radius: 16px;
   background-color: #ffffff;
-  min-height: 50%;
 `;
 
 const TitleSection = styled.h2`
