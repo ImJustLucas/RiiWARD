@@ -12,6 +12,7 @@ type RoundedContainerProps = {
   padding?: string;
   userBar?: UserBarProps;
   customStyles?: string;
+  onClick?: () => void;
 };
 
 export const RoundedContainer: React.FC<RoundedContainerProps> = ({
@@ -23,9 +24,11 @@ export const RoundedContainer: React.FC<RoundedContainerProps> = ({
   padding = "24px",
   userBar,
   customStyles,
+  onClick,
 }) => {
   return (
     <RoundedContainerDiv
+      onClick={onClick}
       background={background}
       width={width}
       height={height}

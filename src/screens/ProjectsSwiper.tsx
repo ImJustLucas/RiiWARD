@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ProjectImage from "@assets/images/projectImage.png";
+import { DefaultButton } from "@components/Common/Buttons/DefaultButton";
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
-import { Icon } from "@components/Icon";
 import { UsersServices } from "@services/api/Users";
 import { Project } from "@typesDef/project/project";
 import Image from "next/image";
@@ -123,9 +123,12 @@ export const ProjectsSwiper: React.FC<ProjectsSwiperProps> = ({ fetch }) => {
                     <ProjectDescription>
                       {data.project.description}
                     </ProjectDescription>
-                    <ProjectLink>
-                      <Icon icon="arrow" />
-                    </ProjectLink>
+                    <DefaultButton
+                      type="primary"
+                      href={`/projects/${data.project.id}`}
+                    >
+                      {" "}
+                    </DefaultButton>
                   </ProjectContainer>
                 </RoundedContainer>
               </swiper-slide>
@@ -167,6 +170,11 @@ const ProjectContainer = styled.div`
     "description description"
     "cta cta";
   font-size: 16px;
+
+  a {
+    grid-area: cta;
+    margin-top: 16px;
+  }
 `;
 
 const ProjectTitle = styled.div`
@@ -209,32 +217,6 @@ const ProjectVote = styled.div`
 const ProjectDescription = styled.div`
   margin-top: 4px;
   grid-area: description;
-`;
-
-const ProjectLink = styled.a`
-  margin: 0 auto;
-  margin-top: 8px;
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
-  grid-area: cta;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: ${({ theme }) => theme.colors.background.dark};
-  transition:
-    background 0.5s ease-in-out,
-    border-radius 0.5s ease-in-out,
-    width 0.5s ease-in-out;
-
-  &:hover {
-    background: #1f1ef1;
-    border-radius: 25px;
-    width: 100%;
-  }
-  svg {
-    height: 24px;
-  }
 `;
 
 const ImageContainer = styled.div`

@@ -7,6 +7,7 @@ import { useAuth } from "@contexts/AuthContext";
 import { UsersServices } from "@services/api/Users";
 import { Project } from "@typesDef/project/project";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 type ProjectsScreenProps = {
@@ -18,6 +19,7 @@ const _UsersServices = new UsersServices();
 export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
   const { isLogged } = useAuth();
   const [projects, setProjects] = useState<Project[]>([]);
+  const router = useRouter();
 
   const [projectsWithUserEmail, setProjectsWithUserEmail] = useState<
     Array<{
@@ -72,6 +74,9 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
                       padding="0"
                       height="256px"
                       background="dark"
+                      onClick={() => {
+                        router.push(`/projects/${data.project.id}`);
+                      }}
                       userBar={{
                         username: data.userEmail,
                         project: data.project.name,

@@ -154,7 +154,10 @@ export const ProfileScreen: React.FC = () => {
               </RowContainer>
               {projects.project && projects.project?.length !== 0 ? (
                 <div style={{ height: "fit-content", textAlign: "end" }}>
-                  <LinkSeeAll link="/" content="Voir tous les projets" />
+                  <LinkSeeAll
+                    link="/projects"
+                    content="Voir tous les projets"
+                  />
                 </div>
               ) : null}
             </ColumnContainer>
