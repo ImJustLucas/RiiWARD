@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import Avatar from "@assets/images/avatar.png";
 import ProjectImage from "@assets/images/projectImage.png";
 import { BackdropComponent } from "@components/Common/BackDrop/Backdrop";
+import { DefaultButton } from "@components/Common/Buttons/DefaultButton";
 import { RoundedContainer } from "@components/Common/Containers/RoundedContainer";
 import { useAuth } from "@contexts/AuthContext";
 import { UsersServices } from "@services/api/Users";
 import { Project } from "@typesDef/project/project";
 import Image from "next/image";
-import Link from "next/link";
 import styled from "styled-components";
 
 type ProjectsScreenProps = {
@@ -77,12 +77,9 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
   return (
     <ProjectsContainer>
       {isLogged ? (
-        <Link href="/add-project">
-          <StyledButton>
-            <span>Ajoutez votre projet</span>
-            <i className="ri-arrow-right-up-line"></i>
-          </StyledButton>
-        </Link>
+        <DefaultButton href="/projects/add" type="primary">
+          Ajouter votre projet
+        </DefaultButton>
       ) : (
         <ContainerSignup>
           <p>Connectez vous pour ajouter un projet</p>
@@ -179,24 +176,6 @@ const ProjectsContainer = styled.div`
   gap: 50px;
   width: calc(100% - 100px);
   padding: 0 50px 50px;
-`;
-
-const StyledButton = styled.button`
-  background: ${({ theme }) => theme.colors.blue};
-  border-radius: 15px;
-  padding: 8px 24px;
-  color: white;
-  font-size: 16px;
-  border: none;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  & span {
-    color: white;
-  }
 `;
 
 const ContainerSignup = styled.div`
