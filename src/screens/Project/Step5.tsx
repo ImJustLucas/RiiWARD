@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Select from "react-select";
+import { useAuth } from "@contexts/AuthContext";
 import { UsersServices } from "@services/api/Users";
 import { Project } from "@typesDef/project/project";
 import { User } from "@typesDef/user/user";
@@ -22,6 +23,7 @@ export const Step5: React.FC<AddProjectProps> = ({
   const [data, setData] = useState<{ value: string; label: string }[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<string>("");
   const _UsersServices = new UsersServices();
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchUsers = async (): Promise<User[]> => {
@@ -37,7 +39,12 @@ export const Step5: React.FC<AddProjectProps> = ({
     const fetchData = async () => {
       const data = await fetchUsers();
       setData(
-        data.map((user) => ({ value: user.id.toString(), label: user.email })),
+        data
+          .filter((selectUser) => selectUser.id !== user.id)
+          .map((selectUser) => ({
+            value: selectUser.id.toString(),
+            label: selectUser.email,
+          })),
       );
     };
 

@@ -33,9 +33,21 @@ export class ProjectsServices {
 
   async createProject(projet: Project) {
     try {
+      const skills = projet.skillsId;
+
+      projet.skillsId = null;
       const { data: aw_projects, error } = await supabase
         .from("aw_projects")
-        .insert([projet]);
+        .insert([projet])
+        .select();
+
+      if (skills) {
+        skills.forEach(async (skill) => {
+          await supabase
+            .from("aw_skill_project")
+            .insert([{ projectId: aw_projects[0].id, skillId: skill }]);
+        });
+      }
       return { aw_projects, error };
     } catch (error) {
       console.error("Error:", error);

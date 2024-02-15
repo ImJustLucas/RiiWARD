@@ -4,7 +4,7 @@ export type Project = {
   id: number;
   name: string;
   description: string;
-  skillsId: string;
+  skillsId: string[];
   image?: string;
   category: string;
   collaborators: string;
