@@ -16,7 +16,7 @@ export const UserBar: React.FC<UserBarProps> = ({
   return (
     <UserBarContainer gap={gap} positionx={positionx}>
       <UserBarText>
-        <span>{project}</span>par {username}
+        <span>{project}</span> par {username}
       </UserBarText>
       <LikeButton>
         <p>30</p>
