@@ -1,16 +1,17 @@
-import { TextHeader, TextHeaderProps } from "@components/Header/ContainerText";
+import { DefaultButton } from "@components/Common/Buttons/DefaultButton";
 import { useAuth } from "@contexts/AuthContext";
 import { AuthServices } from "@services/api";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
-type HeaderProps = {
-  textHeader?: TextHeaderProps;
+type StyledLinkProps = {
+  href: string;
 };
 
 const _AuthServices = new AuthServices();
 
-export const Header: React.FC<HeaderProps> = ({ textHeader }) => {
+export const Header: React.FC = () => {
   const { isLogged, setUser, setIsLogged } = useAuth();
 
   const handleSignOut = async () => {
@@ -21,76 +22,108 @@ export const Header: React.FC<HeaderProps> = ({ textHeader }) => {
   };
 
   return (
-    <RoundedContainer>
+    <NavigationContainer>
       <HeaderContainer>
-        <LogoContainer>
-          <Link href="/">LOGO</Link>
-        </LogoContainer>
-        <LinksContainer>
-          <StyledLink href="/projects">Projects</StyledLink>
-          <StyledLink href="">Ranking</StyledLink>
-          <StyledLink href="/profile">Profile</StyledLink>
-        </LinksContainer>
-
-        <ButtonContainer>
-          {isLogged ? (
-            <StyledSignin href="" onClick={handleSignOut}>
-              Sign Out
-            </StyledSignin>
-          ) : (
-            <StyledSignin href="/signin">Sign in</StyledSignin>
-          )}
-        </ButtonContainer>
+        <TitleContainer>
+          <Link href="/">
+            R<span>ii</span>ward
+          </Link>
+        </TitleContainer>
+        <RoundedContainer>
+          <LinksContainer>
+            <StyledLink href="/">Accueil</StyledLink>
+            <StyledLink href="/projects">Projets</StyledLink>
+            <StyledLink href="/users/me">Moi</StyledLink>
+          </LinksContainer>
+        </RoundedContainer>
+        <div>
+          <ContainerButtons>
+            {isLogged ? (
+              <DefaultButton type="default" onClick={handleSignOut}>
+                Se deconnecter
+              </DefaultButton>
+            ) : (
+              <StyledSignin href="/auth/signin">
+                <DefaultButton type="default">Se connecter</DefaultButton>
+              </StyledSignin>
+            )}
+          </ContainerButtons>
+        </div>
       </HeaderContainer>
-      {textHeader && (
-        <TextHeader title={textHeader.title} desc={textHeader?.desc} />
-      )}
-    </RoundedContainer>
+    </NavigationContainer>
   );
 };
 
 const HeaderContainer = styled.div`
   height: 100px;
-  background-color: white;
-  border-radius: 10px;
   color: #000000;
-  margin-top: 30px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 40px;
+  padding: 0 50px;
 `;
 
-const LogoContainer = styled.div`
+const ContainerButtons = styled.div`
+  display: flex;
+`;
+
+const NavigationContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 50px;
+  width: 100%;
+`;
+
+const TitleContainer = styled.div`
+  width: fit-content;
   font-size: 40px;
   font-family: "Space Grotesk", sans-serif;
+  text-transform: uppercase;
+  text-align: start;
 
   & a {
+    font-size: 40px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
     color: black;
   }
+
+  & span {
+    color: ${({ theme }) => theme.colors.blue};
+    text-transform: lowercase;
+  }
+`;
+
+const StyledLink = styled(Link)<StyledLinkProps>`
+  padding: 0px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  color: #737373;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.blue};
+  }
+
+  color: ${({ href }) => {
+    const { asPath } = useRouter();
+    return asPath === href ? "blue" : "#737373";
+  }};
 `;
 
 const LinksContainer = styled.div`
   display: flex;
+  justify-content: space-between;
+  width: 100%;
 `;
-
-const ButtonContainer = styled.div``;
 
 const StyledSignin = styled(Link)`
-  background-color: black;
-  color: white;
-  padding: 16px 24px;
-  border-radius: 15px;
-  font-size: 24px;
   cursor: pointer;
-`;
-
-const StyledLink = styled(Link)`
-  padding: 0px 15px;
-  font-size: 24px;
-  cursor: pointer;
-  font-family: "Inter", sans-serif;
-  color: black;
+  max-width: fit-content;
 `;
 
 const RoundedContainer = styled.div`
@@ -99,6 +132,5 @@ const RoundedContainer = styled.div`
   background-color: white;
   border-radius: 24px;
   text-align: center;
-  margin-bottom: 50px;
-  width: 100%;
+  padding: 10px 20px;
 `;

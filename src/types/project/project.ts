@@ -4,9 +4,14 @@ export type Project = {
   id: number;
   name: string;
   description: string;
+  skills: string[];
   image?: string;
   category: string;
+  collaborators: string;
+  progress: number;
+  recruit?: boolean;
   userId?: string;
+  score?: number;
 };
 
 export interface ProjectData {
