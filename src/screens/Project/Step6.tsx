@@ -59,7 +59,10 @@ const ContainerInput = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  width: 100%;
+  width: fit-content;
+  padding: 16px;
+  border-radius: 16px;
+  background: ${({ theme }) => theme.colors.white};
 `;
 
 const InputProgressContainer = styled.div`
