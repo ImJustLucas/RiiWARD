@@ -4,13 +4,14 @@ import styled from "styled-components";
 export const ProjectPreview: React.FC<{
   preview?: string;
 }> = ({ preview }) => {
+  console.log("ProjectPreview", preview);
   return (
     <ProjectPreviewContainer className="ProjectPreview">
       <div
         className="project-preview-img"
         style={{
           backgroundImage: preview
-            ? preview
+            ? `url(${preview})`
             : `url(https://picsum.photos/seed/${Math.random()}/800/600)`,
         }}
       ></div>

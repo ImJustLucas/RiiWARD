@@ -31,8 +31,8 @@ export const Header: React.FC = () => {
         </TitleContainer>
         <RoundedContainer>
           <LinksContainer>
-            <StyledLink href="/">Home</StyledLink>
-            <StyledLink href="/projects">Projects</StyledLink>
+            <StyledLink href="/">Accueil</StyledLink>
+            <StyledLink href="/projects">Projets</StyledLink>
             <StyledLink href="/users/me">Moi</StyledLink>
           </LinksContainer>
         </RoundedContainer>
@@ -94,6 +94,7 @@ const TitleContainer = styled.div`
 
   & span {
     color: ${({ theme }) => theme.colors.blue};
+    text-transform: lowercase;
   }
 `;
 
