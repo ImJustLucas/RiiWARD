@@ -17,6 +17,9 @@ export default function ProjectById() {
     const fetchProjects = async (id: string) => {
       try {
         const response = await _ProjectsServices.getProjectById(id);
+        if (response?.error) throw new Error(response.error.message);
+        if (!response?.project)
+          throw new Error("No project found with the given id");
         setData(response?.project);
         setLoading(false);
       } catch (error) {

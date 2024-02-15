@@ -11,6 +11,7 @@ export type Project = {
   progress: number;
   recruit?: boolean;
   userId?: string;
+  score?: number;
 };
 
 export interface ProjectData {
