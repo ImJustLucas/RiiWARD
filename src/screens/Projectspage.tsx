@@ -59,7 +59,6 @@ export const ProjectsScreen: React.FC<ProjectsScreenProps> = ({ fetch }) => {
           </ContainerSignup>
         )}
       </div>
-
       <RoundedContainer background="light" padding="36px">
         <MainContainer>
           {projects.length > 0 ? (
